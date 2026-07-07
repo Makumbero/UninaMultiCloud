@@ -4,14 +4,14 @@ import java.time.LocalDate;
 public class Accesso {
 		String Email;
 		int	IdAccesso;
-		LocalDate data;
+		LocalDate Data;
 		int IdElemento;
 		
-		public Accesso(String email, int idAccesso, int idElemento) {
+		public Accesso(String email, int idAccesso, LocalDate data, int idElemento) {
 			super();
 			Email = email;
 			IdAccesso = idAccesso;
-			this.data = LocalDate.now();
+			Data = data;
 			IdElemento = idElemento;
 		}
 
@@ -32,11 +32,11 @@ public class Accesso {
 		}
 
 		public LocalDate getData() {
-			return data;
+			return Data;
 		}
 
 		public void setData(LocalDate data) {
-			this.data = data;
+			this.Data = data;
 		}
 
 		public int getIdElemento() {
