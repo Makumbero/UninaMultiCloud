@@ -13,10 +13,11 @@ import Dao.JDBCUtenteDao;
 public class ControllerLogin {
 	Home MyHome;
  	Login MyLogin;
- 	ERROR e;
+ 	ERROR Errore;
  	Connection conn;
  	JFrame lastFrame;
- 	Profilo p;
+ 	Profilo MyProfilo;
+ 	ControllerElementi CElementi;
  
  	public ControllerLogin(Connection conn1) {
  		Login frameLogin= new Login(this);
@@ -24,10 +25,13 @@ public class ControllerLogin {
 		Home frameHome=new Home(this);
 		MyHome=frameHome;
 		ERROR frameError=new ERROR(this);
-		e=frameError;
+		Errore=frameError;
 		conn=conn1;
 		Profilo frameProfilo=new Profilo(this);
-		p=frameProfilo;
+		MyProfilo=frameProfilo;
+		ControllerElementi Elementi= new ControllerElementi(this);
+		CElementi=Elementi;
+		
 		
 		
 		frameLogin.setVisible(true);
@@ -49,20 +53,21 @@ public class ControllerLogin {
 		
 	}
 	public void showError() {
-		e.setVisible(true);
+		Errore.setVisible(true);
 	}
 	public void dismissError() {
-		e.setVisible(false);
+		Errore.setVisible(false);
 	}
 	public void HomeToProfilo() {
 		MyHome.setVisible(false);
-		p.setVisible(true);
+		MyProfilo.setVisible(true);
 		
-		lastFrame=p;
+		lastFrame=MyProfilo;
 	}
 	public void ReturnHome() {
 		lastFrame.setVisible(false);
 		MyHome.setVisible(true);
 	}
+
 	
 }

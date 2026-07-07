@@ -8,7 +8,6 @@ public class Accesso {
 		int IdElemento;
 		
 		public Accesso(String email, int idAccesso, int idElemento) {
-			super();
 			Email = email;
 			IdAccesso = idAccesso;
 			this.data = LocalDate.now();
