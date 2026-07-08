@@ -5,8 +5,8 @@ public class PlaylistPubblica extends Playlist {
 	int IdPubblica;
 	int Visualizzazioni;
 	
-	public PlaylistPubblica(int numeroElementi, Date dataCreazione, String descrizione, Utente creatore, int idPubblica, int visualizzazioni) {
-		super(numeroElementi, dataCreazione, descrizione, creatore);
+	public PlaylistPubblica(String titolo,int numeroElementi, Date dataCreazione, String descrizione, Utente creatore, int idPubblica, int visualizzazioni) {
+		super(titolo,numeroElementi, dataCreazione, descrizione, creatore);
 		IdPubblica=idPubblica;
 		Visualizzazioni=visualizzazioni;
 	}
