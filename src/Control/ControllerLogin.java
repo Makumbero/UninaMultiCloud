@@ -22,14 +22,11 @@ public class ControllerLogin {
  	Utente MyUtente;
  
  	public ControllerLogin(Connection conn1) {
- 		Login frameLogin= new Login(this);
-		MyLogin=frameLogin;
+		MyLogin=new Login(this);
 		MyLogin.setVisible(true);
-		ERROR frameError=new ERROR(this);
-		Errore=frameError;
+		Errore=new ERROR(this);
 		conn=conn1;
-		Profilo frameProfilo=new Profilo(this);
-		MyProfilo=frameProfilo;
+		MyProfilo=new Profilo(this);
 		UtenteDAO=new JDBCUtenteDao(conn1);
 		
  	}
