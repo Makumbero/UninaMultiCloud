@@ -33,10 +33,11 @@ public class ControllerLogin {
 		MyProfilo=frameProfilo;
 		ControllerElementi Elementi= new ControllerElementi(this);
 		CElementi=Elementi;
+		UtenteDAO=new JDBCUtenteDao(conn1);
 		
 		
 		
-		frameLogin.setVisible(true);
+		//frameLogin.setVisible(true);
  	}
 	
 	public void LoginHome() {
