@@ -16,6 +16,7 @@ public class ControllerElementi {
 	ControllerLogin cLog;
 	JDBCBranoDao MyBranoDao;
 	VisualizzaElemento MyVisualizzaElemento;
+	ModificaElemento MyModificaElemento;
 	public ControllerElementi(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
 		conn=conn1;
 		MyUtente=u;
@@ -44,6 +45,12 @@ public class ControllerElementi {
 		MyVisualizzaElemento=new VisualizzaElemento(Precedente, this);
 		MyVisualizzaElemento.setVisible(true);
 		MyVisualizzaElemento.MostraElemento(b);
+	}
+	
+	public void ModificaElemento(JFrame Precedente, Brano b) {
+		Precedente.setVisible(false);
+		MyModificaElemento=new ModificaElemento(Precedente, this, b);
+		MyModificaElemento.setVisible(true);
 	}
 	
 }
