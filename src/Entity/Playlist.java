@@ -1,16 +1,15 @@
 package Entity;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public  abstract class  Playlist {
 	private int NumeroElementi;
-	private LocalDate DataCreazione;
+	private Date DataCreazione;
 	private String Descrizione;
 	private Utente Creatore;
 	private ArrayList<Brano> Brani = new ArrayList<>();
 	
-	public Playlist(int numeroElementi, LocalDate dataCreazione, String descrizione, Utente creatore) {
+	public Playlist(int numeroElementi, Date dataCreazione, String descrizione, Utente creatore) {
 		super();
 		NumeroElementi = numeroElementi;
 		DataCreazione = dataCreazione;
@@ -34,7 +33,7 @@ public  abstract class  Playlist {
 		Descrizione = descrizione;
 	}
 
-	public LocalDate getDataCreazione() {
+	public Date getDataCreazione() {
 		return DataCreazione;
 	}
 

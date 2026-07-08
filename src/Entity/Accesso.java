@@ -1,14 +1,14 @@
 package Entity;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Accesso {
 		String Email;
 		int	IdAccesso;
-		LocalDate Data;
+		Date Data;
 		int IdElemento;
 		
 
-		public Accesso(String email, int idAccesso, LocalDate data, int idElemento) {
+		public Accesso(String email, int idAccesso, Date data, int idElemento) {
 			Email = email;
 			IdAccesso = idAccesso;
 			Data = data;
@@ -31,11 +31,11 @@ public class Accesso {
 			IdAccesso = idAccesso;
 		}
 
-		public LocalDate getData() {
+		public Date getData() {
 			return Data;
 		}
 
-		public void setData(LocalDate data) {
+		public void setData(Date data) {
 			this.Data = data;
 		}
 

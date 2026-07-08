@@ -5,20 +5,21 @@ public class Utente {
 	private String Email;
 	private String Password;
 	
-	public Utente(String Username, String Email, String Password) {
-		this.Username=Username;
-		this.setEmail(Email);
-		this.Password=Password;
+	public Utente(String username, String email, String password) {
+		Username=username;
+		Email=email;
+		Password=password;
 	}
 
 	public String getEmail() {
 		return Email;
 	}
+	
 	public String getUsername() {
 		return Username;
 	}
-
-	public void setEmail(String email) {
-		Email = email;
+	public String getPassword() {
+		return Password;
 	}
+	
 }
