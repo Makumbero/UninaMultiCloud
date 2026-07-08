@@ -13,6 +13,5 @@ public class Main {
 		ControllerLogin theController= new ControllerLogin(con.getConnection());
 		//GraficoVisualizzazioni v= new GraficoVisualizzazioni();
 		//v.setVisible(true);
-	
 	}
 }
