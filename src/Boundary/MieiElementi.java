@@ -81,11 +81,23 @@ public class MieiElementi extends JFrame {
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
 	        JButton Modifica = new JButton("Modifica");
+	        
 	        JButton Elimina = new JButton("Elimina");
 
 	        pulsanti.add(Modifica);
+	        Modifica.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MycEle.ModificaElemento(MieiElementi.this, brano);
+				}
+			});
+	        
 	        pulsanti.add(Elimina);
-
+	        Elimina.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Brano eliminato: "+ brano.getTitolo());
+				}
+			});
+	        
 	        riga.add(titolo, BorderLayout.CENTER);
 	        riga.add(pulsanti, BorderLayout.EAST);
 
