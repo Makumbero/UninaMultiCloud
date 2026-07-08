@@ -92,49 +92,40 @@ public class ModificaElemento extends JFrame {
 		FieldTitolo.setBounds(161, 53, 394, 26);
 		contentPane.add(FieldTitolo);
 		FieldTitolo.setColumns(10);
-		String TitoloIniziale=FieldTitolo.getText();
-		
+
 		FieldFormato = new JTextField(MyBrano.getFormato());
 		FieldFormato.setBounds(161, 81, 394, 26);
 		contentPane.add(FieldFormato);
 		FieldFormato.setColumns(10);
-		String FormatoIniziale=FieldFormato.getText();
 		
 		FieldDescrizione = new JTextField(MyBrano.getDescrizione());
 		FieldDescrizione.setBounds(161, 137, 394, 26);
 		contentPane.add(FieldDescrizione);
 		FieldDescrizione.setColumns(10);
-		String DescrizioneIniziale=FieldDescrizione.getText();
 		
 		FieldDurata = new JTextField(String.valueOf(MyBrano.getDurata()));
 		FieldDurata.setBounds(161, 109, 394, 26);
 		contentPane.add(FieldDurata);
 		FieldDurata.setColumns(10);
-		String DurataIniziale=FieldDurata.getText();
 		
 		FieldDimensione = new JTextField(String.valueOf(MyBrano.getDimensione()));
 		FieldDimensione.setBounds(160, 165, 395, 26);
 		contentPane.add(FieldDimensione);
 		FieldDimensione.setColumns(10);
-		String DimensioneIniziale=FieldDimensione.getText();
 		
 		FieldCanali = new JTextField(String.valueOf(MyBrano.getCanali()));
 		FieldCanali.setBounds(161, 193, 394, 26);
 		contentPane.add(FieldCanali);
 		FieldCanali.setColumns(10);
-		String CanaliIniziale=FieldCanali.getText();
 		
 		FieldCampionamento = new JTextField(String.valueOf(MyBrano.getCampionamento()));
 		FieldCampionamento.setBounds(161, 221, 394, 26);
 		contentPane.add(FieldCampionamento);
 		FieldCampionamento.setColumns(10);
-		String CampionamentoIniziale=FieldCampionamento.getText();
 
         SalvaModifiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!(TitoloIniziale.equals(FieldTitolo.getText()))) {
-					System.out.println("Titolo Modificato");
-				}
+				MycEle.SalvaModifiche(b, FieldTitolo.getText(), FieldFormato.getText(), FieldDescrizione.getText(), Integer.parseInt(FieldDurata.getText()), Double.parseDouble(FieldDimensione.getText()), Integer.parseInt(FieldCanali.getText()), Integer.parseInt(FieldCampionamento.getText()));
 			}
 		});
 	}

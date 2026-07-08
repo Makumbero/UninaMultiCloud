@@ -53,4 +53,36 @@ public class ControllerElementi {
 		MyModificaElemento.setVisible(true);
 	}
 	
-}
+	public void SalvaModifiche(Brano b, String Titolo, String Formato, String Descrizione, int Durata, double Dimensione, int Canali, int Campionamento) {
+		if(!(b.getTitolo().equals(Titolo))) {
+			b.setTitolo(Titolo);
+			MyBranoDao.SetTitolo(Titolo, b.getIdBrano());
+		}
+		if(!(b.getFormato().equals(Formato))) {
+			b.setFormato(Formato);
+			MyBranoDao.SetFormato(Formato, b.getIdBrano());
+			
+		if ((b.getDescrizione() == null && !Descrizione.isEmpty()) || (b.getDescrizione() != null && !b.getDescrizione().equals(Descrizione))) {
+		    b.setDescrizione(Descrizione);
+			MyBranoDao.Setdescrizione(Descrizione, b.getIdBrano());
+				}
+		if(b.getDurata()!=Durata) {
+			b.setTitolo(Titolo);
+			MyBranoDao.SetDurata(Durata, b.getIdBrano());
+		}
+		if(b.getDimensione()!=Dimensione) {
+			b.setDimensione(Dimensione);
+			MyBranoDao.SetDimensioni(Dimensione, b.getIdBrano());
+		}
+		if(b.getCanali()!=Canali) {
+			b.setCanali(Canali);
+			MyBranoDao.SetCanali(Canali, b.getIdBrano());
+		}
+		if(b.getCampionamento()!=Campionamento) {
+			b.setCampionamento(Campionamento);
+			MyBranoDao.SetCampionamento(Campionamento, b.getIdBrano());
+		}
+	}
+}}
+	
+
