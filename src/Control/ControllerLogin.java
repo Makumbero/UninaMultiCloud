@@ -24,7 +24,7 @@ public class ControllerLogin {
  	public ControllerLogin(Connection conn1) {
  		Login frameLogin= new Login(this);
 		MyLogin=frameLogin;
-
+		MyLogin.setVisible(true);
 		ERROR frameError=new ERROR(this);
 		Errore=frameError;
 		conn=conn1;
