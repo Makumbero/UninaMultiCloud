@@ -30,10 +30,7 @@ public class ControllerLogin {
 		conn=conn1;
 		Profilo frameProfilo=new Profilo(this);
 		MyProfilo=frameProfilo;
-		
-		
-		
-		frameLogin.setVisible(true);
+		UtenteDAO=new JDBCUtenteDao(conn1);
  	}
 	
 	public void LoginHome() {
