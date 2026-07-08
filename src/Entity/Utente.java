@@ -14,6 +14,9 @@ public class Utente {
 	public String getEmail() {
 		return Email;
 	}
+	public String getUsername() {
+		return Username;
+	}
 
 	public void setEmail(String email) {
 		Email = email;

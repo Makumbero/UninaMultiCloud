@@ -1,13 +1,14 @@
 package Entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Brano {
 	private String Titolo;
 	private String Formato;
 	private int Durata;
 	private String Descrizione;
-	private LocalDate DataCreazione;
+	private Date DataCreazione;
 	private Double Dimensione;
 	private String ImmagineCopertina;
 	private int Visualizzazioni;
@@ -17,9 +18,8 @@ public class Brano {
 	private Utente Creatore;
 	
 
-	public Brano(String titolo, String formato, int durata, LocalDate dataCreazione, Double dimensione,
+	public Brano(String titolo, String formato, int durata, Date dataCreazione, Double dimensione,
 			String immagineCopertina, int visualizzazioni, int canali, int campionamento, int idBrano, Utente creatore) {
-		super();
 		Titolo = titolo;
 		Formato = formato;
 		Durata = durata;
@@ -65,7 +65,7 @@ public class Brano {
 		Descrizione = descrizione;
 	}
 
-	public LocalDate getDataCreazione() {
+	public Date getDataCreazione() {
 		return DataCreazione;
 	}
 
