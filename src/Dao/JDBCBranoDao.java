@@ -109,5 +109,156 @@ public class JDBCBranoDao implements BranoDao{
 		    }
 	}
 	
+	//Getter e setter
+	@Override
+	public  void SetTitolo(String TitoloIN, int IdElementoIN) {
+		String sql = "CALL SetTitolo(?,?)";
 
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, TitoloIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetFormato(String FormatoIN, int IdElementoIN) {
+		String sql = "CALL SetFormato(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, FormatoIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetDurata(int DurataIN, int IdElementoIN) {
+		String sql = "CALL SetDurata(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, DurataIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void Setdescrizione(String DescrizioneIN, int IdElementoIN) {
+		String sql = "CALL SetDescrizione(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, DescrizioneIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetCanali(int CanaliIN, int IdElementoIN) {
+		String sql = "CALL SetCanali(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, CanaliIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetCampionamento(int CampionamentoIN, int IdElementoIN) {
+		String sql = "CALL SetCampionamento(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, CampionamentoIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetDimensioni(double DimensioniIN, int IdElementoIN) {
+		String sql = "CALL SetDimensioni(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setDouble(1, DimensioniIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetImmaginecopertina(String ImmaginecopertinaIN, int IdElementoIN) {
+		String sql = "CALL SetImmaginecopertina(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, ImmaginecopertinaIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
 }

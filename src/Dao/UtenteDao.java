@@ -8,5 +8,4 @@ public interface UtenteDao {
 	
 	public Utente getAutorePerEmail(String EmailIN);
 
-	void AggiungiAccesso(int IdElementoIN, String EmailIN);
 }

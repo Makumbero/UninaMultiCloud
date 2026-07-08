@@ -24,4 +24,20 @@ public interface BranoDao {
 			String ImmagineCopertinaIN,
 			String EmailIN );
 	
+	public  void SetTitolo(String TitoloIN, int IdElementoIN);
+	
+	public  void SetFormato(String FormatoIN, int IdElementoIN);
+	
+	public  void SetDurata(int DurataIN, int IdElementoIN);
+	
+	public  void Setdescrizione(String DescrizioneIN, int IdElementoIN);
+	
+	public  void SetCanali(int CanaliIN, int IdElementoIN);
+	
+	public  void SetCampionamento(int CampionamentoIN, int IdElementoIN);
+	
+	public  void SetDimensioni(double DimensioniIN, int IdElementoIN);
+	
+	public  void SetImmaginecopertina(String ImmaginecopertinaIN, int IdElementoIN);
 }
+

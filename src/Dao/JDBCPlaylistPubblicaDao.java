@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Control.ControllerPlaylist;
 import Entity.Brano;
 import Entity.PlaylistPubblica;
+import Entity.Utente;
 
 public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	Connection conn;
@@ -70,6 +72,32 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		        e.printStackTrace();
 		    }
 		return listaPlaylist;
+	}
+	
+	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN){
+		 String sql = "CALL AggiungiPlaylistPubblica(?,?)";
+	
+		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
+		        PstmtCercaElementi.setString(1, TitoloIN);
+		        PstmtCercaElementi.setString(2, CreatoreIN.getEmail());
+		        PstmtCercaElementi.execute();
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+	}
+	
+	public void AggiungiaPubblica(int IdPubblicaIN, int IdElementoIN){
+		 String sql = "CALL AggiungiaPubblica(?,?)";
+	
+		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
+		        PstmtCercaElementi.setInt(1, IdPubblicaIN);
+		        PstmtCercaElementi.setInt(2, IdElementoIN);
+		        PstmtCercaElementi.execute();
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
 	}
 
 }

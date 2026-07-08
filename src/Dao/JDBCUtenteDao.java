@@ -80,42 +80,9 @@ public class JDBCUtenteDao implements UtenteDao {
 	 
 	}
 	
-	@Override
-	public  void AggiungiAccesso(int IdElementoIN, String EmailIN) {
-		String sql = "CALL AggiungiAccesso(?,?)";
-
-	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	        pstmt.setInt(1, IdElementoIN);
-	        pstmt.setString(2, EmailIN);
-	        pstmt.execute();
-	  
-	             
-	            
-	        
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-	 
-	}
+	
 	//setter e getter
-	public  void SetTitolo(String TitoloIN, int IdElementoIN) {
-		String sql = "CALL SetTitolo(?,?)";
-
-	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	        pstmt.setString(1, TitoloIN);
-	        pstmt.setInt(2, IdElementoIN);
-	        pstmt.execute();
-	  
-	             
-	            
-	        
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-	 
-	}
+	
 	
 		
 }
