@@ -32,7 +32,6 @@ public class ControllerLogin {
 		MyProfilo=frameProfilo;
 		UtenteDAO=new JDBCUtenteDao(conn1);
 		
-		MyLogin.setVisible(true);
  	}
 	
 	public void LoginHome() {

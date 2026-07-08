@@ -3,20 +3,31 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public  abstract class  Playlist {
+	private String Titolo;
+	
+
 	private int NumeroElementi;
 	private Date DataCreazione;
 	private String Descrizione;
 	private Utente Creatore;
 	private ArrayList<Brano> Brani = new ArrayList<>();
 	
-	public Playlist(int numeroElementi, Date dataCreazione, String descrizione, Utente creatore) {
-		super();
+	public Playlist(String titolo,int numeroElementi, Date dataCreazione, String descrizione, Utente creatore) {
+		Titolo=titolo;
 		NumeroElementi = numeroElementi;
 		DataCreazione = dataCreazione;
 		Descrizione = descrizione;
 		Creatore = creatore;
 	}
+	
+	public String getTitolo() {
+		return Titolo;
+	}
 
+	public void setTitolo(String titolo) {
+		Titolo = titolo;
+	}
+	
 	public int getNumeroElementi() {
 		return NumeroElementi;
 	}

@@ -6,8 +6,8 @@ public class PlaylistCondivisa extends Playlist {
 	private int IdCondivisa;
 	private ArrayList<Utente> CondivisaCon= new ArrayList<>();
 	
-	public PlaylistCondivisa(int numeroElementi, Date dataCreazione, String descrizione, Utente creatore, int idCondivisa) {
-		super(numeroElementi, dataCreazione, descrizione, creatore);
+	public PlaylistCondivisa(String titolo,int numeroElementi, Date dataCreazione, String descrizione, Utente creatore, int idCondivisa) {
+		super(titolo,numeroElementi, dataCreazione, descrizione, creatore);
 		IdCondivisa=idCondivisa;
 	}
 	
