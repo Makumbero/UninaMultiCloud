@@ -38,24 +38,8 @@ public class JDBCUtenteDao implements UtenteDao {
 		return u;
 	}
 
-	public boolean getUtente(String Email, String Password) {
-		try (Statement stmt = conn.createStatement()){ 
-			
-			try(ResultSet rs = stmt.executeQuery("SELECT * FROM utente WHERE email = '" + Email + "' AND password='"+ Password +"'" )){
-				if(rs.next()) {
-					Utente u1=new Utente(rs.getString("username"),Email,rs.getString("password"));
-					return true;
-				}
-			}
-			
-			
 
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+	@Override
 	public boolean VerificaUtente(String Email, String Password) {
 	    String sql = "SELECT verificaUtente(?, ?)";
 
@@ -75,6 +59,7 @@ public class JDBCUtenteDao implements UtenteDao {
 
 	}
 	
+	@Override
 	public Utente getAutorePerEmail(String EmailIN) {
 		Utente user;
 		String sql = "SELECT * FROM  GetAutorePerEmail(?)";
@@ -92,6 +77,43 @@ public class JDBCUtenteDao implements UtenteDao {
 	        e.printStackTrace();
 	    }
 	    return null;
+	 
+	}
+	
+	@Override
+	public  void AggiungiAccesso(int IdElementoIN, String EmailIN) {
+		String sql = "CALL AggiungiAccesso(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, IdElementoIN);
+	        pstmt.setString(2, EmailIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	//setter e getter
+	public  void SetTitolo(String TitoloIN, int IdElementoIN) {
+		String sql = "CALL SetTitolo(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, TitoloIN);
+	        pstmt.setInt(2, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
 	 
 	}
 	
