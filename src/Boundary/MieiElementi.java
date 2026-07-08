@@ -11,6 +11,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Control.*;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.BoxLayout;
@@ -22,10 +25,14 @@ public class MieiElementi extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel PannelloBrani;
+	private ControllerElementi MycEle;
+	private JFrame Precedente;
 	/**
 	 * Create the frame.
 	 */
-	public MieiElementi() {
+	public MieiElementi(ControllerElementi mycEle, JFrame precedente) {
+		MycEle=mycEle;
+		Precedente=precedente;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 648, 444);
 		contentPane = new JPanel();
@@ -36,6 +43,11 @@ public class MieiElementi extends JFrame {
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setBounds(93, 334, 159, 61);
 		contentPane.add(Indietro);
+		Indietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MycEle.ToPrecedente(MieiElementi.this, Precedente);
+			}
+		});
 		
 		JButton CreaElemento = new JButton("CreaElemento");
 		CreaElemento.setBounds(373, 334, 159, 61);
@@ -62,7 +74,7 @@ public class MieiElementi extends JFrame {
 	        JButton titolo = new JButton(brano.getTitolo());
 			titolo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Prova titolo "+ brano.getTitolo());
+					MycEle.VisualizzaElemento(MieiElementi.this, brano);
 				}
 			});
 
