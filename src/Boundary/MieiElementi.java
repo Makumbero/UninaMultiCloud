@@ -3,6 +3,8 @@ package Boundary;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,11 @@ public class MieiElementi extends JFrame {
 	        JPanel riga = new JPanel(new BorderLayout());
 
 	        JButton titolo = new JButton(brano.getTitolo());
+			titolo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Prova titolo "+ brano.getTitolo());
+				}
+			});
 
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
