@@ -18,21 +18,18 @@ public class ControllerLogin {
  	Connection conn;
  	JFrame lastFrame;
  	Profilo MyProfilo;
- 	ControllerElementi CElementi;
  	JDBCUtenteDao UtenteDAO;
+ 	Utente MyUtente;
  
  	public ControllerLogin(Connection conn1) {
  		Login frameLogin= new Login(this);
 		MyLogin=frameLogin;
-		Home frameHome=new Home(this);
-		MyHome=frameHome;
+
 		ERROR frameError=new ERROR(this);
 		Errore=frameError;
 		conn=conn1;
 		Profilo frameProfilo=new Profilo(this);
 		MyProfilo=frameProfilo;
-		ControllerElementi Elementi= new ControllerElementi(this);
-		CElementi=Elementi;
 		
 		
 		
@@ -47,6 +44,10 @@ public class ControllerLogin {
 	public void verificaCredenziali(String Email, String Password) {
 		UtenteDAO=new JDBCUtenteDao(conn);
 		if(UtenteDAO.VerificaUtente(Email,Password)){
+			MyUtente=this.getAutorePerEmail(Email);
+			MyHome=new Home(this);
+			ControllerElementi cEle= new ControllerElementi(conn, MyUtente, MyHome, this);
+			MyHome.setControllerElementi(cEle);
 			LoginHome();
 		}else {
 			showError();

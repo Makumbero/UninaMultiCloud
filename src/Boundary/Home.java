@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Control.ControllerElementi;
 import Control.ControllerLogin;
 
 import javax.swing.JButton;
@@ -15,7 +16,8 @@ public class Home extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	ControllerLogin c;
+	ControllerLogin cLog;
+	ControllerElementi cEle;
 	/**
 	 * Launch the application.
 	 */
@@ -23,8 +25,8 @@ public class Home extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Home(ControllerLogin c) {
-		this.c=c;
+	public Home(ControllerLogin cLog) {
+		this.cLog=cLog;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -35,6 +37,7 @@ public class Home extends JFrame {
 		JButton btnNewButton = new JButton("I miei brani");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cEle.HomeToMieiElementi(cEle.getMyUtente());
 			}
 		});
 		btnNewButton.setBounds(39, 113, 85, 21);
@@ -51,7 +54,7 @@ public class Home extends JFrame {
 		JButton btnNewButton_2 = new JButton("Profilo");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.HomeToProfilo();
+				cLog.HomeToProfilo();
 			}
 		});
 		btnNewButton_2.setBounds(39, 198, 84, 20);
@@ -69,5 +72,8 @@ public class Home extends JFrame {
 		btnNewButton_4.setBounds(203, 198, 84, 20);
 		contentPane.add(btnNewButton_4);
 
+	}
+	public void setControllerElementi(ControllerElementi cEle){
+		this.cEle=cEle;
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,23 +20,6 @@ public class MieiElementi extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel PannelloBrani;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MieiElementi frame = new MieiElementi();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -64,7 +48,7 @@ public class MieiElementi extends JFrame {
 		Scorrimento.setViewportView(PannelloBrani);
 
 	}
-	public void MostraElementi(ArrayList <Brano> Brani) {
+	public void MostraElementi(List <Brano> Brani) {
 	    PannelloBrani.removeAll();
 
 	    PannelloBrani.setLayout(new BoxLayout(PannelloBrani, BoxLayout.Y_AXIS));
@@ -73,10 +57,8 @@ public class MieiElementi extends JFrame {
 
 	        JPanel riga = new JPanel(new BorderLayout());
 
-	        // Bottone con il titolo del brano
 	        JButton titolo = new JButton(brano.getTitolo());
 
-	        // Bottoni a destra
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
 	        JButton Modifica = new JButton("Modifica");

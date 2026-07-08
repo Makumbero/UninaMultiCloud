@@ -10,7 +10,7 @@ public class Main {
 		ConnessioneDB con= new ConnessioneDB();
 		con.connettiti();
 		
-		ControllerLogin theController= new ControllerLogin(con.getConnection());
+		ControllerLogin cLog= new ControllerLogin(con.getConnection());
 		//GraficoVisualizzazioni v= new GraficoVisualizzazioni();
 		//v.setVisible(true);
 	}

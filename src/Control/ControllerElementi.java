@@ -1,8 +1,36 @@
 package Control;
 
+import java.sql.Connection;
+
+import Boundary.*;
+import Dao.*;
+import Entity.*;
+
 public class ControllerElementi {
-	ControllerLogin c;
-	public ControllerElementi(ControllerLogin c) {
-		this.c=c;
+	Utente MyUtente;
+	Connection conn;
+	Home MyHome;
+	MieiElementi MyMieiElementi;
+	ControllerLogin cLog;
+	JDBCBranoDao MyBranoDao;
+	public ControllerElementi(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
+		conn=conn1;
+		MyUtente=u;
+		MyHome=h;
+		this.cLog=cLog;
+		MyMieiElementi = new MieiElementi();
+        MyBranoDao = new JDBCBranoDao(conn, cLog);
 	}
+	public void HomeToMieiElementi(Utente u) {
+		MyHome.setVisible(false);
+		MyMieiElementi.setVisible(true);
+		MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
+	}
+	public Utente getMyUtente() {
+		return MyUtente;
+	}
+	public void setMyUtente(Utente myUtente) {
+		MyUtente = myUtente;
+	}
+	
 }
