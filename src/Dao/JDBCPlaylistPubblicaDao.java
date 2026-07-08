@@ -20,6 +20,7 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		this.conn = conn;
 		this.cPlaylist=cPlaylist;
 	}
+	@Override
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerTitolo(String TitoloIN){
 		List <PlaylistPubblica>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM CercaPlaylistPubblicaPerTitolo(?)";
@@ -37,7 +38,7 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		    }
 		return listaPlaylist;
 	}
-	
+	@Override
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerAutore(String AutoreIN){
 		List <PlaylistPubblica>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM CercaPlaylistPubblicaPerAutore(?)";
@@ -55,7 +56,7 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		    }
 		return listaPlaylist;
 	}
-	
+	@Override
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerEmail(String EmailIN){
 		List <PlaylistPubblica>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM CercaPlaylistPubblicaPerEmail(?)";
@@ -73,7 +74,7 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		    }
 		return listaPlaylist;
 	}
-	
+	@Override
 	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN){
 		 String sql = "CALL AggiungiPlaylistPubblica(?,?)";
 	
@@ -87,6 +88,18 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		    }
 	}
 	
+	@Override
+	public void EliminaPlaylist(int IdPubblicaIN){
+		 String sql = "CALL EliminaPlaylistPubblica(?)";
+		    try (PreparedStatement pstmEliminaPlaylist = conn.prepareStatement(sql)) {
+		        pstmEliminaPlaylist.setInt(1, IdPubblicaIN);
+		        pstmEliminaPlaylist.execute();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+	}
+	
+	@Override
 	public void AggiungiaPubblica(int IdPubblicaIN, int IdElementoIN){
 		 String sql = "CALL AggiungiaPubblica(?,?)";
 	
@@ -99,5 +112,47 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		        e.printStackTrace();
 		    }
 	}
+	
+	@Override
+	public void RimuoviElemento( int IdElementoIN,int IdPubblicaIN){
+		 String sql = "CALL RimuoviElementoPubblica(?,?)";
+	
+		    try (PreparedStatement pstmtRimuoviElemento = conn.prepareStatement(sql)) {
+		        pstmtRimuoviElemento.setInt(1, IdElementoIN);
+		        pstmtRimuoviElemento.setInt(2, IdPubblicaIN);
+		        pstmtRimuoviElemento.execute();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+	}
+	
+	@Override
+	public  void SetTitolo(String TitoloIN, int IdPubblicaIN) {
+		String sql = "CALL SetTitoloPubblica(?,?)";
 
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, TitoloIN);
+	        pstmt.setInt(2, IdPubblicaIN);
+	        pstmt.execute();        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
+	@Override
+	public  void SetDescrizione(String DescrizioneIN, int IdPubblicaIN) {
+		String sql = "CALL SetDescrizione(?,?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, DescrizioneIN);
+	        pstmt.setInt(2, IdPubblicaIN);
+	        pstmt.execute();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
 }
