@@ -143,7 +143,7 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	
 	@Override
 	public  void SetDescrizione(String DescrizioneIN, int IdPubblicaIN) {
-		String sql = "CALL SetDescrizione(?,?)";
+		String sql = "CALL SetDescrizionePubblica(?,?)";
 
 	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	        pstmt.setString(1, DescrizioneIN);

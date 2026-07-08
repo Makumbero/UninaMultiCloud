@@ -29,7 +29,7 @@ public class JDBCBranoDao implements BranoDao{
 
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
-		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
 			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(EmailIN)));
 		            }
 		        }
@@ -49,7 +49,7 @@ public class JDBCBranoDao implements BranoDao{
 
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
-		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
 			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email"))));
 		            }
 		        }
@@ -68,7 +68,7 @@ public class JDBCBranoDao implements BranoDao{
 
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
-		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
 			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email"))));
 		            }
 		        }
