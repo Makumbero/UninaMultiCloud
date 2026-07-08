@@ -1,12 +1,14 @@
 package Entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public  abstract class  Playlist {
 	private int NumeroElementi;
 	private LocalDate DataCreazione;
 	private String Descrizione;
 	private Utente Creatore;
+	private ArrayList<Brano> Brani = new ArrayList<>();
 	
 	public Playlist(int numeroElementi, LocalDate dataCreazione, String descrizione, Utente creatore) {
 		super();
@@ -40,6 +42,12 @@ public  abstract class  Playlist {
 		return Creatore;
 	}
 	
+	public void aggiungiBrano(Brano b) {
+		Brani.add(b);
+	}
 	
+	public void rimuoviBrano(Brano b) {
+		Brani.remove(b);
+	}
 }
 
