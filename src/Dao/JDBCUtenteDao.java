@@ -74,6 +74,27 @@ public class JDBCUtenteDao implements UtenteDao {
 	    return false;
 
 	}
+	
+	public Utente getAutorePerEmail(String EmailIN) {
+		Utente user;
+		String sql = "SELECT * FROM  GetAutorePerEmail(?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, EmailIN);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                user=new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password"));
+	                return user;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	 
+	}
+	
 		
 }
 

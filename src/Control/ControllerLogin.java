@@ -9,6 +9,7 @@ import Boundary.Login;
 import Boundary.Profilo;
 
 import Dao.JDBCUtenteDao;
+import Entity.Utente;
 
 public class ControllerLogin {
 	Home MyHome;
@@ -18,6 +19,7 @@ public class ControllerLogin {
  	JFrame lastFrame;
  	Profilo MyProfilo;
  	ControllerElementi CElementi;
+ 	JDBCUtenteDao UtenteDAO;
  
  	public ControllerLogin(Connection conn1) {
  		Login frameLogin= new Login(this);
@@ -43,7 +45,7 @@ public class ControllerLogin {
 		
 	}
 	public void verificaCredenziali(String Email, String Password) {
-		JDBCUtenteDao UtenteDAO=new JDBCUtenteDao(conn);
+		UtenteDAO=new JDBCUtenteDao(conn);
 		if(UtenteDAO.VerificaUtente(Email,Password)){
 			LoginHome();
 		}else {
@@ -68,6 +70,11 @@ public class ControllerLogin {
 		lastFrame.setVisible(false);
 		MyHome.setVisible(true);
 	}
-
+	public Utente getAutorePerEmail(String EmailIN) {
+		Utente u;
+		u=UtenteDAO.getAutorePerEmail(EmailIN);
+		return u;
+		
+	}
 	
 }
