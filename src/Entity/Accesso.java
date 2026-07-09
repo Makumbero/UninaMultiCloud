@@ -2,25 +2,25 @@ package Entity;
 import java.util.Date;
 
 public class Accesso {
-		String Email;
+		Utente MyUtente;
 		int	IdAccesso;
 		Date Data;
-		int IdElemento;
+		Brano MyBrano;
 		
 
-		public Accesso(String email, int idAccesso, Date data, int idElemento) {
-			Email = email;
+		public Accesso(Utente myUtente, int idAccesso, Date data, Brano myBrano) {
+			MyUtente=myUtente;
 			IdAccesso = idAccesso;
 			Data = data;
-			IdElemento = idElemento;
+			MyBrano=myBrano;
 		}
 
-		public String getEmail() {
-			return Email;
+		public Utente getMyUtente() {
+			return MyUtente;
 		}
 
-		public void setEmail(String email) {
-			Email = email;
+		public void setUtente(Utente u) {
+			MyUtente=u;
 		}
 
 		public int getIdAccesso() {
@@ -39,11 +39,13 @@ public class Accesso {
 			this.Data = data;
 		}
 
-		public int getIdElemento() {
-			return IdElemento;
+		public Brano getMyBrano() {
+			return MyBrano;
 		}
 
-		public void setIdElemento(int idElemento) {
-			IdElemento = idElemento;
+		public void setMyBrano(Brano myBrano) {
+			MyBrano = myBrano;
 		}
+
+
 }

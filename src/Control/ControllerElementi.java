@@ -39,6 +39,17 @@ public class ControllerElementi {
 		MyMieiElementi.setVisible(true);
 		MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
 	}
+	
+	public Utente getAutorePerEmail(String EmailIN) {
+		Utente u=cLog.getAutorePerEmail(EmailIN);
+		return u;
+	}
+	
+	public Brano getElementoPerID(int IdElementoIN) {
+		Brano b=MyBranoDao.GetElementoPerId(IdElementoIN);
+		return b;
+	}
+	
 	public Utente getMyUtente() {
 		return MyUtente;
 	}
