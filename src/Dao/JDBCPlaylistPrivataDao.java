@@ -49,8 +49,7 @@ public class JDBCPlaylistPrivataDao implements PlaylistPrivataDao {
 	
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
-		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
-		            			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cPlaylist.getAutorePerEmail(rs.getString("Email"))));
+		            	listaBrani.add(cPlaylist.getElementoPerID(rs.getInt("IdElemento")));
 		            }
 		        }
 		    } catch (SQLException e) {

@@ -13,9 +13,6 @@ import Boundary.ScegliPlaylist;
 import Dao.*;
 import Dao.JDBCUtenteDao;
 import Entity.*;
-import Entity.Playlist;
-import Entity.PlaylistPrivata;
-import Entity.Utente;
 
 public class ControllerPlaylist {
 	JDBCUtenteDao MyUtenteDao;
@@ -39,6 +36,12 @@ public class ControllerPlaylist {
 		MyCondivisaDao= new JDBCPlaylistCondivisaDao(conn, this);
 		MyPubblicaDao= new JDBCPlaylistPubblicaDao(conn, this);
 		MyPrivataDao= new JDBCPlaylistPrivataDao(conn, this);
+	}
+	
+	public Brano getElementoPerID(int IdElementoIN) {
+		Brano b=MycEle.getElementoPerID(IdElementoIN);
+		return b;
+		
 	}
 	
 	public Utente getAutorePerEmail(String EmailIN) {

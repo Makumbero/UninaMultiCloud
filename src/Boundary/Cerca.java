@@ -31,9 +31,7 @@ public class Cerca extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCerca = new JButton("Cerca");
-		btnCerca.setBounds(179, 92, 84, 20);
-		contentPane.add(btnCerca);
+
 		
 		JButton btnIndietro = new JButton("Indietro");
 		btnIndietro.addActionListener(new ActionListener() {
@@ -54,6 +52,15 @@ public class Cerca extends JFrame {
 		cmboxTipoRicerca.setToolTipText("Autore\r\nTitolo\r\nPlaylist\r\n");
 		cmboxTipoRicerca.setBounds(28, 62, 74, 19);
 		contentPane.add(cmboxTipoRicerca);
+		
+		JButton btnCerca = new JButton("Cerca");
+		btnCerca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			cmboxTipoRicerca.
+			}
+		});
+		btnCerca.setBounds(179, 92, 84, 20);
+		contentPane.add(btnCerca);
 
 	}
 }
