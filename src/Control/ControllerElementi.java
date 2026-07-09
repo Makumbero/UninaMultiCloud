@@ -41,7 +41,7 @@ public class ControllerElementi {
 	}
 	
 	public Utente getAutorePerEmail(String EmailIN) {
-		Utente u=cLog.getAutorePerEmail(EmailIN);
+		Utente u=MycLog.getAutorePerEmail(EmailIN);
 		return u;
 	}
 	

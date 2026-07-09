@@ -59,5 +59,9 @@ public  abstract class  Playlist {
 	public void rimuoviBrano(Brano b) {
 		Brani.remove(b);
 	}
+	
+	public int getId() {
+		return 0;
+	}
 }
 
