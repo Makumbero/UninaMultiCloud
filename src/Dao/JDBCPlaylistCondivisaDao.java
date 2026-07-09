@@ -86,12 +86,12 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	}
 	
 	@Override
-	public List<Brano> GetContiene(String IdCondivisaIN){
+	public List<Brano> GetContiene(int IdCondivisaIN){
 		List <Brano>listaBrani= new ArrayList<>();
 		 String sql = "SELECT * FROM GetContienePerPlaylistCondivisa(?)";
 	
 		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-		        pstm.setString(1, IdCondivisaIN);
+		        pstm.setInt(1, IdCondivisaIN);
 	
 		        try (ResultSet rs = pstm.executeQuery()) {
 		            while(rs.next()) {

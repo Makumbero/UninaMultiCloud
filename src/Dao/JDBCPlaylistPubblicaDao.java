@@ -100,12 +100,12 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	}
 	
 	@Override
-	public List<Brano> GetContiene(String IdPubblicaIN){
+	public List<Brano> GetContiene(int IdPubblicaIN){
 		List <Brano>listaBrani= new ArrayList<>();
 		 String sql = "SELECT * FROM GetContienePerPlaylistPubblica(?)";
 	
 		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-		        pstm.setString(1, IdPubblicaIN);
+		        pstm.setInt(1, IdPubblicaIN);
 	
 		        try (ResultSet rs = pstm.executeQuery()) {
 		            while(rs.next()) {

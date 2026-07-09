@@ -40,12 +40,12 @@ public class JDBCPlaylistPrivataDao implements PlaylistPrivataDao {
 	}
 	
 	@Override
-	public List<Brano> GetContiene(String IdPrivataIN){
+	public List<Brano> GetContiene(int IdPrivataIN){
 		List <Brano>listaBrani= new ArrayList<>();
 		 String sql = "SELECT * FROM GetContienePerPlaylistPrivata(?)";
 	
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
-		        PstmtCercaElementi.setString(1, IdPrivataIN);
+		        PstmtCercaElementi.setInt(1, IdPrivataIN);
 	
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {

@@ -13,7 +13,7 @@ public interface PlaylistPrivataDao {
 	
 	public void EliminaPlaylist(int IdPrivataIN);
 	
-	public List<Brano> GetContiene(String IdPrivataIN);
+	public List<Brano> GetContiene(int IdPrivataIN);
 	
 	public void AggiungiaPrivata(int IdPrivataIN, int IdElementoIN);
 	

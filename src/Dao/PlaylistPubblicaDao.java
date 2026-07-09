@@ -17,7 +17,7 @@ public interface PlaylistPubblicaDao {
 	
 	public void EliminaPlaylist(int IdPubblicaIN);
 	
-	public List<Brano> GetContiene(String IdPubblicaIN);
+	public List<Brano> GetContiene(int IdPubblicaIN);
 	
 	public void AggiungiaPubblica(int IdPubblicaIN, int IdElementoIN);
 	
