@@ -11,6 +11,10 @@ public interface PlaylistCondivisaDao {
 	
 	public List<PlaylistCondivisa>  CercaPlaylistCondiviseAte(String EmailIN);
 	
+	public void  CondividiPlaylist(int IdCondivisaIN, Utente UtenteIN);
+	
+	public void  RimuoviCondivisionePlaylist(int IdCondivisaIN, Utente UtenteIN);
+	
 	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN);
 	
 	public void EliminaPlaylist(int IdcondivisaIN);

@@ -57,6 +57,34 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	}
 	
 	@Override
+	public void  CondividiPlaylist(int IdCondivisaIN, Utente UtenteIN){
+		 String sql = "CALL  CondividiPlaylist(?,?)";
+	
+		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
+		        PstmtCercaElementi.setInt(1, IdCondivisaIN);
+		        PstmtCercaElementi.setString(2, UtenteIN.getEmail());
+		        PstmtCercaElementi.execute();
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+	}
+	
+	@Override
+	public void  RimuoviCondivisionePlaylist(int IdCondivisaIN, Utente UtenteIN){
+		 String sql = "CALL  RimuoviCondivisionePlaylist(?,?)";
+	
+		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
+		        PstmtCercaElementi.setInt(1, IdCondivisaIN);
+		        PstmtCercaElementi.setString(2, UtenteIN.getEmail());
+		        PstmtCercaElementi.execute();
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+	}
+	
+	@Override
 	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN){
 		 String sql = "CALL AggiungiPlaylistCondivisa(?,?)";
 	
