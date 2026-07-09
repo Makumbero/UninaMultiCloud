@@ -206,6 +206,14 @@ public class ControllerElementi {
 			MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
 		}
 	}
+	public void EliminaElemento(Brano b, MieiElementi Attuale) {
+		MyBranoDao.EliminaBrano(b.getIdBrano());
+		b=null;
+		Attuale.dispose();
+		Attuale=new MieiElementi(this, MyHome);
+		Attuale.setVisible(true);
+		Attuale.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
+	}
 	public void ScegliPlaylist(JFrame Precedente,Brano b) {
 		MycPl.ScegliPlaylist(Precedente, b);
 	}

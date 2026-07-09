@@ -99,7 +99,7 @@ public class MieiElementi extends JFrame {
 	        pulsanti.add(Elimina);
 	        Elimina.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Brano eliminato: "+ brano.getTitolo());
+					MycEle.EliminaElemento(brano, MieiElementi.this);
 				}
 			});
 	        
