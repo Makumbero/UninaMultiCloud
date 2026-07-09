@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -17,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import Control.ControllerCerca;
 import Entity.Brano;
+import Entity.Playlist;
 
 public class RisultatiRicerca extends JFrame {
 
@@ -41,6 +43,15 @@ public class RisultatiRicerca extends JFrame {
 		
         PannelloRisultati = new JPanel();
 		Scorrimento.setViewportView(PannelloRisultati);
+		
+		JButton btnIndietro = new JButton("Indietro");
+		btnIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnIndietro.setBounds(27, 233, 84, 20);
+		contentPane.add(btnIndietro);
 
 		
 	}
@@ -60,28 +71,18 @@ public class RisultatiRicerca extends JFrame {
 				}
 			});
 
-	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-
-	        JButton Modifica = new JButton("Modifica");
+	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	        
-	        JButton Elimina = new JButton("Elimina");
+	        JLabel Titolo = new JLabel(brano.getCreatore().getUsername());
+			contentPane.add(Titolo);
+			autore.add(Titolo);
 
-	        pulsanti.add(Modifica);
-	        Modifica.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					//MycEle.ModificaElemento(MieiElementi.this, brano);
-				}
-			});
-	        
-	        pulsanti.add(Elimina);
-	        Elimina.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Brano eliminato: "+ brano.getTitolo());
-				}
-			});
+
+
+
 	        
 	        riga.add(titolo, BorderLayout.CENTER);
-	        riga.add(pulsanti, BorderLayout.EAST);
+	        riga.add(autore, BorderLayout.EAST);
 
 	        PannelloRisultati.add(riga);
 	    }
@@ -89,5 +90,39 @@ public class RisultatiRicerca extends JFrame {
 	    PannelloRisultati.revalidate();
 	    PannelloRisultati.repaint();
 	}
+	public void MostraPlaylist(List <Playlist> listaPlaylist) {
+	    PannelloRisultati.removeAll();
 
+	    PannelloRisultati.setLayout(new BoxLayout(PannelloRisultati, BoxLayout.Y_AXIS));
+
+	    for (Playlist p : listaPlaylist) {
+
+	        JPanel riga = new JPanel(new BorderLayout());
+
+	        JButton titolo = new JButton(p.getTitolo());
+			titolo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cCerca.VisualizzaPlaylist(RisultatiRicerca.this, p);
+				}
+			});
+
+	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	        
+	        JLabel Titolo = new JLabel(p.getCreatore().getUsername());
+			contentPane.add(Titolo);
+			autore.add(Titolo);
+
+
+
+
+	        
+	        riga.add(titolo, BorderLayout.CENTER);
+	        riga.add(autore, BorderLayout.EAST);
+
+	        PannelloRisultati.add(riga);
+	    }
+
+	    PannelloRisultati.revalidate();
+	    PannelloRisultati.repaint();
+	}
 }

@@ -116,6 +116,9 @@ public class ControllerPlaylist {
 		MyVisualizzaPlaylist.setVisible(true);
 		
 	}
+	public List<PlaylistPubblica> CercaPlaylistPubblicaPerTitolo(String TitoloIN){
+		return MyPubblicaDao.CercaPlaylistPubblicaPerTitolo(TitoloIN);
+	}
 }
 	
 

@@ -1,6 +1,8 @@
 package Control;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +12,8 @@ import Boundary.Home;
 import Boundary.MieiElementi;
 import Boundary.RisultatiRicerca;
 import Entity.Brano;
+import Entity.Playlist;
+import Entity.PlaylistPubblica;
 import Entity.Utente;
 
 public class ControllerCerca {
@@ -51,7 +55,9 @@ public class ControllerCerca {
 		}else if(indiceTipoRicerca==1) {
 			Risricerca.MostraElementi(cEle.CercaElementiPerTitolo(Ricerca));
 		}else {
-			
+			List <Playlist> ListaPlaylist= new ArrayList<>();
+			ListaPlaylist.addAll(cPlay.CercaPlaylistPubblicaPerTitolo(Ricerca));
+			Risricerca.MostraPlaylist(ListaPlaylist);
 		};
 		Precedente=MyCerca;
 		
@@ -104,6 +110,8 @@ public class ControllerCerca {
 		cEle.VisualizzaElemento(Risricerca, brano);
 		
 	}
-	
+	public void VisualizzaPlaylist(JFrame Precedente, Playlist p) {
+		cPlay.VisualizzaPlaylist(Precedente,p);
+	}
 	
 }
