@@ -109,6 +109,24 @@ public class JDBCBranoDao implements BranoDao{
 		    }
 	}
 	
+	@Override
+	public  void EliminaBrano(int IdElementoIN) {
+		String sql = "CALL EliminaElemento(?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, IdElementoIN);
+	        pstmt.execute();
+	  
+	             
+	            
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	 
+	}
+	
 	//Getter e setter
 	
 	public Brano GetElementoPerId(int IdElementoIN) {

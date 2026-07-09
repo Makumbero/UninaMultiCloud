@@ -24,6 +24,8 @@ public interface BranoDao {
 			String ImmagineCopertinaIN,
 			String EmailIN );
 	
+	public  void EliminaBrano(int IdElementoIN);
+	
 	public  void SetTitolo(String TitoloIN, int IdElementoIN);
 	
 	public  void SetFormato(String FormatoIN, int IdElementoIN);
