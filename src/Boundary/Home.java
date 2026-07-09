@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Control.ControllerCerca;
 import Control.ControllerElementi;
 import Control.ControllerLogin;
 
@@ -18,13 +19,7 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 	ControllerLogin cLog;
 	ControllerElementi cEle;
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
+	ControllerCerca cCerca;
 	public Home(ControllerLogin cLog) {
 		this.cLog=cLog;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +41,7 @@ public class Home extends JFrame {
 		JButton btnNewButton_1 = new JButton("Cerca");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cCerca.HomeToCerca();
 			}
 		});
 		btnNewButton_1.setBounds(119, 45, 84, 20);
@@ -75,5 +71,8 @@ public class Home extends JFrame {
 	}
 	public void setControllerElementi(ControllerElementi cEle){
 		this.cEle=cEle;
+	}
+	public void setControllerCerca(ControllerCerca cCerca){
+		this.cCerca=cCerca;
 	}
 }

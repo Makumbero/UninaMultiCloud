@@ -41,9 +41,11 @@ public class ControllerLogin {
 		if(UtenteDAO.VerificaUtente(Email,Password)){
 			MyUtente=this.getAutorePerEmail(Email);
 			MyHome=new Home(this);
+			ControllerCerca cCerca= new ControllerCerca(conn,MyHome,MyUtente);
 			ControllerPlaylist cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
 			ControllerElementi cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
 			MyHome.setControllerElementi(cEle);
+			MyHome.setControllerCerca(cCerca);
 			LoginHome();
 		}else {
 			showError();
