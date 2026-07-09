@@ -5,14 +5,14 @@ public class Accesso {
 		Utente MyUtente;
 		int	IdAccesso;
 		Date Data;
-		int IdElemento;
+		Brano MyBrano;
 		
 
-		public Accesso(Utente myUtente, int idAccesso, Date data, int idElemento) {
+		public Accesso(Utente myUtente, int idAccesso, Date data, Brano myBrano) {
 			MyUtente=myUtente;
 			IdAccesso = idAccesso;
 			Data = data;
-			IdElemento = idElemento;
+			MyBrano=myBrano;
 		}
 
 		public Utente getMyUtente() {
@@ -39,11 +39,13 @@ public class Accesso {
 			this.Data = data;
 		}
 
-		public int getIdElemento() {
-			return IdElemento;
+		public Brano getMyBrano() {
+			return MyBrano;
 		}
 
-		public void setIdElemento(int idElemento) {
-			IdElemento = idElemento;
+		public void setMyBrano(Brano myBrano) {
+			MyBrano = myBrano;
 		}
+
+
 }

@@ -37,6 +37,12 @@ public class ControllerElementi {
 		Utente u=cLog.getAutorePerEmail(EmailIN);
 		return u;
 	}
+	
+	public Brano getElementoPerID(int IdElementoIN) {
+		Brano b=MyBranoDao.GetElementoPerId(IdElementoIN);
+		return b;
+	}
+	
 	public Utente getMyUtente() {
 		return MyUtente;
 	}

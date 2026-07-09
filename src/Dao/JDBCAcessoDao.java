@@ -48,7 +48,7 @@ public class JDBCAcessoDao implements AccessoDAO{
 	
 		        try (ResultSet rs = pstmt.executeQuery()) {
 		            while(rs.next()) {
-		            	listaAccessi.add(new Accesso(cElementi.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdAccesso"),rs.getDate("Data"),rs.getInt("IdElemento")));
+		            	listaAccessi.add(new Accesso(cElementi.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdAccesso"),rs.getDate("Data"),cElementi.getElementoPerID(IdElementoIN)));
 		            }
 		        }
 		    } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class JDBCAcessoDao implements AccessoDAO{
 	
 		        try (ResultSet rs = pstmt.executeQuery()) {
 		            while(rs.next()) {
-		            	listaAccessi.add(new Accesso(cElementi.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdAccesso"),rs.getDate("Data"),rs.getInt("IdElemento")));
+		            	listaAccessi.add(new Accesso(cElementi.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdAccesso"),rs.getDate("Data"),cElementi.getElementoPerID(rs.getInt("IdElemento"))));
 		            }
 		        }
 		    } catch (SQLException e) {

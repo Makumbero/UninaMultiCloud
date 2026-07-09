@@ -110,6 +110,25 @@ public class JDBCBranoDao implements BranoDao{
 	}
 	
 	//Getter e setter
+	
+	public Brano GetElementoPerId(int IdElementoIN) {
+		Brano b=null;
+		 String sql = "SELECT * FROM GetElementoPerId(?)";
+
+		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+		        pstm.setInt(1, IdElementoIN);
+
+		        try (ResultSet rs = pstm.executeQuery()) {
+		            while(rs.next()) {
+		            	b=new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email")));
+		            }
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		return b;
+	}
 	@Override
 	public  void SetTitolo(String TitoloIN, int IdElementoIN) {
 		String sql = "CALL SetTitolo(?,?)";
