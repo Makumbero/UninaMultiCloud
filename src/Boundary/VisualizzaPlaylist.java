@@ -1,42 +1,107 @@
 package Boundary;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+
+import Control.*;
+import Entity.*;
+
+import javax.swing.JLabel;
 
 public class VisualizzaPlaylist extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VisualizzaPlaylist frame = new VisualizzaPlaylist();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JPanel PannelloBrani;
+	private Playlist Playlist;
+	private List<Brano> Brani;
+	private ControllerPlaylist MycPl;
+	private ControllerElementi MycEle;
 
 	/**
 	 * Create the frame.
 	 */
-	public VisualizzaPlaylist() {
+	public VisualizzaPlaylist(Playlist playlist, List<Brano> brani, ControllerPlaylist mycPl, ControllerElementi mycEle) {
+		Playlist=playlist;
+		Brani=brani;
+		MycPl=mycPl;
+		MycEle=mycEle;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 710, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel Titolo = new JLabel("Titolo Playlist: "+Playlist.getTitolo());
+		Titolo.setBounds(60, 6, 276, 16);
+		contentPane.add(Titolo);
+		
+		JLabel Creatore = new JLabel("Creatore: "+Playlist.getCreatore().getUsername());
+		Creatore.setBounds(348, 6, 276, 16);
+		contentPane.add(Creatore);
+		
+		JLabel Data = new JLabel("Data Creazione: "+Playlist.getDataCreazione());
+		Data.setBounds(60, 34, 276, 16);
+		contentPane.add(Data);
+		
+		JLabel Tipo = new JLabel();
+		if(Playlist instanceof PlaylistPrivata) {
+			Tipo.setText("Tipo: Privata");
+		}else if(Playlist instanceof PlaylistPubblica) {
+			Tipo.setText("Tipo: Pubblica");
+		}else {
+			Tipo.setText("Tipo: Condivisa");
+		}
+		Tipo.setBounds(348, 34, 276, 16);
+		contentPane.add(Tipo);
+		
+		JLabel Descrizione = new JLabel("Descrizione: "+Playlist.getDescrizione());
+		Descrizione.setBounds(60, 62, 564, 16);
+		contentPane.add(Descrizione);
+		
+		JScrollPane Scorrimento = new JScrollPane();
+		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		Scorrimento.setBounds(71, 39, 467, 271);
+		contentPane.add(Scorrimento);
+		
+        PannelloBrani = new JPanel();
+		Scorrimento.setViewportView(PannelloBrani);
+		
+		   PannelloBrani.removeAll();
+
+		    PannelloBrani.setLayout(new BoxLayout(PannelloBrani, BoxLayout.Y_AXIS));
+
+		    for (Brano brano : Brani) {
+
+		        JPanel riga = new JPanel(new BorderLayout());
+
+		        JButton titolo = new JButton(brano.getTitolo());
+				titolo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						MycEle.VisualizzaElemento(VisualizzaPlaylist.this, brano);
+					}
+				});
+		        
+		        riga.add(titolo, BorderLayout.CENTER);
+
+		        PannelloBrani.add(riga);
+		    }
+
+		    PannelloBrani.revalidate();
+		    PannelloBrani.repaint();
 
 	}
-
 }

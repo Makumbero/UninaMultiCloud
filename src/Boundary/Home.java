@@ -5,9 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Control.ControllerCerca;
-import Control.ControllerElementi;
-import Control.ControllerLogin;
+import Control.*;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,11 +15,12 @@ public class Home extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	ControllerLogin cLog;
-	ControllerElementi cEle;
-	ControllerCerca cCerca;
+	ControllerLogin MycLog;
+	ControllerElementi MycEle;
+	ControllerPlaylist MycPl;
+	ControllerCerca MycCerca;
 	public Home(ControllerLogin cLog) {
-		this.cLog=cLog;
+		this.MycLog=cLog;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -29,50 +28,54 @@ public class Home extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("I miei brani");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton IMieiBrani = new JButton("I miei brani");
+		IMieiBrani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cEle.HomeToMieiElementi(cEle.getMyUtente());
+				MycEle.HomeToMieiElementi();
 			}
 		});
-		btnNewButton.setBounds(39, 113, 85, 21);
-		contentPane.add(btnNewButton);
+		IMieiBrani.setBounds(39, 113, 85, 21);
+		contentPane.add(IMieiBrani);
 		
-		JButton btnNewButton_1 = new JButton("Cerca");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton Cerca = new JButton("Cerca");
+		Cerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cCerca.HomeToCerca();
+				MycCerca.HomeToCerca();
 			}
 		});
-		btnNewButton_1.setBounds(119, 45, 84, 20);
-		contentPane.add(btnNewButton_1);
+		Cerca.setBounds(119, 45, 84, 20);
+		contentPane.add(Cerca);
 		
-		JButton btnNewButton_2 = new JButton("Profilo");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton Profilo = new JButton("Profilo");
+		Profilo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cLog.HomeToProfilo();
+				MycLog.HomeToProfilo();
 			}
 		});
-		btnNewButton_2.setBounds(39, 198, 84, 20);
-		contentPane.add(btnNewButton_2);
+		Profilo.setBounds(39, 198, 84, 20);
+		contentPane.add(Profilo);
 		
-		JButton btnNewButton_3 = new JButton("Raccolta");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton Raccolta = new JButton("Raccolta");
+		Raccolta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MycPl.HomeToRaccolta();
 			}
 		});
-		btnNewButton_3.setBounds(203, 113, 84, 20);
-		contentPane.add(btnNewButton_3);
+		Raccolta.setBounds(203, 113, 84, 20);
+		contentPane.add(Raccolta);
 		
-		JButton btnNewButton_4 = new JButton("LogOut");
-		btnNewButton_4.setBounds(203, 198, 84, 20);
-		contentPane.add(btnNewButton_4);
+		JButton LogOut = new JButton("LogOut");
+		LogOut.setBounds(203, 198, 84, 20);
+		contentPane.add(LogOut);
 
 	}
 	public void setControllerElementi(ControllerElementi cEle){
-		this.cEle=cEle;
+		MycEle=cEle;
+	}
+	public void setControllerPlaylist(ControllerPlaylist cPl) {
+		MycPl=cPl;
 	}
 	public void setControllerCerca(ControllerCerca cCerca){
-		this.cCerca=cCerca;
+		MycCerca=cCerca;
 	}
 }
