@@ -15,6 +15,10 @@ public class PlaylistCondivisa extends Playlist {
 		CondivisaCon.add(b);
 	}
 
+	public void TogliCondivisione(Utente b) {
+		CondivisaCon.remove(b);
+	}
+	
 	public ArrayList<Utente> getCondivisaCon() {
 		return CondivisaCon;
 	}
@@ -23,7 +27,7 @@ public class PlaylistCondivisa extends Playlist {
 		CondivisaCon = condivisaCon;
 	}
 
-	public int getIdCondivisa() {
+	public int getId() {
 		return IdCondivisa;
 	}
 	

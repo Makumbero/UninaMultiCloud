@@ -1,9 +1,12 @@
 package Control;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import java.util.List;
 
 import Boundary.*;
 import Dao.*;
@@ -14,18 +17,22 @@ public class ControllerElementi {
 	Connection conn;
 	Home MyHome;
 	MieiElementi MyMieiElementi;
-	ControllerLogin cLog;
+	ControllerLogin MycLog;
 	JDBCBranoDao MyBranoDao;
 	VisualizzaElemento MyVisualizzaElemento;
 	ModificaElemento MyModificaElemento;
 	CreaElemento MyCreaElemento;
-	public ControllerElementi(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
+	ScegliPlaylist MyScegliPlaylist;
+	ControllerPlaylist MycPl;
+	
+	public ControllerElementi(Connection conn1, Utente u, Home h, ControllerLogin mycLog, ControllerPlaylist mycPl) {
 		conn=conn1;
 		MyUtente=u;
 		MyHome=h;
-		this.cLog=cLog;
+		MycLog=mycLog;
+		MycPl=mycPl;
 		MyMieiElementi = new MieiElementi(this, MyHome);
-        MyBranoDao = new JDBCBranoDao(conn, cLog);
+        MyBranoDao = new JDBCBranoDao(conn, MycLog);
 	}
 	public void HomeToMieiElementi(Utente u) {
 		MyHome.setVisible(false);
@@ -34,7 +41,7 @@ public class ControllerElementi {
 	}
 	
 	public Utente getAutorePerEmail(String EmailIN) {
-		Utente u=cLog.getAutorePerEmail(EmailIN);
+		Utente u=MycLog.getAutorePerEmail(EmailIN);
 		return u;
 	}
 	
@@ -191,6 +198,10 @@ public class ControllerElementi {
 			MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
 		}
 	}
+	public void ScegliPlaylist(JFrame Precedente,Brano b) {
+		MycPl.ScegliPlaylist(Precedente, b);
+	}
+	
 }
 	
 

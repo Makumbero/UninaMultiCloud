@@ -86,9 +86,6 @@ public class VisualizzaElemento extends JFrame {
 		Campionamento.setBounds(22, 288, 386, 16);
 		contentPane.add(Campionamento);
 		
-		JButton AggiungiAPlaylist = new JButton("Aggiungi a Playlist");
-		AggiungiAPlaylist.setBounds(415, 336, 182, 49);
-		contentPane.add(AggiungiAPlaylist);
 		
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setBounds(123, 336, 182, 49);
@@ -111,6 +108,15 @@ public class VisualizzaElemento extends JFrame {
 		Visualizzazioni.setText(Visualizzazioni.getText() + b.getVisualizzazioni());
 		Canali.setText(Canali.getText() + b.getCanali());
 		Campionamento.setText(Campionamento.getText() + b.getCampionamento());
+		
+		JButton AggiungiAPlaylist = new JButton("Aggiungi a Playlist");
+		AggiungiAPlaylist.setBounds(415, 336, 182, 49);
+		contentPane.add(AggiungiAPlaylist);
+		AggiungiAPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MycEle.ScegliPlaylist(VisualizzaElemento.this, b);
+			}
+		});
 	}
 
 }

@@ -10,5 +10,8 @@ public class PlaylistPrivata extends Playlist {
 		IdPrivata=idPrivata;
 	}
 	
+	public int getId() {
+		return IdPrivata;
+	}
 	
 }

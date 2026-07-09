@@ -19,7 +19,7 @@ public class PlaylistPubblica extends Playlist {
 		Visualizzazioni = visualizzazioni;
 	}
 	
-	public int getIdPubblica() {
+	public int getId() {
 		return IdPubblica;
 	}
 	
