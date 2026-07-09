@@ -26,6 +26,7 @@ public class ControllerPlaylist {
 	JDBCPlaylistPrivataDao MyPrivataDao;
 	Raccolta MyRaccolta;
 	ControllerElementi MycEle;
+	VisualizzaPlaylist MyVisualizzaPlaylist;
 	
 	public ControllerPlaylist(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
 		this.conn=conn1;
@@ -99,7 +100,22 @@ public class ControllerPlaylist {
 	ListaPlaylist.addAll(MyPrivataDao.CercaPlaylistPrivataPerEmail(MyUtente.getEmail()));
 	MyRaccolta.MostraPlaylist(ListaPlaylist);
 }
-
+	public void VisualizzaPlaylist(JFrame Precedente, Playlist p) {
+		List <Brano> Brani= new ArrayList<>();
+		if(p instanceof PlaylistPubblica) {
+			Brani.addAll(MyPubblicaDao.GetContiene(p.getId()));
+		}
+		else if(p instanceof PlaylistPrivata) {
+			Brani.addAll(MyPrivataDao.GetContiene(p.getId()));
+		}
+		else  {
+			Brani.addAll(MyCondivisaDao.GetContiene(p.getId()));
+		}
+		Precedente.setVisible(false);
+		MyVisualizzaPlaylist= new VisualizzaPlaylist(p, Brani, this, MycEle, Precedente);
+		MyVisualizzaPlaylist.setVisible(true);
+		
+	}
 }
 	
 
