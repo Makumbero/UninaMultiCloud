@@ -3,22 +3,18 @@ package Boundary;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.NumberFormatter;
-
-import Control.*;
-import Entity.*;
-
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
+import javax.swing.border.EmptyBorder;
 
-public class ModificaElemento extends JFrame {
+import Control.ControllerElementi;
+import Entity.Brano;
+
+public class CreaElemento extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -32,13 +28,13 @@ public class ModificaElemento extends JFrame {
 	private JTextField FieldDimensione;
 	private JTextField FieldCanali;
 	private JTextField FieldCampionamento;
+
 	/**
 	 * Create the frame.
 	 */
-	public ModificaElemento(JFrame precedente, ControllerElementi c, Brano b) {
+	public CreaElemento(JFrame precedente, ControllerElementi c) {
 		Precedente=precedente;
 		MycEle=c;
-		MyBrano=b;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 697, 457);
 		contentPane = new JPanel();
@@ -74,59 +70,61 @@ public class ModificaElemento extends JFrame {
 		Campionamento.setBounds(24, 226, 124, 16);
 		contentPane.add(Campionamento);
 		
+		
+		
+		FieldTitolo = new JTextField();
+		FieldTitolo.setBounds(161, 53, 394, 26);
+		contentPane.add(FieldTitolo);
+		FieldTitolo.setColumns(10);
+
+		FieldFormato = new JTextField();
+		FieldFormato.setBounds(161, 81, 394, 26);
+		contentPane.add(FieldFormato);
+		FieldFormato.setColumns(10);
+		
+		FieldDescrizione = new JTextField();
+		FieldDescrizione.setBounds(161, 137, 394, 26);
+		contentPane.add(FieldDescrizione);
+		FieldDescrizione.setColumns(10);
+		
+		FieldDurata = new JTextField();
+		FieldDurata.setBounds(161, 109, 394, 26);
+		contentPane.add(FieldDurata);
+		FieldDurata.setColumns(10);
+		
+		FieldDimensione = new JTextField();
+		FieldDimensione.setBounds(160, 165, 395, 26);
+		contentPane.add(FieldDimensione);
+		FieldDimensione.setColumns(10);
+		
+		FieldCanali = new JTextField();
+		FieldCanali.setBounds(161, 193, 394, 26);
+		contentPane.add(FieldCanali);
+		FieldCanali.setColumns(10);
+		
+		FieldCampionamento = new JTextField();
+		FieldCampionamento.setBounds(161, 221, 394, 26);
+		contentPane.add(FieldCampionamento);
+		FieldCampionamento.setColumns(10);
+
+		
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setBounds(149, 328, 142, 53);
 		contentPane.add(Indietro);
         Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MycEle.ToPrecedente(ModificaElemento.this, Precedente);
+				MycEle.ToPrecedente(CreaElemento.this, Precedente);
 			}
 			});
 		
-		JButton SalvaModifiche = new JButton("Salva Modifiche");
-		SalvaModifiche.setBounds(430, 328, 142, 53);
-		contentPane.add(SalvaModifiche);
-		
-		
-		FieldTitolo = new JTextField(MyBrano.getTitolo());
-		FieldTitolo.setBounds(161, 53, 394, 26);
-		contentPane.add(FieldTitolo);
-		FieldTitolo.setColumns(10);
-
-		FieldFormato = new JTextField(MyBrano.getFormato());
-		FieldFormato.setBounds(161, 81, 394, 26);
-		contentPane.add(FieldFormato);
-		FieldFormato.setColumns(10);
-		
-		FieldDescrizione = new JTextField(MyBrano.getDescrizione());
-		FieldDescrizione.setBounds(161, 137, 394, 26);
-		contentPane.add(FieldDescrizione);
-		FieldDescrizione.setColumns(10);
-		
-		FieldDurata = new JTextField(String.valueOf(MyBrano.getDurata()));
-		FieldDurata.setBounds(161, 109, 394, 26);
-		contentPane.add(FieldDurata);
-		FieldDurata.setColumns(10);
-		
-		FieldDimensione = new JTextField(String.valueOf(MyBrano.getDimensione()));
-		FieldDimensione.setBounds(160, 165, 395, 26);
-		contentPane.add(FieldDimensione);
-		FieldDimensione.setColumns(10);
-		
-		FieldCanali = new JTextField(String.valueOf(MyBrano.getCanali()));
-		FieldCanali.setBounds(161, 193, 394, 26);
-		contentPane.add(FieldCanali);
-		FieldCanali.setColumns(10);
-		
-		FieldCampionamento = new JTextField(String.valueOf(MyBrano.getCampionamento()));
-		FieldCampionamento.setBounds(161, 221, 394, 26);
-		contentPane.add(FieldCampionamento);
-		FieldCampionamento.setColumns(10);
-
-        SalvaModifiche.addActionListener(new ActionListener() {
+		JButton Crea = new JButton("Crea");
+		Crea.setBounds(430, 328, 142, 53);
+		contentPane.add(Crea);
+        Crea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MycEle.SalvaModifiche(b, FieldTitolo.getText(), FieldFormato.getText(), FieldDescrizione.getText(), FieldDurata.getText(), FieldDimensione.getText(), FieldCanali.getText(), FieldCampionamento.getText());
+				MycEle.SalvaCreazione(FieldTitolo.getText(), FieldFormato.getText(), FieldDescrizione.getText(), FieldDurata.getText(), FieldDimensione.getText(), FieldCanali.getText(), FieldCampionamento.getText());
 			}
-		});
+			});
 	}
+
 }
