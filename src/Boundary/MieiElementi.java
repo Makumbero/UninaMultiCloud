@@ -52,6 +52,11 @@ public class MieiElementi extends JFrame {
 		JButton CreaElemento = new JButton("CreaElemento");
 		CreaElemento.setBounds(373, 334, 159, 61);
 		contentPane.add(CreaElemento);
+        CreaElemento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MycEle.CreaElemento(MieiElementi.this);
+			}
+		});
 		
 		JScrollPane Scorrimento = new JScrollPane();
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
