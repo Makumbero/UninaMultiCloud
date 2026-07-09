@@ -56,7 +56,7 @@ public class Cerca extends JFrame {
 		JButton btnCerca = new JButton("Cerca");
 		btnCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			cmboxTipoRicerca.
+				cCerca.CercaToRisultatiRicerca(cmboxTipoRicerca.getSelectedIndex(), textRicerca.getText());
 			}
 		});
 		btnCerca.setBounds(179, 92, 84, 20);

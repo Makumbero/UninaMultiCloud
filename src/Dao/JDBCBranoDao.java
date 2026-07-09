@@ -22,7 +22,7 @@ public class JDBCBranoDao implements BranoDao{
 	@Override
 	public List<Brano> CercaElementiPerEmail(String EmailIN) {
 		 List <Brano>listaBrani= new ArrayList<>();
-		 String sql = "SELECT * FROM CercaElementiPerEmail(?)";
+		 String sql = "SELECT * FROM CercaElementiPerEmail(?) c WHERE c.Tipo='Audio'";
 
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, EmailIN);
@@ -42,7 +42,7 @@ public class JDBCBranoDao implements BranoDao{
 	@Override
 	public List<Brano> CercaElementiPerTitolo(String TitoloIN) {
 		 List <Brano>listaBrani= new ArrayList<>();
-		 String sql = "SELECT * FROM CercaElementiPerTitolo(?)";
+		 String sql = "SELECT * FROM CercaElementiPerTitolo(?)  c WHERE c.Tipo='Audio'";
 
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, TitoloIN);
@@ -61,7 +61,7 @@ public class JDBCBranoDao implements BranoDao{
 	@Override
 	public List<Brano> CercaElementiPerAutore(String AutoreIN) {
 		 List <Brano>listaBrani= new ArrayList<>();
-		 String sql = "SELECT * FROM CercaElementiPerAutore(?)";
+		 String sql = "SELECT * FROM CercaElementiPerAutore(?)  c WHERE c.Tipo='Audio'";
 
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, AutoreIN);

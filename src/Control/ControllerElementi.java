@@ -34,6 +34,14 @@ public class ControllerElementi {
 		MyMieiElementi = new MieiElementi(this, MyHome);
         MyBranoDao = new JDBCBranoDao(conn, MycLog);
 	}
+	
+	public List<Brano> CercaElementiPerTitolo(String TitoloIN) {
+		return MyBranoDao.CercaElementiPerTitolo(TitoloIN);
+	}
+	
+	public List<Brano> CercaElementiPerAutore(String AutoreIN) {
+		return MyBranoDao.CercaElementiPerAutore(AutoreIN);
+	}
 	public void HomeToMieiElementi() {
 		MyHome.setVisible(false);
 		MyMieiElementi.setVisible(true);

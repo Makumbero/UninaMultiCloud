@@ -43,6 +43,20 @@ public class ControllerCerca {
 		
 	}
 	
+	public void CercaToRisultatiRicerca(int indiceTipoRicerca,String Ricerca) {
+		MyCerca.setVisible(false);
+		Risricerca.setVisible(true);
+		if (indiceTipoRicerca==0){
+			Risricerca.MostraElementi(cEle.CercaElementiPerAutore(Ricerca));
+		}else if(indiceTipoRicerca==1) {
+			Risricerca.MostraElementi(cEle.CercaElementiPerTitolo(Ricerca));
+		}else {
+			
+		};
+		Precedente=MyCerca;
+		
+	}
+	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
 		Attuale.dispose();
 		Precedente.setVisible(true);
