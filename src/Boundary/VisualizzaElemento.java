@@ -89,6 +89,11 @@ public class VisualizzaElemento extends JFrame {
 		JButton AggiungiAPlaylist = new JButton("Aggiungi a Playlist");
 		AggiungiAPlaylist.setBounds(415, 336, 182, 49);
 		contentPane.add(AggiungiAPlaylist);
+		AggiungiAPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MycEle.ScegliPlaylist()
+			}
+		});
 		
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setBounds(123, 336, 182, 49);

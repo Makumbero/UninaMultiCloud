@@ -112,4 +112,5 @@ public class MieiElementi extends JFrame {
 	    PannelloBrani.revalidate();
 	    PannelloBrani.repaint();
 	}
+	
 }

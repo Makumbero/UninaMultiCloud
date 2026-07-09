@@ -41,7 +41,8 @@ public class ControllerLogin {
 		if(UtenteDAO.VerificaUtente(Email,Password)){
 			MyUtente=this.getAutorePerEmail(Email);
 			MyHome=new Home(this);
-			ControllerElementi cEle= new ControllerElementi(conn, MyUtente, MyHome, this);
+			ControllerPlaylist cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
+			ControllerElementi cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
 			MyHome.setControllerElementi(cEle);
 			LoginHome();
 		}else {
