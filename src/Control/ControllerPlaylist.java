@@ -109,7 +109,7 @@ public class ControllerPlaylist {
 			Brani.addAll(MyCondivisaDao.GetContiene(p.getId()));
 		}
 		Precedente.setVisible(false);
-		MyVisualizzaPlaylist= new VisualizzaPlaylist(p, Brani, this, MycEle);
+		MyVisualizzaPlaylist= new VisualizzaPlaylist(p, Brani, this, MycEle, Precedente);
 		MyVisualizzaPlaylist.setVisible(true);
 		
 	}
