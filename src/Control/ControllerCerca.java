@@ -7,14 +7,21 @@ import javax.swing.JPanel;
 
 import Boundary.Cerca;
 import Boundary.Home;
+import Boundary.MieiElementi;
+import Boundary.RisultatiRicerca;
+import Entity.Brano;
 import Entity.Utente;
 
 public class ControllerCerca {
 	Connection conn;
 	Home MyHome;
 	Cerca MyCerca;
+	RisultatiRicerca Risricerca;
 	Utente MyUtente;
 	JFrame Precedente;
+	MieiElementi mieiElementi;
+	ControllerElementi cEle;
+	ControllerPlaylist cPlay;
 	
 	
 	
@@ -23,6 +30,7 @@ public class ControllerCerca {
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
 		MyCerca=new Cerca(this);
+		Risricerca=new RisultatiRicerca(this);
 		
 	}
 
@@ -51,5 +59,37 @@ public class ControllerCerca {
 	public void setPrecedente(JFrame precedente) {
 		Precedente = precedente;
 	}
+
+
+
+	public ControllerElementi getcEle() {
+		return cEle;
+	}
+
+
+
+	public void setcEle(ControllerElementi cEle) {
+		this.cEle = cEle;
+	}
+
+
+
+	public ControllerPlaylist getcPlay() {
+		return cPlay;
+	}
+
+
+
+	public void setcPlay(ControllerPlaylist cPlay) {
+		this.cPlay = cPlay;
+	}
+
+
+
+	public void VisualizzaElemento(Brano brano) {
+		cEle.VisualizzaElemento(Risricerca, brano);
+		
+	}
+	
 	
 }

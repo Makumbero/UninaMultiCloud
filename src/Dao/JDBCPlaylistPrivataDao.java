@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Control.ControllerPlaylist;
+import Entity.Brano;
 import Entity.PlaylistPrivata;
 import Entity.Utente;
 
@@ -37,6 +38,26 @@ public class JDBCPlaylistPrivataDao implements PlaylistPrivataDao {
 		    }
 		return listaPlaylist;
 	}
+	
+	@Override
+	public List<Brano> GetContiene(String IdPrivataIN){
+		List <Brano>listaBrani= new ArrayList<>();
+		 String sql = "SELECT * FROM GetContienePerPlaylistPrivata(?)";
+	
+		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
+		        PstmtCercaElementi.setString(1, IdPrivataIN);
+	
+		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
+		            while(rs.next()) {
+		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+		            			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cPlaylist.getAutorePerEmail(rs.getString("Email"))));
+		            }
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		return listaBrani;
+	 }
 	
 	
 	@Override

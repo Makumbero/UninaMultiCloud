@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Control.ControllerPlaylist;
+import Entity.Brano;
 import Entity.PlaylistCondivisa;
 import Entity.Utente;
 
@@ -83,6 +84,26 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 		        e.printStackTrace();
 		    }
 	}
+	
+	@Override
+	public List<Brano> GetContiene(String IdCondivisaIN){
+		List <Brano>listaBrani= new ArrayList<>();
+		 String sql = "SELECT * FROM GetContienePerPlaylistCondivisa(?)";
+	
+		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+		        pstm.setString(1, IdCondivisaIN);
+	
+		        try (ResultSet rs = pstm.executeQuery()) {
+		            while(rs.next()) {
+		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+		            			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cPlaylist.getAutorePerEmail(rs.getString("Email"))));
+		            }
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		return listaBrani;
+	 }
 	
 	@Override
 	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN){

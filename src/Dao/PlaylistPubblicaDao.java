@@ -2,6 +2,7 @@ package Dao;
 
 import java.util.List;
 
+import Entity.Brano;
 import Entity.PlaylistPubblica;
 import Entity.Utente;
 
@@ -15,6 +16,8 @@ public interface PlaylistPubblicaDao {
 	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN);
 	
 	public void EliminaPlaylist(int IdPubblicaIN);
+	
+	public List<Brano> GetContiene(String IdPubblicaIN);
 	
 	public void AggiungiaPubblica(int IdPubblicaIN, int IdElementoIN);
 	

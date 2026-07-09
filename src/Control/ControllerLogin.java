@@ -46,6 +46,8 @@ public class ControllerLogin {
 			ControllerElementi cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
 			MyHome.setControllerElementi(cEle);
 			MyHome.setControllerCerca(cCerca);
+			cCerca.setcPlay(cPl);
+			cCerca.setcEle(cEle);
 			LoginHome();
 		}else {
 			showError();

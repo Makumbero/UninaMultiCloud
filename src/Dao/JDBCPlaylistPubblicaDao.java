@@ -100,6 +100,26 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	}
 	
 	@Override
+	public List<Brano> GetContiene(String IdPubblicaIN){
+		List <Brano>listaBrani= new ArrayList<>();
+		 String sql = "SELECT * FROM GetContienePerPlaylistPubblica(?)";
+	
+		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+		        pstm.setString(1, IdPubblicaIN);
+	
+		        try (ResultSet rs = pstm.executeQuery()) {
+		            while(rs.next()) {
+		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
+		            			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cPlaylist.getAutorePerEmail(rs.getString("Email"))));
+		            }
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		return listaBrani;
+	 }
+	
+	@Override
 	public void AggiungiaPubblica(int IdPubblicaIN, int IdElementoIN){
 		 String sql = "CALL AggiungiaPubblica(?,?)";
 	

@@ -2,6 +2,7 @@ package Dao;
 
 import java.util.List;
 
+import Entity.Brano;
 import Entity.PlaylistCondivisa;
 import Entity.Utente;
 
@@ -14,6 +15,8 @@ public interface PlaylistCondivisaDao {
 	public void  CondividiPlaylist(int IdCondivisaIN, Utente UtenteIN);
 	
 	public void  RimuoviCondivisionePlaylist(int IdCondivisaIN, Utente UtenteIN);
+	
+	public List<Brano> GetContiene(String IdCondivisaIN);
 	
 	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN);
 	
