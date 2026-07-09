@@ -34,7 +34,7 @@ public class ControllerElementi {
 		MyMieiElementi = new MieiElementi(this, MyHome);
         MyBranoDao = new JDBCBranoDao(conn, MycLog);
 	}
-	public void HomeToMieiElementi(Utente u) {
+	public void HomeToMieiElementi() {
 		MyHome.setVisible(false);
 		MyMieiElementi.setVisible(true);
 		MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));

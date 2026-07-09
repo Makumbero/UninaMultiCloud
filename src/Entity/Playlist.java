@@ -1,6 +1,7 @@
 package Entity;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public  abstract class  Playlist {
 	private String Titolo;
@@ -10,7 +11,7 @@ public  abstract class  Playlist {
 	private Date DataCreazione;
 	private String Descrizione;
 	private Utente Creatore;
-	private ArrayList<Brano> Brani = new ArrayList<>();
+	private List<Brano> Brani = new ArrayList<>();
 	
 	public Playlist(String titolo,int numeroElementi, Date dataCreazione, String descrizione, Utente creatore) {
 		Titolo=titolo;
@@ -59,6 +60,7 @@ public  abstract class  Playlist {
 	public void rimuoviBrano(Brano b) {
 		Brani.remove(b);
 	}
+	
 	
 	public int getId() {
 		return 0;

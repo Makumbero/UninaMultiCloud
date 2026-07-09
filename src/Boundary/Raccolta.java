@@ -70,7 +70,7 @@ public class Raccolta extends JFrame {
 		});
         
 	}
-	public void MostraElementi(List <Playlist> ListaPlaylist) {
+	public void MostraPlaylist(List <Playlist> ListaPlaylist) {
 	    PannelloPlaylist.removeAll();
 
 	    PannelloPlaylist.setLayout(new BoxLayout(PannelloPlaylist, BoxLayout.Y_AXIS));
@@ -82,7 +82,8 @@ public class Raccolta extends JFrame {
 	        JButton titolo = new JButton(playlist.getTitolo());
 			titolo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//MycPl.VisualizzaPlaylist(Raccolta.this, playlist);
+					
+				//	MycPl.VisualizzaPlaylist(playlist, );
 				}
 			});
 

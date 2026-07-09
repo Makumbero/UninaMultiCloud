@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 
-import Boundary.Home;
+import Boundary.*;
 import Boundary.ScegliPlaylist;
 import Dao.*;
 import Dao.JDBCUtenteDao;
@@ -27,6 +27,8 @@ public class ControllerPlaylist {
 	JDBCPlaylistCondivisaDao MyCondivisaDao;
 	JDBCPlaylistPubblicaDao MyPubblicaDao;
 	JDBCPlaylistPrivataDao MyPrivataDao;
+	Raccolta MyRaccolta;
+	ControllerElementi MycEle;
 	
 	public ControllerPlaylist(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
 		this.conn=conn1;
@@ -46,6 +48,11 @@ public class ControllerPlaylist {
 		return u;
 		
 	}
+	
+	public void setControllerElementi(ControllerElementi cEle) {
+		MycEle=cEle;
+	}
+	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
 		Attuale.dispose();
 		Precedente.setVisible(true);
@@ -78,6 +85,18 @@ public class ControllerPlaylist {
 		ScegliPlaylist.dispose();
 		Precedente.setVisible(true);
 	}
+	public void HomeToRaccolta() {
+	MyHome.setVisible(false);
+	MyRaccolta=new Raccolta(this, MyHome);
+	MyRaccolta.setVisible(true);
+	List <Playlist> ListaPlaylist= new ArrayList<>();
+	ListaPlaylist.addAll(MyCondivisaDao.CercaPlaylistCondiviseAte(MyUtente.getEmail()));
+	ListaPlaylist.addAll(MyCondivisaDao.CercaPlaylistCondivisaPerEmail(MyUtente.getEmail()));
+	ListaPlaylist.addAll(MyPubblicaDao.CercaPlaylistPubblicaPerEmail(MyUtente.getEmail()));
+	ListaPlaylist.addAll(MyPrivataDao.CercaPlaylistPrivataPerEmail(MyUtente.getEmail()));
+	MyRaccolta.MostraPlaylist(ListaPlaylist);
+}
+
 }
 	
 
