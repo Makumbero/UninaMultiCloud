@@ -26,17 +26,13 @@ public class VisualizzaPlaylist extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel PannelloBrani;
-	private Playlist Playlist;
-	private List<Brano> Brani;
 	private ControllerPlaylist MycPl;
 	private ControllerElementi MycEle;
 	private JFrame Precedente;
 	/**
 	 * Create the frame.
 	 */
-	public VisualizzaPlaylist(Playlist playlist, List<Brano> brani, ControllerPlaylist mycPl, ControllerElementi mycEle, JFrame precedente) {
-		Playlist=playlist;
-		Brani=brani;
+	public VisualizzaPlaylist(Playlist Playlist, List<Brano> Brani, ControllerPlaylist mycPl, ControllerElementi mycEle, JFrame precedente) {
 		MycPl=mycPl;
 		MycEle=mycEle;
 		Precedente=precedente;
