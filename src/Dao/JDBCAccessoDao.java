@@ -11,11 +11,11 @@ import Control.ControllerElementi;
 import Entity.Accesso;
 import Entity.PlaylistPrivata;
 
-public class JDBCAcessoDao implements AccessoDAO{
+public class JDBCAccessoDao implements AccessoDAO{
 	Connection conn;
 	ControllerElementi cElementi;
 
-	public JDBCAcessoDao(Connection conn,ControllerElementi cElementi) {
+	public JDBCAccessoDao(Connection conn,ControllerElementi cElementi) {
 		this.conn = conn;
 		this.cElementi=cElementi;
 	}

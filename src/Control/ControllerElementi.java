@@ -19,6 +19,8 @@ public class ControllerElementi {
 	MieiElementi MyMieiElementi;
 	ControllerLogin MycLog;
 	JDBCBranoDao MyBranoDao;
+	JDBCAccessoDao MyAccessoDao;
+	JDBCAccedePubblicaDao MyAccedePubblicaDao;
 	VisualizzaElemento MyVisualizzaElemento;
 	ModificaElemento MyModificaElemento;
 	CreaElemento MyCreaElemento;
@@ -33,6 +35,8 @@ public class ControllerElementi {
 		MycPl=mycPl;
 		MyMieiElementi = new MieiElementi(this, MyHome);
         MyBranoDao = new JDBCBranoDao(conn, MycLog);
+        MyAccessoDao=new JDBCAccessoDao(conn,this);
+        MyAccedePubblicaDao=new JDBCAccedePubblicaDao(conn,MycPl);
 	}
 	
 	public List<Brano> CercaElementiPerTitolo(String TitoloIN) {
@@ -213,6 +217,13 @@ public class ControllerElementi {
 		Attuale=new MieiElementi(this, MyHome);
 		Attuale.setVisible(true);
 		Attuale.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
+	}
+	
+	public  void AggiungiAccesso(int IdElementoIN) {
+		MyAccessoDao.AggiungiAccesso(IdElementoIN,MyUtente.getEmail());
+	}
+	public  void AggiungiAccedePubblica(int IdPubblicaIN) {
+	MyAccedePubblicaDao.AggiungiAccedePubblica( IdPubblicaIN,MyUtente.getEmail());
 	}
 	public void ScegliPlaylist(JFrame Precedente,Brano b) {
 		MycPl.ScegliPlaylist(Precedente, b);

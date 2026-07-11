@@ -69,6 +69,7 @@ public class RisultatiRicerca extends JFrame {
 	        JButton titolo = new JButton(brano.getTitolo());
 			titolo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					cCerca.AggiungiAccesso(brano.getIdBrano());
 					cCerca.VisualizzaElemento( brano);
 				}
 			});
@@ -104,6 +105,7 @@ public class RisultatiRicerca extends JFrame {
 	        JButton titolo = new JButton(p.getTitolo());
 			titolo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					cCerca.AggiungiAccedePubblica(p.getId());
 					cCerca.VisualizzaPlaylist(RisultatiRicerca.this, p);
 				}
 			});
