@@ -21,9 +21,11 @@ public class Cerca extends JFrame {
 	private JPanel contentPane;
 	private JTextField textRicerca;
 	ControllerCerca cCerca;
+	JFrame Precedente;
 
-	public Cerca(ControllerCerca cCerca) {
+	public Cerca(ControllerCerca cCerca,JFrame Precedente) {
 		this.cCerca=cCerca;
+		this.Precedente=Precedente;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -36,7 +38,7 @@ public class Cerca extends JFrame {
 		JButton btnIndietro = new JButton("Indietro");
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cCerca.ToPrecedente(Cerca.this, cCerca.getPrecedente());
+				cCerca.ToPrecedente(Cerca.this,Precedente);
 			}
 		});
 		btnIndietro.setBounds(18, 233, 84, 20);

@@ -33,8 +33,8 @@ public class ControllerCerca {
 		this.conn = conn;
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
-		MyCerca=new Cerca(this);
-		Risricerca=new RisultatiRicerca(this);
+		MyCerca=new Cerca(this,MyHome);
+		Risricerca=new RisultatiRicerca(this,MyCerca);
 		
 	}
 

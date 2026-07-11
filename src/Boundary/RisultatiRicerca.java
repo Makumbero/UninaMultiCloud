@@ -26,9 +26,11 @@ public class RisultatiRicerca extends JFrame {
 	private JPanel contentPane;
 	private JPanel PannelloRisultati;
 	ControllerCerca cCerca;
+	JFrame Precedente;
 
-	public RisultatiRicerca(ControllerCerca cCerca) {
+	public RisultatiRicerca(ControllerCerca cCerca,JFrame Precedente) {
 		this.cCerca=cCerca;
+		this.Precedente=Precedente;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,7 +49,7 @@ public class RisultatiRicerca extends JFrame {
 		JButton btnIndietro = new JButton("Indietro");
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				cCerca.ToPrecedente(RisultatiRicerca.this, Precedente);
 			}
 		});
 		btnIndietro.setBounds(27, 233, 84, 20);
