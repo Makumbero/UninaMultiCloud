@@ -114,11 +114,11 @@ public class ControllerCerca {
 		cPlay.VisualizzaPlaylist(Precedente,p);
 	}
 	
-	public  void AggiungiAccesso(int IdElementoIN) {
-		cEle.AggiungiAccesso(IdElementoIN);
+	public  void AggiungiAccesso(Brano brano) {
+		cEle.AggiungiAccesso(brano);
 	}
 	
-	public  void AggiungiAccedePubblica(int IdPubblicaIN) {
-		cEle.AggiungiAccedePubblica(IdPubblicaIN);
+	public  void AggiungiAccedePubblica(Playlist p) {
+		cEle.AggiungiAccedePubblica(p);
 	}
 }

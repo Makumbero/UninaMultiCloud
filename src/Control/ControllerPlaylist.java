@@ -104,6 +104,7 @@ public class ControllerPlaylist {
 		List <Brano> Brani= new ArrayList<>();
 		if(p instanceof PlaylistPubblica) {
 			Brani.addAll(MyPubblicaDao.GetContiene(p.getId()));
+			MycEle.AggiungiAccedePubblica(p);
 		}
 		else if(p instanceof PlaylistPrivata) {
 			Brani.addAll(MyPrivataDao.GetContiene(p.getId()));

@@ -74,6 +74,7 @@ public class ControllerElementi {
 	}
 	public void VisualizzaElemento(JFrame Precedente, Brano b) {
 		Precedente.setVisible(false);
+		AggiungiAccesso(b);
 		MyVisualizzaElemento=new VisualizzaElemento(Precedente, this);
 		MyVisualizzaElemento.setVisible(true);
 		MyVisualizzaElemento.MostraElemento(b);
@@ -219,11 +220,15 @@ public class ControllerElementi {
 		Attuale.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
 	}
 	
-	public  void AggiungiAccesso(int IdElementoIN) {
-		MyAccessoDao.AggiungiAccesso(IdElementoIN,MyUtente.getEmail());
+	public  void AggiungiAccesso(Brano b) {
+		if(!(b.getCreatore().getEmail().equals(MyUtente.getEmail()))) {
+		MyAccessoDao.AggiungiAccesso(b.getIdBrano(),MyUtente.getEmail());
+		}
 	}
-	public  void AggiungiAccedePubblica(int IdPubblicaIN) {
-	MyAccedePubblicaDao.AggiungiAccedePubblica( IdPubblicaIN,MyUtente.getEmail());
+	public  void AggiungiAccedePubblica(Playlist p) {
+		if(!(p.getCreatore().getEmail().equals(MyUtente.getEmail()))) {
+			MyAccedePubblicaDao.AggiungiAccedePubblica( p.getId(),MyUtente.getEmail());
+		}
 	}
 	public void ScegliPlaylist(JFrame Precedente,Brano b) {
 		MycPl.ScegliPlaylist(Precedente, b);

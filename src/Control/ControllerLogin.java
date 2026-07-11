@@ -19,7 +19,6 @@ public class ControllerLogin {
  	JFrame lastFrame;
  	Profilo MyProfilo;
  	JDBCUtenteDao UtenteDAO;
- 	Utente MyUtente;
  
  	public ControllerLogin(Connection conn1) {
 		MyLogin=new Login(this);
@@ -39,7 +38,7 @@ public class ControllerLogin {
 	public void verificaCredenziali(String Email, String Password) {
 		UtenteDAO=new JDBCUtenteDao(conn);
 		if(UtenteDAO.VerificaUtente(Email,Password)){
-			MyUtente=this.getAutorePerEmail(Email);
+			Utente MyUtente=this.getAutorePerEmail(Email);
 			MyHome=new Home(this);
 			ControllerCerca cCerca= new ControllerCerca(conn,MyHome,MyUtente);
 			ControllerPlaylist cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
