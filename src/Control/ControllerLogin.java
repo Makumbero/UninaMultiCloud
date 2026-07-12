@@ -1,13 +1,15 @@
 package Control;
 import java.sql.Connection;
+import java.sql.Date;
 
 import javax.swing.JFrame;
 
 import Boundary.ERROR;
+import Boundary.GraficoVisualizzazioni;
 import Boundary.Home;
 import Boundary.Login;
 import Boundary.Profilo;
-
+import Dao.JDBCAccessoDao;
 import Dao.JDBCUtenteDao;
 import Entity.Utente;
 
@@ -17,15 +19,16 @@ public class ControllerLogin {
  	ERROR Errore;
  	Connection conn;
  	JFrame lastFrame;
- 	Profilo MyProfilo;
+ 	GraficoVisualizzazioni MyGrafico;
  	JDBCUtenteDao UtenteDAO;
- 
+ 	JDBCAccessoDao AccessoDao;
+ 	ControllerElementi cEle;
+ 	Utente MyUtente;
  	public ControllerLogin(Connection conn1) {
 		MyLogin=new Login(this);
 		MyLogin.setVisible(true);
 		Errore=new ERROR(this);
 		conn=conn1;
-		MyProfilo=new Profilo(this);
 		UtenteDAO=new JDBCUtenteDao(conn1);
 		
  	}
@@ -38,12 +41,14 @@ public class ControllerLogin {
 	public void verificaCredenziali(String Email, String Password) {
 		UtenteDAO=new JDBCUtenteDao(conn);
 		if(UtenteDAO.VerificaUtente(Email,Password)){
-			Utente MyUtente=this.getAutorePerEmail(Email);
+		    MyUtente=this.getAutorePerEmail(Email);
 			MyHome=new Home(this);
+			MyGrafico=new GraficoVisualizzazioni(this,MyUtente);
 			ControllerCerca cCerca= new ControllerCerca(conn,MyHome,MyUtente);
 			ControllerPlaylist cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
-			ControllerElementi cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
+		    cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
 			cPl.setControllerElementi(cEle);
+			AccessoDao=cEle.getMyAccessoDao();
 			MyHome.setControllerElementi(cEle);
 			MyHome.setControllerPlaylist(cPl);
 			MyHome.setControllerCerca(cCerca);
@@ -64,9 +69,11 @@ public class ControllerLogin {
 	}
 	public void HomeToProfilo() {
 		MyHome.setVisible(false);
-		MyProfilo.setVisible(true);
+		Date oggi=new Date(System.currentTimeMillis()); //ritorna la data di oggi in millisecondi
+		MyGrafico.creaGrafico(AccessoDao.GetAccessiPerMese(oggi));
+		MyGrafico.setVisible(true);
 		
-		lastFrame=MyProfilo;
+		lastFrame=MyGrafico;
 	}
 	public void ReturnHome() {
 		lastFrame.setVisible(false);

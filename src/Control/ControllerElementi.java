@@ -62,6 +62,14 @@ public class ControllerElementi {
 		return b;
 	}
 	
+	public JDBCAccessoDao getMyAccessoDao() {
+		return MyAccessoDao;
+	}
+
+	public void setMyAccessoDao(JDBCAccessoDao myAccessoDao) {
+		MyAccessoDao = myAccessoDao;
+	}
+
 	public Utente getMyUtente() {
 		return MyUtente;
 	}
