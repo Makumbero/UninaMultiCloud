@@ -1,6 +1,7 @@
 package Control;
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -8,9 +9,9 @@ import Boundary.ERROR;
 import Boundary.GraficoVisualizzazioni;
 import Boundary.Home;
 import Boundary.Login;
-import Boundary.Profilo;
 import Dao.JDBCAccessoDao;
 import Dao.JDBCUtenteDao;
+import Entity.Accesso;
 import Entity.Utente;
 
 public class ControllerLogin {
@@ -69,8 +70,7 @@ public class ControllerLogin {
 	}
 	public void HomeToProfilo() {
 		MyHome.setVisible(false);
-		Date oggi=new Date(System.currentTimeMillis()); //ritorna la data di oggi in millisecondi
-		MyGrafico.creaGrafico(AccessoDao.GetAccessiPerMese(oggi));
+        MyGrafico.creaGrafico(GetAccessiPerMese(new Date(System.currentTimeMillis())), "Giorni");
 		MyGrafico.setVisible(true);
 		
 		lastFrame=MyGrafico;
@@ -85,5 +85,13 @@ public class ControllerLogin {
 		return u;
 		
 	}
-	
+	 public List<Accesso> GetAccessiPerMese(Date DataIN){
+		return AccessoDao.GetAccessiPerMese(DataIN);
+	}
+	 public List<Accesso> GetAccessiPerAnno(Date DataIN ){
+		 return AccessoDao.GetAccessiPerAnno(DataIN);
+	 }
+	 public List<Accesso> GetAllAccessi(){
+		 return AccessoDao.GetAllAccessi();
+	 }
 }

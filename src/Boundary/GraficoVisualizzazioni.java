@@ -6,10 +6,14 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.DateTickUnitType;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Day;
+import org.jfree.data.time.Month;
+import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.time.Year;
 
 import Control.ControllerLogin;
 import Entity.Accesso;
@@ -17,84 +21,138 @@ import Entity.Utente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GraficoVisualizzazioni extends JFrame {
 
     private JPanel panelGrafico;
+    private JPanel panelControlli;
+    private JComboBox<String> comboBox;
     ControllerLogin cLog;
     Utente utente;
 
-    /**
-     * Costruttore: riceve la lista di accessi da rappresentare nel grafico.
-     */
-    public GraficoVisualizzazioni(ControllerLogin cLog,Utente utente) {
-    	this.cLog=cLog;
-    	this.utente=utente;
+    public GraficoVisualizzazioni(ControllerLogin cLog, Utente utente) {
+        this.cLog = cLog;
+        this.utente = utente;
         setTitle("Visualizzazioni Profilo");
-        setSize(800, 600);
+        setSize(600, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        panelControlli = new JPanel();
+        comboBox = new JComboBox<String>();
+        comboBox.addItem("Giorni");
+        comboBox.addItem("Mesi");
+        comboBox.addItem("Anni");
+
+        comboBox.addActionListener(e -> {
+            String selezione = (String) comboBox.getSelectedItem();
+            Date oggi = new Date(System.currentTimeMillis());
+
+            if (selezione.equals("Giorni")) {
+                creaGrafico(cLog.GetAccessiPerMese(oggi), "Giorni");
+            } else if (selezione.equals("Mesi")) {
+                creaGrafico(cLog.GetAccessiPerAnno(oggi), "Mesi");
+            } else if (selezione.equals("Anni")) {
+                creaGrafico(cLog.GetAllAccessi(), "Anni");
+            }
+        });
+
+        panelControlli.add(comboBox);
+        add(panelControlli, BorderLayout.SOUTH);
+
         panelGrafico = new JPanel();
-        add(panelGrafico);
+        add(panelGrafico, BorderLayout.CENTER);
+
+        // Mostro subito un grafico coerente con la voce selezionata di default ("Giorni"),
+        // altrimenti il pannello resta vuoto finché non si tocca la combo box
 
     }
 
     /**
-     * Conta quanti accessi ci sono per ogni data e disegna il grafico:
-     * asse X = data, asse Y = numero di accessi in quella data.
+     * Conta quanti accessi ci sono per ogni periodo e disegna il grafico.
+     * @param accessi   lista di accessi da conteggiare
+     * @param modalita  "Giorni", "Mesi" o "Anni": decide sia il raggruppamento
+     *                  dei dati sia l'unità mostrata sull'asse X
      */
-    public void creaGrafico(List<Accesso> accessi) {
+    public void creaGrafico(List<Accesso> accessi, String modalita) {
 
-        // Due liste "parallele": per ogni giorno trovato, il suo conteggio di accessi.
-        // Es: giorni.get(0) = 3 giugno 2026, conteggi.get(0) = 2 accessi in quel giorno
-        List<Day> giorni = new ArrayList<Day>();
+        // Due liste "parallele": per ogni periodo trovato, il suo conteggio di accessi.
+        // Il tipo di periodo (giorno/mese/anno) cambia in base alla modalità scelta:
+        // così con "Anni" i dati vengono raggruppati per anno e non per ogni singolo giorno.
+        List<RegularTimePeriod> periodi = new ArrayList<RegularTimePeriod>();
         List<Integer> conteggi = new ArrayList<Integer>();
 
-        // Scorro tutti gli accessi e per ognuno controllo se il suo giorno
-        // è già presente nella lista "giorni"
         for (int i = 0; i < accessi.size(); i++) {
             Accesso accesso = accessi.get(i);
-            Day giornoDiQuestoAccesso = new Day(accesso.getData());
+            RegularTimePeriod periodo;
 
-            int posizione = giorni.indexOf(giornoDiQuestoAccesso);
+            if (modalita.equals("Mesi")) {
+                periodo = new Month(accesso.getData());
+            } else if (modalita.equals("Anni")) {
+                periodo = new Year(accesso.getData());
+            } else {
+                periodo = new Day(accesso.getData());
+            }
+
+            int posizione = periodi.indexOf(periodo);
 
             if (posizione == -1) {
-                // Non l'ho ancora visto: lo aggiungo con conteggio 1
-                giorni.add(giornoDiQuestoAccesso);
+                periodi.add(periodo);
                 conteggi.add(1);
             } else {
-                // L'ho già visto: aumento di 1 il conteggio già presente
                 int valoreAttuale = conteggi.get(posizione);
                 conteggi.set(posizione, valoreAttuale + 1);
             }
         }
 
-        // Creo la serie temporale con i dati calcolati sopra
         TimeSeries serie = new TimeSeries("Accessi");
-        for (int i = 0; i < giorni.size(); i++) {
-            serie.add(giorni.get(i), conteggi.get(i));
+        for (int i = 0; i < periodi.size(); i++) {
+            serie.add(periodi.get(i), conteggi.get(i));
         }
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(serie);
 
-        // Grafico a linee temporale (come nella versione originale)
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 "Accessi nel tempo",
                 "Data",
                 "Numero di accessi",
                 dataset
         );
+
         XYPlot plot = chart.getXYPlot();
+
+        // Asse X: unità e formato coerenti con la modalità scelta,
+        // così con "Anni" non compaiono più tutti i singoli giorni
         DateAxis asseX = (DateAxis) plot.getDomainAxis();
-        //asseX.setDateFormatOverride(new SimpleDateFormat("dd/MM/yyyy"));
-        asseX.setTickUnit(new DateTickUnit(DateTickUnitType.DAY, 1));
+        if (modalita.equals("Mesi")) {
+            asseX.setTickUnit(new DateTickUnit(DateTickUnitType.MONTH, 1));
+            asseX.setDateFormatOverride(new SimpleDateFormat("MMM yyyy"));
+        } else if (modalita.equals("Anni")) {
+            asseX.setTickUnit(new DateTickUnit(DateTickUnitType.YEAR, 1));
+            asseX.setDateFormatOverride(new SimpleDateFormat("yyyy"));
+        } else {
+            asseX.setTickUnit(new DateTickUnit(DateTickUnitType.DAY, 1));
+            asseX.setDateFormatOverride(new SimpleDateFormat("dd/MM"));
+        }
+
+        // Asse Y: sempre numeri interi "normali", niente notazione scientifica (es. "1E01")
+        NumberAxis asseY = (NumberAxis) plot.getRangeAxis();
+        asseY.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        asseY.setNumberFormatOverride(new DecimalFormat("0"));
+
         ChartPanel chartPanel = new ChartPanel(chart);
+
+        // Rimuovo il grafico precedente prima di metterne uno nuovo
+        panelGrafico.removeAll();
         panelGrafico.setLayout(new BorderLayout());
         panelGrafico.add(chartPanel, BorderLayout.CENTER);
-    }
 
-   
+        panelGrafico.revalidate();
+        panelGrafico.repaint();
     }
+}
