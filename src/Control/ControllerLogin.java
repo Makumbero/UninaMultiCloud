@@ -25,6 +25,9 @@ public class ControllerLogin {
  	JDBCAccessoDao AccessoDao;
  	ControllerElementi cEle;
  	Utente MyUtente;
+	ControllerPlaylist cPl;
+	ControllerCerca cCerca;
+ 	
  	public ControllerLogin(Connection conn1) {
 		MyLogin=new Login(this);
 		MyLogin.setVisible(true);
@@ -35,18 +38,19 @@ public class ControllerLogin {
  	}
 	
 	public void LoginHome() {
-		MyLogin.setVisible(false);
+		MyLogin.dispose();
+		Errore.dispose();
 		MyHome.setVisible(true);
-		
 	}
+	
 	public void verificaCredenziali(String Email, String Password) {
 		UtenteDAO=new JDBCUtenteDao(conn);
 		if(UtenteDAO.VerificaUtente(Email,Password)){
 		    MyUtente=this.getAutorePerEmail(Email);
 			MyHome=new Home(this);
 			MyGrafico=new GraficoVisualizzazioni(this,MyUtente);
-			ControllerCerca cCerca= new ControllerCerca(conn,MyHome,MyUtente);
-			ControllerPlaylist cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
+			cCerca= new ControllerCerca(conn,MyHome,MyUtente);
+            cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
 		    cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
 			cPl.setControllerElementi(cEle);
 			AccessoDao=cEle.getMyAccessoDao();
@@ -59,15 +63,30 @@ public class ControllerLogin {
 		}else {
 			showError();
 		}
-		
+	}
+	
+	public void Logout() {
+		MyHome.dispose();
+		MyLogin=new Login(this);
+		MyLogin.setVisible(true);
+		Errore=new ERROR(this);
+		MyGrafico.dispose();
+		MyUtente=null;
+		cPl=null;
+		cCerca=null;
+		cEle=null;
+		AccessoDao=null;
 		
 	}
+	
 	public void showError() {
 		Errore.setVisible(true);
 	}
+	
 	public void dismissError() {
 		Errore.setVisible(false);
 	}
+	
 	public void HomeToProfilo() {
 		MyHome.setVisible(false);
         MyGrafico.creaGrafico(GetAccessiPerMese(new Date(System.currentTimeMillis())), "Giorni");
@@ -75,28 +94,35 @@ public class ControllerLogin {
 		
 		lastFrame=MyGrafico;
 	}
+	
 	public void ProfiloToHome() {
 		MyGrafico.dispose();
 		MyHome.setVisible(true);
 		lastFrame=MyHome;
 	}
+	
 	public void ReturnHome() {
 		lastFrame.setVisible(false);
 		MyHome.setVisible(true);
 	}
+	
 	public Utente getAutorePerEmail(String EmailIN) {
 		Utente u;
 		u=UtenteDAO.getAutorePerEmail(EmailIN);
 		return u;
 		
 	}
+	
 	 public List<Accesso> GetAccessiPerMese(Date DataIN){
 		return AccessoDao.GetAccessiPerMese(DataIN);
 	}
+	 
 	 public List<Accesso> GetAccessiPerAnno(Date DataIN ){
 		 return AccessoDao.GetAccessiPerAnno(DataIN);
 	 }
+	 
 	 public List<Accesso> GetAllAccessi(){
 		 return AccessoDao.GetAllAccessi();
 	 }
+	 
 }

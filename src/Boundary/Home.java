@@ -74,6 +74,11 @@ public class Home extends JFrame {
 		
 		JButton LogOut = new JButton("LogOut");
 		LogOut.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		LogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MycLog.Logout();
+			}
+		});
 		LogOut.setBounds(627, 453, 190, 80);
 		contentPane.add(LogOut);
 		
