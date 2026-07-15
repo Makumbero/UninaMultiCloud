@@ -51,13 +51,13 @@ public class ControllerCerca {
 		MyCerca.setVisible(false);
 		Risricerca.setVisible(true);
 		if (indiceTipoRicerca==0){
-			Risricerca.MostraElementi(cEle.CercaElementiPerAutore(Ricerca));
+			Risricerca.MostraElementi(cEle.CercaElementiPerAutore(Ricerca), Ricerca);
 		}else if(indiceTipoRicerca==1) {
-			Risricerca.MostraElementi(cEle.CercaElementiPerTitolo(Ricerca));
+			Risricerca.MostraElementi(cEle.CercaElementiPerTitolo(Ricerca), Ricerca);
 		}else {
 			List <Playlist> ListaPlaylist= new ArrayList<>();
 			ListaPlaylist.addAll(cPlay.CercaPlaylistPubblicaPerTitolo(Ricerca));
-			Risricerca.MostraPlaylist(ListaPlaylist);
+			Risricerca.MostraPlaylist(ListaPlaylist, Ricerca);
 		};
 		Precedente=MyCerca;
 		

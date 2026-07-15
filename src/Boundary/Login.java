@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+
 
 public class Login extends JFrame {
 
@@ -32,38 +34,50 @@ public class Login extends JFrame {
 	public Login(ControllerLogin c) {
 		this.c=c;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 900, 650);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(44, 50, 104, 12);
-		contentPane.add(lblNewLabel);
+		JLabel Email = new JLabel("Email:");
+		Email.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Email.setBounds(241, 246, 112, 25);
+		contentPane.add(Email);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(44, 100, 44, 12);
-		contentPane.add(lblNewLabel_1);
+		JLabel Password = new JLabel("Password:");
+		Password.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Password.setBounds(241, 323, 112, 25);
+		contentPane.add(Password);
 		
 		EmailTF = new JTextField();
-		EmailTF.setBounds(158, 47, 96, 18);
+		EmailTF.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		EmailTF.setBounds(365, 246, 276, 25);
 		contentPane.add(EmailTF);
 		EmailTF.setColumns(10);
 		
 		PasswordTF = new JTextField();
-		PasswordTF.setBounds(158, 97, 96, 18);
+		PasswordTF.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		PasswordTF.setBounds(365, 323, 276, 25);
 		contentPane.add(PasswordTF);
 		PasswordTF.setColumns(10);
 		
 		JButton LoginBT = new JButton("Login");
+		LoginBT.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		LoginBT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.verificaCredenziali(EmailTF.getText(),PasswordTF.getText());
 			}
 		});
-		LoginBT.setBounds(170, 196, 84, 20);
+		LoginBT.setBounds(356, 451, 190, 80);
 		contentPane.add(LoginBT);
+		
+		JLabel Titolo = new JLabel("UninaMultiCloud");
+		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 45));
+		Titolo.setBounds(289, 86, 400, 71);
+		contentPane.add(Titolo);
 
 	}
 }

@@ -21,6 +21,8 @@ import Entity.Utente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -34,12 +36,15 @@ public class GraficoVisualizzazioni extends JFrame {
     private JComboBox<String> comboBox;
     ControllerLogin cLog;
     Utente utente;
+    private JButton Indietro;
 
     public GraficoVisualizzazioni(ControllerLogin cLog, Utente utente) {
         this.cLog = cLog;
         this.utente = utente;
         setTitle("Visualizzazioni Profilo");
-        setSize(600, 450);
+		setBounds(100, 100, 900, 650);
+		setLocationRelativeTo(null);
+		setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panelControlli = new JPanel();
@@ -60,12 +65,20 @@ public class GraficoVisualizzazioni extends JFrame {
                 creaGrafico(cLog.GetAllAccessi(), "Anni");
             }
         });
+        
+        Indietro = new JButton("Indietro");
+		Indietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cLog.ProfiloToHome();
+			}
+		});
+        panelControlli.add(Indietro);
 
         panelControlli.add(comboBox);
-        add(panelControlli, BorderLayout.SOUTH);
+        getContentPane().add(panelControlli, BorderLayout.SOUTH);
 
         panelGrafico = new JPanel();
-        add(panelGrafico, BorderLayout.CENTER);
+        getContentPane().add(panelGrafico, BorderLayout.CENTER);
 
         // Mostro subito un grafico coerente con la voce selezionata di default ("Giorni"),
         // altrimenti il pannello resta vuoto finché non si tocca la combo box

@@ -1,8 +1,10 @@
 package Boundary;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class ScegliPlaylist extends JFrame {
 	private ControllerPlaylist MycPl;
 	private JFrame Precedente;
 	private Brano MyBrano;
-
+	private JButton Salva;
 
 
 	/**
@@ -40,14 +42,17 @@ public class ScegliPlaylist extends JFrame {
 		Precedente=precedente;
 		MyBrano=b;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 647, 420);
+		setBounds(100, 100, 900, 650);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton Indietro = new JButton("Indietro");
-		Indietro.setBounds(154, 322, 93, 29);
+		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		Indietro.setBounds(143, 498, 190, 80);
 		contentPane.add(Indietro);
 		Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -55,15 +60,27 @@ public class ScegliPlaylist extends JFrame {
 			}
 		});
 		
-        
+		JLabel Titolo = new JLabel("In quale playlist vuoi inserire "+b.getTitolo()+"?");
+		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		Titolo.setBounds(143, 55, 621, 36);
+		Titolo.setHorizontalAlignment(JLabel.CENTER);
+		contentPane.add(Titolo);
+		
+		
+		Salva = new JButton("Salva");
+		Salva.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		Salva.setBounds(574, 498, 190, 80);
+		contentPane.add(Salva);
+		
 		JScrollPane Scorrimento = new JScrollPane();
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		Scorrimento.setBounds(90, 17, 464, 281);
+		Scorrimento.setBounds(143, 103, 624, 370);
 		contentPane.add(Scorrimento);
 		
         PannelloPlaylist = new JPanel();
         Scorrimento.setViewportView(PannelloPlaylist);
-
+        
+        
 	}
 	public void MostraPlaylist(List <Playlist> ListaPlaylist) {
 	    PannelloPlaylist.removeAll();
@@ -76,8 +93,10 @@ public class ScegliPlaylist extends JFrame {
 	    for (Playlist playlist : ListaPlaylist) {
 
 	        JPanel riga = new JPanel(new BorderLayout());
+	        riga.setMaximumSize(new Dimension(PannelloPlaylist.getWidth(), 50));
 
 	        JLabel titolo = new JLabel(playlist.getTitolo());
+	        titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	        
@@ -90,7 +109,7 @@ public class ScegliPlaylist extends JFrame {
 	        CheckSpunte.add(Check);
 	        
 	        riga.add(titolo, BorderLayout.CENTER);
-	        riga.add(pulsanti, BorderLayout.EAST);
+	        riga.add(pulsanti, BorderLayout.WEST);
 
 	        PannelloPlaylist.add(riga);
 	        
@@ -99,9 +118,6 @@ public class ScegliPlaylist extends JFrame {
 
 	    PannelloPlaylist.revalidate();
 	    PannelloPlaylist.repaint();
-		JButton Salva = new JButton("Salva");
-		Salva.setBounds(380, 322, 76, 29);
-		contentPane.add(Salva);
         Salva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MycPl.SalvaScegliPlaylist(ScegliPlaylist.this, Precedente, CheckPlaylist, CheckSpunte, MyBrano);

@@ -75,6 +75,11 @@ public class ControllerLogin {
 		
 		lastFrame=MyGrafico;
 	}
+	public void ProfiloToHome() {
+		MyGrafico.dispose();
+		MyHome.setVisible(true);
+		lastFrame=MyHome;
+	}
 	public void ReturnHome() {
 		lastFrame.setVisible(false);
 		MyHome.setVisible(true);

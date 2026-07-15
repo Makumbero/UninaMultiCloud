@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import Entity.*;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class MieiElementi extends JFrame {
 
@@ -34,14 +37,17 @@ public class MieiElementi extends JFrame {
 		MycEle=mycEle;
 		Precedente=precedente;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 648, 444);
+		setBounds(100, 100, 900, 650);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton Indietro = new JButton("Indietro");
-		Indietro.setBounds(93, 334, 159, 61);
+		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		Indietro.setBounds(143, 498, 190, 80);
 		contentPane.add(Indietro);
 		Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -50,7 +56,8 @@ public class MieiElementi extends JFrame {
 		});
 		
 		JButton CreaElemento = new JButton("CreaElemento");
-		CreaElemento.setBounds(373, 334, 159, 61);
+		CreaElemento.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		CreaElemento.setBounds(574, 498, 190, 80);
 		contentPane.add(CreaElemento);
         CreaElemento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,11 +67,17 @@ public class MieiElementi extends JFrame {
 		
 		JScrollPane Scorrimento = new JScrollPane();
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		Scorrimento.setBounds(71, 39, 467, 271);
+		Scorrimento.setBounds(143, 103, 624, 370);
 		contentPane.add(Scorrimento);
 		
         PannelloBrani = new JPanel();
 		Scorrimento.setViewportView(PannelloBrani);
+		
+		JLabel Titolo = new JLabel("I Miei Brani:");
+		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 35));
+		Titolo.setBounds(143, 55, 621, 36);
+		Titolo.setHorizontalAlignment(JLabel.CENTER);
+		contentPane.add(Titolo);
 
 	}
 	public void MostraElementi(List <Brano> Brani) {
@@ -75,8 +88,10 @@ public class MieiElementi extends JFrame {
 	    for (Brano brano : Brani) {
 
 	        JPanel riga = new JPanel(new BorderLayout());
+	        riga.setMaximumSize(new Dimension(PannelloBrani.getWidth(), 50));
 
 	        JButton titolo = new JButton(brano.getTitolo());
+	        titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 			titolo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					MycEle.VisualizzaElemento(MieiElementi.this, brano);
@@ -86,8 +101,10 @@ public class MieiElementi extends JFrame {
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
 	        JButton Modifica = new JButton("Modifica");
+	        Modifica.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 	        
 	        JButton Elimina = new JButton("Elimina");
+	        Elimina.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
 	        pulsanti.add(Modifica);
 	        Modifica.addActionListener(new ActionListener() {

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
+import java.awt.Font;
 
 public class ModificaElemento extends JFrame {
 
@@ -40,42 +41,52 @@ public class ModificaElemento extends JFrame {
 		MycEle=c;
 		MyBrano=b;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 697, 457);
+		setBounds(100, 100, 900, 650);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel Titolo = new JLabel("Titolo: ");
-		Titolo.setBounds(24, 58, 61, 16);
+		Titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Titolo.setBounds(158, 157, 175, 26);
 		contentPane.add(Titolo);
 		
 		JLabel Formato = new JLabel("Formato: ");
-		Formato.setBounds(24, 86, 61, 16);
+		Formato.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Formato.setBounds(158, 195, 175, 26);
 		contentPane.add(Formato);
 		
 		JLabel Durata = new JLabel("Durata: ");
-		Durata.setBounds(24, 114, 61, 16);
+		Durata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Durata.setBounds(158, 233, 175, 26);
 		contentPane.add(Durata);
 		
 		JLabel Descrizione = new JLabel("Descrizione: ");
-		Descrizione.setBounds(24, 142, 105, 16);
+		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Descrizione.setBounds(158, 270, 175, 26);
 		contentPane.add(Descrizione);
 		
 		JLabel Dimensione = new JLabel("Dimensione (MB): ");
-		Dimensione.setBounds(24, 170, 124, 16);
+		Dimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Dimensione.setBounds(158, 306, 175, 26);
 		contentPane.add(Dimensione);
 		
 		JLabel Canali = new JLabel("Canali: ");
-		Canali.setBounds(24, 198, 61, 16);
+		Canali.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Canali.setBounds(158, 344, 175, 26);
 		contentPane.add(Canali);
 		
 		JLabel Campionamento = new JLabel("Campionamento: ");
-		Campionamento.setBounds(24, 226, 124, 16);
+		Campionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Campionamento.setBounds(158, 380, 175, 26);
 		contentPane.add(Campionamento);
 		
 		JButton Indietro = new JButton("Indietro");
-		Indietro.setBounds(149, 328, 142, 53);
+		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		Indietro.setBounds(143, 498, 190, 80);
 		contentPane.add(Indietro);
         Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,42 +95,50 @@ public class ModificaElemento extends JFrame {
 			});
 		
 		JButton SalvaModifiche = new JButton("Salva Modifiche");
-		SalvaModifiche.setBounds(430, 328, 142, 53);
+		SalvaModifiche.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		SalvaModifiche.setBounds(574, 498, 190, 80);
 		contentPane.add(SalvaModifiche);
 		
 		
 		FieldTitolo = new JTextField(MyBrano.getTitolo());
-		FieldTitolo.setBounds(161, 53, 394, 26);
+		FieldTitolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldTitolo.setBounds(370, 157, 394, 26);
 		contentPane.add(FieldTitolo);
 		FieldTitolo.setColumns(10);
 
 		FieldFormato = new JTextField(MyBrano.getFormato());
-		FieldFormato.setBounds(161, 81, 394, 26);
+		FieldFormato.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldFormato.setBounds(370, 195, 394, 26);
 		contentPane.add(FieldFormato);
 		FieldFormato.setColumns(10);
 		
 		FieldDescrizione = new JTextField(MyBrano.getDescrizione());
-		FieldDescrizione.setBounds(161, 137, 394, 26);
+		FieldDescrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldDescrizione.setBounds(370, 269, 394, 26);
 		contentPane.add(FieldDescrizione);
 		FieldDescrizione.setColumns(10);
 		
 		FieldDurata = new JTextField(String.valueOf(MyBrano.getDurata()));
-		FieldDurata.setBounds(161, 109, 394, 26);
+		FieldDurata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldDurata.setBounds(370, 232, 394, 26);
 		contentPane.add(FieldDurata);
 		FieldDurata.setColumns(10);
 		
 		FieldDimensione = new JTextField(String.valueOf(MyBrano.getDimensione()));
-		FieldDimensione.setBounds(160, 165, 395, 26);
+		FieldDimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldDimensione.setBounds(370, 305, 395, 26);
 		contentPane.add(FieldDimensione);
 		FieldDimensione.setColumns(10);
 		
 		FieldCanali = new JTextField(String.valueOf(MyBrano.getCanali()));
-		FieldCanali.setBounds(161, 193, 394, 26);
+		FieldCanali.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldCanali.setBounds(370, 343, 394, 26);
 		contentPane.add(FieldCanali);
 		FieldCanali.setColumns(10);
 		
 		FieldCampionamento = new JTextField(String.valueOf(MyBrano.getCampionamento()));
-		FieldCampionamento.setBounds(161, 221, 394, 26);
+		FieldCampionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		FieldCampionamento.setBounds(370, 380, 394, 26);
 		contentPane.add(FieldCampionamento);
 		FieldCampionamento.setColumns(10);
 

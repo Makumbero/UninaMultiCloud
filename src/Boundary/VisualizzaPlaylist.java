@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,7 @@ import Control.*;
 import Entity.*;
 
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class VisualizzaPlaylist extends JFrame {
 
@@ -37,42 +39,52 @@ public class VisualizzaPlaylist extends JFrame {
 		MycEle=mycEle;
 		Precedente=precedente;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 714, 466);
+		setBounds(100, 100, 900, 650);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel Titolo = new JLabel("Titolo Playlist: "+Playlist.getTitolo());
-		Titolo.setBounds(60, 6, 276, 16);
+		JLabel Titolo = new JLabel(Playlist.getTitolo());
+		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		Titolo.setHorizontalAlignment(JLabel.CENTER);
+		Titolo.setBounds(143, 6, 624, 25);
 		contentPane.add(Titolo);
 		
-		JLabel Creatore = new JLabel("Creatore: "+Playlist.getCreatore().getUsername());
-		Creatore.setBounds(348, 6, 276, 16);
+		JLabel Creatore = new JLabel(Playlist.getCreatore().getUsername());
+		Creatore.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		Creatore.setHorizontalAlignment(JLabel.CENTER);
+		Creatore.setBounds(143, 43, 624, 20);
 		contentPane.add(Creatore);
 		
 		JLabel Data = new JLabel("Data Creazione: "+Playlist.getDataCreazione().toString());
-		Data.setBounds(60, 34, 276, 16);
+		Data.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		Data.setBounds(143, 476, 276, 25);
 		contentPane.add(Data);
 		
 		JLabel Tipo = new JLabel();
+		Tipo.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		Tipo.setText("Tipo");
 		if(Playlist instanceof PlaylistPrivata) {
-			Tipo.setText("Tipo: Privata");
+			Tipo.setText("Playlist Privata");
 		}else if(Playlist instanceof PlaylistPubblica) {
-			Tipo.setText("Tipo: Pubblica");
+			Tipo.setText("Platlist Pubblica");
 		}else {
-			Tipo.setText("Tipo: Condivisa");
+			Tipo.setText("Playlist Condivisa");
 		}
-		Tipo.setBounds(348, 34, 276, 16);
+		Tipo.setBounds(643, 476, 124, 25);
 		contentPane.add(Tipo);
 		
 		JLabel Descrizione = new JLabel("Descrizione: "+Playlist.getDescrizione());
-		Descrizione.setBounds(60, 62, 564, 16);
+		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		Descrizione.setBounds(143, 75, 624, 16);
 		contentPane.add(Descrizione);
 		
 		JScrollPane Scorrimento = new JScrollPane();
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		Scorrimento.setBounds(70, 92, 467, 271);
+		Scorrimento.setBounds(143, 103, 624, 370);
 		contentPane.add(Scorrimento);
 		
         PannelloBrani = new JPanel();
@@ -83,7 +95,8 @@ public class VisualizzaPlaylist extends JFrame {
 		    PannelloBrani.setLayout(new BoxLayout(PannelloBrani, BoxLayout.Y_AXIS));
 		    
 		    JButton Indietro = new JButton("Indietro");
-		    Indietro.setBounds(266, 375, 138, 43);
+		    Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		    Indietro.setBounds(356, 498, 190, 80);
 		    contentPane.add(Indietro);
 			Indietro.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -95,8 +108,10 @@ public class VisualizzaPlaylist extends JFrame {
 		    for (Brano brano : Brani) {
 
 		        JPanel riga = new JPanel(new BorderLayout());
+		        riga.setMaximumSize(new Dimension(Scorrimento.getWidth(), 50));
 
 		        JButton titolo = new JButton(brano.getTitolo());
+		        titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 				titolo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						MycEle.VisualizzaElemento(VisualizzaPlaylist.this, brano);
