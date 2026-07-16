@@ -251,6 +251,7 @@ public class ControllerPlaylist {
 		Precedente.setVisible(false);
 		MyCollaboratori= new Collaboratori(Precedente, MycCerca);
 		MyCollaboratori.setVisible(true);
+		MyCollaboratori.MostraCollaboratori(MyCondivisaDao.CercaUtentiCondivisi(p.getId()));
 	}
 }
 	
