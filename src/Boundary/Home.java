@@ -82,7 +82,7 @@ public class Home extends JFrame {
 		LogOut.setBounds(627, 453, 190, 80);
 		contentPane.add(LogOut);
 		
-		JLabel Titolo = new JLabel("Home");
+		JLabel Titolo = new JLabel("Unina Multi Cloud");
 		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 45));
 		Titolo.setBounds(87, 60, 730, 37);
 		Titolo.setHorizontalAlignment(JLabel.CENTER);
