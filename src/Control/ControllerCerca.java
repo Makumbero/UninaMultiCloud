@@ -86,6 +86,18 @@ public class ControllerCerca {
 
 
 
+	public Utente getMyUtente() {
+		return MyUtente;
+	}
+
+
+
+	public void setMyUtente(Utente myUtente) {
+		MyUtente = myUtente;
+	}
+
+
+
 	public JFrame getPrecedente() {
 		return Precedente;
 	}
