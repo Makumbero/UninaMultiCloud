@@ -65,6 +65,12 @@ public class ControllerCerca {
 		
 	}
 	
+	public void CollaboratoriToCondividi(JFrame Precedente) {
+		Precedente.setVisible(false);
+		MyCercaUtente=new CercaUtente(this,Precedente);
+		MyCercaUtente.setVisible(true);
+	}
+	
 	public void CondividiToRisultati(String Ricerca) {
 		MyCercaUtente.setVisible(false);
 		Risricerca.setVisible(true);

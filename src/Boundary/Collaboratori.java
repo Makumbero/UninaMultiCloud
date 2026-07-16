@@ -60,7 +60,7 @@ public class Collaboratori extends JFrame {
 		contentPane.add(Condividi);
         Condividi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				MycCerca.CollaboratoriToCondividi(Collaboratori.this);
 			}
 		});
 		

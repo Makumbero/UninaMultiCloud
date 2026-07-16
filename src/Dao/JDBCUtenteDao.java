@@ -26,7 +26,7 @@ public class JDBCUtenteDao implements UtenteDao {
 	        pstmt.setString(1, UsernameIN);
 
 	        try (ResultSet rs = pstmt.executeQuery()) {
-	            if (rs.next()) {
+	            while(rs.next()) {
 	                listautenti.add(new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password")));
 	                
 	            }

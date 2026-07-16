@@ -118,8 +118,7 @@ public class ControllerLogin {
 	}
 	
 	public List<Utente> CercaAutorePerNome(String NomeIN) {
-		List<Utente> listautenti=new ArrayList<>();
-		listautenti=(CercaAutorePerNome(NomeIN));
+		List<Utente> listautenti=UtenteDAO.CercaAutorePerNome(NomeIN);
 		return listautenti;
 		
 	}
