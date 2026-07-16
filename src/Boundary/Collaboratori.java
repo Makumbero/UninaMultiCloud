@@ -19,7 +19,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerCerca;
+import Control.ControllerPlaylist;
 import Entity.Brano;
+import Entity.Playlist;
 import Entity.Utente;
 
 public class Collaboratori extends JFrame {
@@ -29,12 +31,14 @@ public class Collaboratori extends JFrame {
 	private JFrame Precedente;
 	private JPanel PannelloUtenti;
 	ControllerCerca MycCerca;
+	ControllerPlaylist MycPl;
 	/**
 	 * Create the frame.
 	 */
-	public Collaboratori(JFrame precedente, ControllerCerca mycCerca) {
+	public Collaboratori(JFrame precedente, ControllerCerca mycCerca, ControllerPlaylist mycPl) {
 		Precedente=precedente;
 		MycCerca=mycCerca;
+		MycPl=mycPl;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
@@ -73,7 +77,7 @@ public class Collaboratori extends JFrame {
 		Scorrimento.setViewportView(PannelloUtenti);
 	}
 	
-	public void MostraCollaboratori(List <Utente> Utenti) {
+	public void MostraCollaboratori(List <Utente> Utenti, Playlist playlist) {
 		 PannelloUtenti.removeAll();
 
 		    PannelloUtenti.setLayout(new BoxLayout(PannelloUtenti, BoxLayout.Y_AXIS));
@@ -89,14 +93,14 @@ public class Collaboratori extends JFrame {
 
 		        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		        
-		        JButton Elimina = new JButton("Elimina");
-		        Elimina.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		        JButton Rimuovi = new JButton("Rimuovi");
+		        Rimuovi.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
 		        
-		        pulsanti.add(Elimina);
-		        Elimina.addActionListener(new ActionListener() {
+		        pulsanti.add(Rimuovi);
+		        Rimuovi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						MycPl.RimuoviCollaboratore(Collaboratori.this, Precedente, playlist, utente);
 					}
 				});
 		        
