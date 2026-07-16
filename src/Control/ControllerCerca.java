@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Boundary.Cerca;
 import Boundary.CercaUtente;
 import Boundary.Home;
 import Boundary.MieiElementi;
@@ -19,7 +20,7 @@ import Entity.Utente;
 public class ControllerCerca {
 	Connection conn;
 	Home MyHome;
-	CercaUtente MyCerca;
+	Cerca MyCerca;
 	RisultatiRicerca Risricerca;
 	Utente MyUtente;
 	JFrame Precedente;
@@ -35,7 +36,7 @@ public class ControllerCerca {
 		this.conn = conn;
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
-		MyCerca=new CercaUtente(this,MyHome);
+		MyCerca=new Cerca(this,MyHome);
 		Risricerca=new RisultatiRicerca(this,MyCerca);
 		
 	}
