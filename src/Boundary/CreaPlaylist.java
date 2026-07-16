@@ -91,7 +91,7 @@ public class CreaPlaylist extends JFrame {
 		
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		Indietro.setBounds(143, 498, 190, 100);
+		Indietro.setBounds(143, 498, 190, 80);
 		contentPane.add(Indietro);
         Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
