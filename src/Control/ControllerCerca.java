@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Boundary.Cerca;
+import Boundary.CercaUtente;
 import Boundary.Home;
 import Boundary.MieiElementi;
 import Boundary.RisultatiRicerca;
@@ -19,13 +19,15 @@ import Entity.Utente;
 public class ControllerCerca {
 	Connection conn;
 	Home MyHome;
-	Cerca MyCerca;
+	CercaUtente MyCerca;
 	RisultatiRicerca Risricerca;
 	Utente MyUtente;
 	JFrame Precedente;
 	MieiElementi mieiElementi;
+	CercaUtente MyCercaUtente;
 	ControllerElementi cEle;
 	ControllerPlaylist cPlay;
+	ControllerLogin cLog;
 	
 	
 	
@@ -33,7 +35,7 @@ public class ControllerCerca {
 		this.conn = conn;
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
-		MyCerca=new Cerca(this,MyHome);
+		MyCerca=new CercaUtente(this,MyHome);
 		Risricerca=new RisultatiRicerca(this,MyCerca);
 		
 	}
@@ -61,6 +63,13 @@ public class ControllerCerca {
 		};
 		Precedente=MyCerca;
 		
+	}
+	
+	public void CondividiToRisultati(String Ricerca) {
+		MyCercaUtente.setVisible(false);
+		Risricerca.setVisible(true);
+		Risricerca.MostraUser(cLog.CercaAutorePerNome(Ricerca), Ricerca);
+		Precedente=MyCercaUtente;
 	}
 	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
@@ -104,6 +113,15 @@ public class ControllerCerca {
 		this.cPlay = cPlay;
 	}
 
+
+	public ControllerLogin getcLog() {
+		return cLog;
+	}
+
+
+	public void setcLog(ControllerLogin cLog) {
+		this.cLog = cLog;
+	}
 
 
 	public void VisualizzaElemento(Brano brano) {

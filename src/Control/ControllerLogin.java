@@ -1,6 +1,7 @@
 package Control;
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -60,6 +61,7 @@ public class ControllerLogin {
 			MyHome.setControllerCerca(cCerca);
 			cCerca.setcPlay(cPl);
 			cCerca.setcEle(cEle);
+			cCerca.setcLog(this);
 			LoginHome();
 		}else {
 			JOptionPane.showMessageDialog(null, "Si Prega di inserire le credenziali corrette");
@@ -111,6 +113,13 @@ public class ControllerLogin {
 		Utente u;
 		u=UtenteDAO.getAutorePerEmail(EmailIN);
 		return u;
+		
+	}
+	
+	public List<Utente> CercaAutorePerNome(String NomeIN) {
+		List<Utente> listautenti=new ArrayList<>();
+		listautenti=(CercaAutorePerNome(NomeIN));
+		return listautenti;
 		
 	}
 	

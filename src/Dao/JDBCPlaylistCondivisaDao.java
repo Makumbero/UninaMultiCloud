@@ -58,6 +58,27 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	}
 	
 	@Override
+	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN) {
+		List<Utente> listautenti=new ArrayList<>();
+		String sql = "SELECT * FROM  CercaUtentiCondivisi(?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, IdCondivisaIN);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                listautenti.add(new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password")));
+	                
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return listautenti;
+	 
+	}
+	
+	@Override
 	public void  CondividiPlaylist(int IdCondivisaIN, Utente UtenteIN){
 		 String sql = "CALL  CondividiPlaylist(?,?)";
 	

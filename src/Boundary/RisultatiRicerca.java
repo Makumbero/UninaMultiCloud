@@ -22,6 +22,7 @@ import Control.ControllerCerca;
 import Entity.Brano;
 import Entity.Playlist;
 import Entity.PlaylistPubblica;
+import Entity.Utente;
 
 public class RisultatiRicerca extends JFrame {
 
@@ -149,5 +150,42 @@ public class RisultatiRicerca extends JFrame {
 
 	    PannelloRisultati.revalidate();
 	    PannelloRisultati.repaint();
+	}
+	public void MostraUser(List<Utente> listautente, String ricerca) {
+		PannelloRisultati.removeAll();
+
+	    PannelloRisultati.setLayout(new BoxLayout(PannelloRisultati, BoxLayout.Y_AXIS));
+
+	    risultato.setText("Risultati della ricerca Utenti per \""+ricerca+"\"");
+	    
+	    for (Utente u : listautente) {
+
+	        JPanel riga = new JPanel(new BorderLayout());
+	        riga.setMaximumSize(new Dimension(PannelloRisultati.getWidth(), 50));
+
+	        JButton titolo = new JButton(u.getUsername());
+			titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			titolo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//
+				}
+			});
+
+	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	        
+	        JLabel username = new JLabel(u.getEmail());
+			username.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+
+			autore.add(username);
+
+	        riga.add(titolo, BorderLayout.CENTER);
+	        riga.add(autore, BorderLayout.EAST);
+
+	        PannelloRisultati.add(riga);
+	    }
+
+	    PannelloRisultati.revalidate();
+	    PannelloRisultati.repaint();
+		
 	}
 }

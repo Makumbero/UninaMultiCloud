@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import Entity.Utente;
 
@@ -14,6 +16,28 @@ public class JDBCUtenteDao implements UtenteDao {
 	public JDBCUtenteDao(Connection conn) {
 		this.conn=conn;
 	}
+	
+	@Override
+	public List<Utente> CercaAutorePerNome(String UsernameIN) {
+		List<Utente> listautenti=new ArrayList<>();
+		String sql = "SELECT * FROM  CercaAutorePerNome(?)";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, UsernameIN);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                listautenti.add(new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password")));
+	                
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return listautenti;
+	 
+	}
+	
 	@Override
 	public Utente ricercaPerEmail(String Email) {
 		Utente u=null;

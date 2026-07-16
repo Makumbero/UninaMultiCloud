@@ -236,6 +236,10 @@ public class ControllerPlaylist {
 		MyRaccolta.dispose();
 		this.HomeToRaccolta();
 	}
+	
+	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN){
+		return MyCondivisaDao.CercaUtentiCondivisi(IdCondivisaIN);
+	}
 }
 	
 
