@@ -66,7 +66,7 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	        pstmt.setInt(1, IdCondivisaIN);
 
 	        try (ResultSet rs = pstmt.executeQuery()) {
-	            if (rs.next()) {
+	            while(rs.next()) {
 	                listautenti.add(new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password")));
 	                
 	            }

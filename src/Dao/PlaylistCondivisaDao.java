@@ -30,6 +30,6 @@ public interface PlaylistCondivisaDao {
 	
 	public  void SetDescrizione(String DescrizioneIN, int IdCondivisaIN);
 
-	List<Utente> CercaUtentiCondivisi(int IdCondivisaIN);
+	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN);
 
 }
