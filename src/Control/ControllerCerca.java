@@ -14,6 +14,7 @@ import Boundary.MieiElementi;
 import Boundary.RisultatiRicerca;
 import Entity.Brano;
 import Entity.Playlist;
+import Entity.PlaylistCondivisa;
 import Entity.PlaylistPubblica;
 import Entity.Utente;
 
@@ -39,6 +40,22 @@ public class ControllerCerca {
 		
 	}
 
+	public List<Utente> rimuoviUtentiIndesiderati(List<Utente> listaUtenti,Playlist playlist){
+		List<Utente>utentiIndesiderati=new ArrayList<>();
+		for(Utente u:listaUtenti) {
+			if(u.getEmail().equals(MyUtente.getEmail())) {
+				utentiIndesiderati.add(u);
+			}
+			List<Utente> listaCondivisioni= cPlay.CercaUtentiCondivisi(playlist.getId());
+			for(Utente x: listaCondivisioni) {
+				if(u.getEmail().equals(x.getEmail())){
+					utentiIndesiderati.add(u);
+				}
+			}
+		}
+		listaUtenti.removeAll(utentiIndesiderati);
+		return listaUtenti;
+	}
 
 
 	public void HomeToCerca() {
@@ -66,17 +83,17 @@ public class ControllerCerca {
 		
 	}
 	
-	public void CollaboratoriToCondividi(JFrame Precedente) {
+	public void CollaboratoriToCondividi(JFrame Precedente,Playlist playlist) {
 		Precedente.setVisible(false);
-		MyCercaUtente=new CercaUtente(this,Precedente);
+		MyCercaUtente=new CercaUtente(this,Precedente, playlist);
 		MyCercaUtente.setVisible(true);
 	}
 	
-	public void CondividiToRisultati(String Ricerca, JFrame Precedente) {
+	public void CondividiToRisultati(String Ricerca, JFrame Precedente, Playlist playlist) {
 		Precedente.setVisible(false);
 		Risricerca=new RisultatiRicerca(this, Precedente);
 		Risricerca.setVisible(true);
-		Risricerca.MostraUser(cLog.CercaAutorePerNome(Ricerca), Ricerca);
+		Risricerca.MostraUser(cLog.CercaAutorePerNome(Ricerca), Ricerca,playlist);
 	}
 	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {

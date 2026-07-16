@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import Control.ControllerCerca;
 import Entity.Brano;
 import Entity.Playlist;
+import Entity.PlaylistCondivisa;
 import Entity.PlaylistPubblica;
 import Entity.Utente;
 
@@ -151,7 +152,8 @@ public class RisultatiRicerca extends JFrame {
 	    PannelloRisultati.revalidate();
 	    PannelloRisultati.repaint();
 	}
-	public void MostraUser(List<Utente> listautente, String ricerca) {
+	public void MostraUser(List<Utente> listautente, String ricerca, Playlist playlist) {
+		listautente=cCerca.rimuoviUtentiIndesiderati(listautente,playlist );
 		PannelloRisultati.removeAll();
 
 	    PannelloRisultati.setLayout(new BoxLayout(PannelloRisultati, BoxLayout.Y_AXIS));

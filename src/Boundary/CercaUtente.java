@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerCerca;
+import Entity.Playlist;
+
 import javax.swing.JLabel;
 
 public class CercaUtente extends JFrame {
@@ -23,9 +25,11 @@ public class CercaUtente extends JFrame {
 	private JTextField textRicerca;
 	ControllerCerca cCerca;
 	JFrame Precedente;
-	public CercaUtente(ControllerCerca cCerca,JFrame Precedente) {
+	Playlist Playlist;
+	public CercaUtente(ControllerCerca cCerca,JFrame Precedente,Playlist Playlist) {
 		this.cCerca=cCerca;
 		this.Precedente=Precedente;
+		this.Playlist=Playlist;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
@@ -58,7 +62,7 @@ public class CercaUtente extends JFrame {
         btnCerca.setBounds(579, 498, 190, 80);
 		btnCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cCerca.CondividiToRisultati(textRicerca.getText(), CercaUtente.this);
+				cCerca.CondividiToRisultati(textRicerca.getText(), CercaUtente.this,Playlist);
 			}
 		});
 		contentPane.add(btnCerca);

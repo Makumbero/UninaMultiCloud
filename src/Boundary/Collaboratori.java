@@ -32,6 +32,7 @@ public class Collaboratori extends JFrame {
 	private JPanel PannelloUtenti;
 	ControllerCerca MycCerca;
 	ControllerPlaylist MycPl;
+	Playlist playlist;
 	/**
 	 * Create the frame.
 	 */
@@ -64,7 +65,7 @@ public class Collaboratori extends JFrame {
 		contentPane.add(Condividi);
         Condividi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MycCerca.CollaboratoriToCondividi(Collaboratori.this);
+				MycCerca.CollaboratoriToCondividi(Collaboratori.this,playlist);
 			}
 		});
 		
@@ -79,7 +80,7 @@ public class Collaboratori extends JFrame {
 	
 	public void MostraCollaboratori(List <Utente> Utenti, Playlist playlist) {
 		 PannelloUtenti.removeAll();
-
+		 this.playlist=playlist;
 		    PannelloUtenti.setLayout(new BoxLayout(PannelloUtenti, BoxLayout.Y_AXIS));
 
 		    for (Utente utente : Utenti) {
