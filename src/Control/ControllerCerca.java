@@ -7,11 +7,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Boundary.Cerca;
-import Boundary.CercaUtente;
-import Boundary.Home;
-import Boundary.MieiElementi;
-import Boundary.RisultatiRicerca;
+import Boundary.*;
 import Entity.Brano;
 import Entity.Playlist;
 import Entity.PlaylistCondivisa;
@@ -30,14 +26,12 @@ public class ControllerCerca {
 	ControllerElementi cEle;
 	ControllerPlaylist cPlay;
 	ControllerLogin cLog;
-	
-	
+
 	
 	public ControllerCerca(Connection conn, Home MyHome,Utente MyUtente) {
 		this.conn = conn;
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
-		
 	}
 
 	public List<Utente> rimuoviUtentiIndesiderati(List<Utente> listaUtenti,Playlist playlist){
@@ -63,7 +57,6 @@ public class ControllerCerca {
 		MyCerca=new Cerca(this, MyHome);
 		MyCerca.setVisible(true);
 		Precedente=MyHome;
-		
 	}
 	
 	public void CercaToRisultatiRicerca(int indiceTipoRicerca, String Ricerca, JFrame Precedente) {
@@ -94,6 +87,13 @@ public class ControllerCerca {
 		Risricerca=new RisultatiRicerca(this, Precedente);
 		Risricerca.setVisible(true);
 		Risricerca.MostraUser(cLog.CercaAutorePerNome(Ricerca), Ricerca,playlist);
+	}
+	public void AggiungiCollaboratore(Playlist p, Utente u, JFrame Attuale, JFrame Precedente) {
+		cPlay.AggiungiCollaboratore(p.getId(), u);
+		Attuale.dispose();
+		Precedente.dispose();
+		cPlay.getMyCollaboratori().MostraCollaboratori(cPlay.getMyCondivisaDao().CercaUtentiCondivisi(p.getId()), p);
+		cPlay.getMyCollaboratori().setVisible(true);
 	}
 	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
