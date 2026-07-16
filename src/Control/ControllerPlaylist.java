@@ -27,8 +27,10 @@ public class ControllerPlaylist {
 	Raccolta MyRaccolta;
 	CreaPlaylist MyCreaPlaylist;
 	ControllerElementi MycEle;
+	ControllerCerca MycCerca;
 	VisualizzaPlaylist MyVisualizzaPlaylist;
 	ModificaPlaylist MyModificaPlaylist;
+	Collaboratori MyCollaboratori;
 	
 	public ControllerPlaylist(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
 		this.conn=conn1;
@@ -57,6 +59,10 @@ public class ControllerPlaylist {
 	
 	public void setControllerElementi(ControllerElementi cEle) {
 		MycEle=cEle;
+	}
+	
+	public void setControllerCerca(ControllerCerca cCerca) {
+		MycCerca=cCerca;
 	}
 	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
@@ -237,8 +243,14 @@ public class ControllerPlaylist {
 		this.HomeToRaccolta();
 	}
 	
+
 	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN){
 		return MyCondivisaDao.CercaUtentiCondivisi(IdCondivisaIN);
+}
+	public void Collaboratori(JFrame Precedente, Playlist p) {
+		Precedente.setVisible(false);
+		MyCollaboratori= new Collaboratori(Precedente, MycCerca);
+		MyCollaboratori.setVisible(true);
 	}
 }
 	

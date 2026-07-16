@@ -23,7 +23,7 @@ public class ControllerElementi {
 	JDBCAccedePubblicaDao MyAccedePubblicaDao;
 	VisualizzaElemento MyVisualizzaElemento;
 	ModificaElemento MyModificaElemento;
-	CreaElemento MyCreaElemento;
+	AggiungiCollaboratore MyCreaElemento;
 	ScegliPlaylist MyScegliPlaylist;
 	ControllerPlaylist MycPl;
 	
@@ -159,7 +159,7 @@ public class ControllerElementi {
 	
 	public void CreaElemento(JFrame Precedente) {
 		Precedente.setVisible(false);
-		MyCreaElemento=new CreaElemento(Precedente, this);
+		MyCreaElemento=new AggiungiCollaboratore(Precedente, this);
 		MyCreaElemento.setVisible(true);
 	}
 	

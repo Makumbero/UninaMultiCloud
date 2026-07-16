@@ -47,6 +47,8 @@ public class VisualizzaPlaylist extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		
 		JLabel Titolo = new JLabel(Playlist.getTitolo());
 		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 20));
 		Titolo.setHorizontalAlignment(JLabel.CENTER);
@@ -103,7 +105,13 @@ public class VisualizzaPlaylist extends JFrame {
 					MycPl.ToPrecedente(VisualizzaPlaylist.this, Precedente);
 				}
 			});
-		    
+			
+		    if(Playlist instanceof PlaylistPubblica) {
+		    JLabel Visualizzazioni = new JLabel("Visualizzazioni: "+Playlist.getVisualizzazioni());
+		    Visualizzazioni.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		    Visualizzazioni.setBounds(143, 498, 201, 25);
+		    contentPane.add(Visualizzazioni);
+		    }
 		    
 		    for (Brano brano : Brani) {
 

@@ -23,6 +23,7 @@ import Control.ControllerElementi;
 import Control.ControllerPlaylist;
 import Entity.Brano;
 import Entity.Playlist;
+import Entity.PlaylistCondivisa;
 
 public class ModificaPlaylist extends JFrame {
 
@@ -81,6 +82,18 @@ public class ModificaPlaylist extends JFrame {
 				MycPl.ToPrecedente(ModificaPlaylist.this, Precedente);
 			}
 		});
+		
+		if(Playlist instanceof PlaylistCondivisa) {
+	        JButton Collaboratori = new JButton("Collaboratori");
+	        Collaboratori.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+	        Collaboratori.setBounds(359, 498, 190, 80);
+	        contentPane.add(Collaboratori);
+			Collaboratori.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MycPl.Collaboratori(ModificaPlaylist.this, Playlist);
+				}
+			});
+		}
 		
         JButton Elimina = new JButton("Elimina");
         Elimina.setFont(new Font("Lucida Grande", Font.PLAIN, 25));

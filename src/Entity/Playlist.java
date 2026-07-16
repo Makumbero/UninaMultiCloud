@@ -24,6 +24,10 @@ public  abstract class  Playlist {
 	public String getTitolo() {
 		return Titolo;
 	}
+	
+	public int getVisualizzazioni() {
+		return 0;
+	}
 
 	public void setTitolo(String titolo) {
 		Titolo = titolo;
