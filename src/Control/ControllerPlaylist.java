@@ -249,9 +249,15 @@ public class ControllerPlaylist {
 }
 	public void Collaboratori(JFrame Precedente, Playlist p) {
 		Precedente.setVisible(false);
-		MyCollaboratori= new Collaboratori(Precedente, MycCerca);
+		MyCollaboratori= new Collaboratori(Precedente, MycCerca, this);
 		MyCollaboratori.setVisible(true);
-		MyCollaboratori.MostraCollaboratori(MyCondivisaDao.CercaUtentiCondivisi(p.getId()));
+		MyCollaboratori.MostraCollaboratori(MyCondivisaDao.CercaUtentiCondivisi(p.getId()),p);
+	}
+	
+	public void RimuoviCollaboratore(JFrame Attuale, JFrame Precedente, Playlist p, Utente u) {
+		MyCondivisaDao.RimuoviCondivisionePlaylist(p.getId(), u);
+		Attuale.dispose();
+		this.Collaboratori(Precedente, p);
 	}
 }
 	
