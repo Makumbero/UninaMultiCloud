@@ -157,7 +157,6 @@ public class RisultatiRicerca extends JFrame {
 	    PannelloRisultati.setLayout(new BoxLayout(PannelloRisultati, BoxLayout.Y_AXIS));
 
 	    risultato.setText("Risultati della ricerca Utenti per \""+ricerca+"\"");
-	    listautente.remove(cCerca.getMyUtente());
 	    for (Utente u : listautente) {
 
 	        JPanel riga = new JPanel(new BorderLayout());
