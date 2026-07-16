@@ -79,7 +79,7 @@ public class Raccolta extends JFrame {
         contentPane.add(CreaPlaylist);
 		CreaPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Playlist creata, non è vero...");
+				MycPl.RaccoltaToAggiungiPlaylist();
 			}
 		});
         

@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -12,6 +13,7 @@ import Control.ControllerLogin;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class ERROR extends JDialog {
 
@@ -19,15 +21,8 @@ public class ERROR extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	ControllerLogin c;
 
-	/**
-	 * Launch the application.
-	 */
-
-
-	/**
-	 * Create the dialog.
-	 */
 	public ERROR(ControllerLogin c) {
+
 		this.c=c;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -40,7 +35,7 @@ public class ERROR extends JDialog {
 		contentPanel.add(lblNewLabel);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
@@ -52,11 +47,6 @@ public class ERROR extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
 		}
 	}

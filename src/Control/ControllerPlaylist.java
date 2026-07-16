@@ -25,6 +25,7 @@ public class ControllerPlaylist {
 	JDBCPlaylistPubblicaDao MyPubblicaDao;
 	JDBCPlaylistPrivataDao MyPrivataDao;
 	Raccolta MyRaccolta;
+	CreaPlaylist MyCreaPlaylist;
 	ControllerElementi MycEle;
 	VisualizzaPlaylist MyVisualizzaPlaylist;
 	
@@ -100,6 +101,11 @@ public class ControllerPlaylist {
 	ListaPlaylist.addAll(MyPrivataDao.CercaPlaylistPrivataPerEmail(MyUtente.getEmail()));
 	MyRaccolta.MostraPlaylist(ListaPlaylist);
 }
+	public void RaccoltaToAggiungiPlaylist(){
+		MyRaccolta.setVisible(false);
+		MyCreaPlaylist=new CreaPlaylist(this,MyRaccolta);
+		MyCreaPlaylist.setVisible(true);
+	}
 	public void VisualizzaPlaylist(JFrame Precedente, Playlist p) {
 		List <Brano> Brani= new ArrayList<>();
 		if(p instanceof PlaylistPubblica) {
@@ -119,6 +125,15 @@ public class ControllerPlaylist {
 	}
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerTitolo(String TitoloIN){
 		return MyPubblicaDao.CercaPlaylistPubblicaPerTitolo(TitoloIN);
+	}
+	public void CreaPlaylist(int indiceTipoPlaylist,String TitoloIN, String DescrizioneIN) {
+		if(indiceTipoPlaylist==0) {
+			MyPubblicaDao.AggiungiPlaylistPubblica(TitoloIN, MyUtente, DescrizioneIN);
+		}else if(indiceTipoPlaylist==1) {
+			MyPrivataDao.AggiungiPlaylistPrivata(TitoloIN, MyUtente, DescrizioneIN);
+		}else {
+			MyCondivisaDao.AggiungiPlaylistCondivisa(TitoloIN, MyUtente, DescrizioneIN);
+		}
 	}
 }
 	

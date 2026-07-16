@@ -60,12 +60,13 @@ public class JDBCPlaylistPrivataDao implements PlaylistPrivataDao {
 	
 	
 	@Override
-	public void AggiungiPlaylistPrivata(String TitoloIN, Utente CreatoreIN){
-		 String sql = "CALL AggiungiPlaylistPrivata(?,?)";
+	public void AggiungiPlaylistPrivata(String TitoloIN, Utente CreatoreIN,String DescrizioneIN){
+		 String sql = "CALL AggiungiPlaylistPrivata(?,?,?)";
 	
 		    try (PreparedStatement PstmtAggiungiPlaylist = conn.prepareStatement(sql)) {
 		        PstmtAggiungiPlaylist.setString(1, TitoloIN);
 		        PstmtAggiungiPlaylist.setString(2, CreatoreIN.getEmail());
+		        PstmtAggiungiPlaylist.setString(3, DescrizioneIN);
 		        PstmtAggiungiPlaylist.execute();
 		        
 		    } catch (SQLException e) {

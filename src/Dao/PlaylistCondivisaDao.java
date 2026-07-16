@@ -18,7 +18,7 @@ public interface PlaylistCondivisaDao {
 	
 	public List<Brano> GetContiene(int IdCondivisaIN);
 	
-	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN);
+	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN, String DescrizioneIN);
 	
 	public void EliminaPlaylist(int IdcondivisaIN);
 	

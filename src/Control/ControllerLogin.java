@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import Boundary.ERROR;
 import Boundary.GraficoVisualizzazioni;
@@ -61,7 +62,7 @@ public class ControllerLogin {
 			cCerca.setcEle(cEle);
 			LoginHome();
 		}else {
-			showError();
+			JOptionPane.showMessageDialog(null, "Si Prega di inserire le credenziali corrette");
 		}
 	}
 	

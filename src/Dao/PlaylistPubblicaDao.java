@@ -13,7 +13,7 @@ public interface PlaylistPubblicaDao {
 	
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerEmail(String EmailIN);
 	
-	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN);
+	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN, String DescrizioneIN);
 	
 	public void EliminaPlaylist(int IdPubblicaIN);
 	
@@ -26,4 +26,5 @@ public interface PlaylistPubblicaDao {
 	public  void SetTitolo(String TitoloIN, int IdPubblicaIN);
 	
 	public  void SetDescrizione(String DescrizioneIN, int IdPubblicaIN);
+
 }

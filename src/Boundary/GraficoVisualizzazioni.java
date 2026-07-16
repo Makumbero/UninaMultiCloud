@@ -80,8 +80,7 @@ public class GraficoVisualizzazioni extends JFrame {
         panelGrafico = new JPanel();
         getContentPane().add(panelGrafico, BorderLayout.CENTER);
 
-        // Mostro subito un grafico coerente con la voce selezionata di default ("Giorni"),
-        // altrimenti il pannello resta vuoto finché non si tocca la combo box
+        // Mostro inizialmente un grafico  di default "Giorni"
 
     }
 
@@ -139,8 +138,6 @@ public class GraficoVisualizzazioni extends JFrame {
 
         XYPlot plot = chart.getXYPlot();
 
-        // Asse X: unità e formato coerenti con la modalità scelta,
-        // così con "Anni" non compaiono più tutti i singoli giorni
         DateAxis asseX = (DateAxis) plot.getDomainAxis();
         if (modalita.equals("Mesi")) {
             asseX.setTickUnit(new DateTickUnit(DateTickUnitType.MONTH, 1));
@@ -153,14 +150,13 @@ public class GraficoVisualizzazioni extends JFrame {
             asseX.setDateFormatOverride(new SimpleDateFormat("dd/MM"));
         }
 
-        // Asse Y: sempre numeri interi "normali", niente notazione scientifica (es. "1E01")
         NumberAxis asseY = (NumberAxis) plot.getRangeAxis();
         asseY.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         asseY.setNumberFormatOverride(new DecimalFormat("0"));
 
         ChartPanel chartPanel = new ChartPanel(chart);
 
-        // Rimuovo il grafico precedente prima di metterne uno nuovo
+        // Rimuovo il grafico precedente 
         panelGrafico.removeAll();
         panelGrafico.setLayout(new BorderLayout());
         panelGrafico.add(chartPanel, BorderLayout.CENTER);

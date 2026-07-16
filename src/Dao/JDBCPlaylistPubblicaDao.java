@@ -75,13 +75,14 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		return listaPlaylist;
 	}
 	@Override
-	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN){
-		 String sql = "CALL AggiungiPlaylistPubblica(?,?)";
+	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN, String DescrizioneIN ){
+		 String sql = "CALL AggiungiPlaylistPubblica(?,?,?)";
 	
-		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
-		        PstmtCercaElementi.setString(1, TitoloIN);
-		        PstmtCercaElementi.setString(2, CreatoreIN.getEmail());
-		        PstmtCercaElementi.execute();
+		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+		        pstm.setString(1, TitoloIN);
+		        pstm.setString(2, CreatoreIN.getEmail());
+		        pstm.setString(3, DescrizioneIN);
+		        pstm.execute();
 		        
 		    } catch (SQLException e) {
 		        e.printStackTrace();
