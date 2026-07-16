@@ -36,8 +36,6 @@ public class ControllerCerca {
 		this.conn = conn;
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
-		MyCerca=new Cerca(this,MyHome);
-		Risricerca=new RisultatiRicerca(this,MyCerca);
 		
 	}
 
@@ -45,13 +43,15 @@ public class ControllerCerca {
 
 	public void HomeToCerca() {
 		MyHome.setVisible(false);
+		MyCerca=new Cerca(this, MyHome);
 		MyCerca.setVisible(true);
 		Precedente=MyHome;
 		
 	}
 	
-	public void CercaToRisultatiRicerca(int indiceTipoRicerca,String Ricerca) {
-		MyCerca.setVisible(false);
+	public void CercaToRisultatiRicerca(int indiceTipoRicerca, String Ricerca, JFrame Precedente) {
+		Precedente.setVisible(false);
+		Risricerca=new RisultatiRicerca(this,Precedente);
 		Risricerca.setVisible(true);
 		if (indiceTipoRicerca==0){
 			Risricerca.MostraElementi(cEle.CercaElementiPerAutore(Ricerca), Ricerca);
@@ -72,11 +72,11 @@ public class ControllerCerca {
 		MyCercaUtente.setVisible(true);
 	}
 	
-	public void CondividiToRisultati(String Ricerca) {
-		MyCercaUtente.setVisible(false);
+	public void CondividiToRisultati(String Ricerca, JFrame Precedente) {
+		Precedente.setVisible(false);
+		Risricerca=new RisultatiRicerca(this, Precedente);
 		Risricerca.setVisible(true);
 		Risricerca.MostraUser(cLog.CercaAutorePerNome(Ricerca), Ricerca);
-		Precedente=MyCercaUtente;
 	}
 	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {

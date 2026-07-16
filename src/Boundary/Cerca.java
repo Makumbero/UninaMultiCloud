@@ -66,7 +66,7 @@ public class Cerca extends JFrame {
         btnCerca.setBounds(579, 498, 190, 80);
 		btnCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cCerca.CercaToRisultatiRicerca(cmboxTipoRicerca.getSelectedIndex(), textRicerca.getText());
+				cCerca.CercaToRisultatiRicerca(cmboxTipoRicerca.getSelectedIndex(), textRicerca.getText(), Cerca.this);
 			}
 		});
 		contentPane.add(btnCerca);
