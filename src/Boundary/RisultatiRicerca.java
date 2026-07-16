@@ -168,7 +168,8 @@ public class RisultatiRicerca extends JFrame {
 			titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 			titolo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//
+					cCerca.getcPlay().AggiungiCollaboratore(playlist.getId(), u);
+					cCerca.ToPrecedente(RisultatiRicerca.this, Precedente);
 				}
 			});
 

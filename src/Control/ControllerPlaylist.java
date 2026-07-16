@@ -259,6 +259,9 @@ public class ControllerPlaylist {
 		Attuale.dispose();
 		this.Collaboratori(Precedente, p);
 	}
+	public void AggiungiCollaboratore(int IdPubblicaIN, Utente u) {
+		MyCondivisaDao.CondividiPlaylist(IdPubblicaIN,u);
+	}
 }
 	
 
