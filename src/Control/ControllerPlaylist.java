@@ -7,9 +7,9 @@ import java.util.List;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import Boundary.*;
-import Boundary.ScegliPlaylist;
 import Dao.*;
 import Dao.JDBCUtenteDao;
 import Entity.*;
@@ -27,6 +27,7 @@ public class ControllerPlaylist {
 	Raccolta MyRaccolta;
 	ControllerElementi MycEle;
 	VisualizzaPlaylist MyVisualizzaPlaylist;
+	ModificaPlaylist MyModificaPlaylist;
 	
 	public ControllerPlaylist(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
 		this.conn=conn1;
@@ -119,6 +120,95 @@ public class ControllerPlaylist {
 	}
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerTitolo(String TitoloIN){
 		return MyPubblicaDao.CercaPlaylistPubblicaPerTitolo(TitoloIN);
+	}
+	
+	public void EliminaPlaylist(JFrame Attuale, Playlist p) {
+		if(p instanceof PlaylistPubblica) {
+			MyPubblicaDao.EliminaPlaylist(p.getId());
+		}
+		else if(p instanceof PlaylistCondivisa) {
+			if(p.getCreatore().getEmail().equals(MyUtente.getEmail())) {
+				MyCondivisaDao.EliminaPlaylist(p.getId());
+			}
+			else {
+				 JOptionPane.showMessageDialog(null, "Non sei il creatore di questa Playlist.");
+			}
+		}
+		else {
+			MyPrivataDao.EliminaPlaylist(p.getId());
+		}
+		
+		Attuale.dispose();
+		this.HomeToRaccolta();
+	}
+	
+	public void ModificaPlaylist(JFrame Precedente, Playlist p) {
+		Precedente.setVisible(false);
+		List <Brano> Brani= new ArrayList<>();
+		if(p instanceof PlaylistPubblica) {
+			Brani.addAll(MyPubblicaDao.GetContiene(p.getId()));
+		}
+		else if(p instanceof PlaylistPrivata) {
+			Brani.addAll(MyPrivataDao.GetContiene(p.getId()));
+		}
+		else  {
+			Brani.addAll(MyCondivisaDao.GetContiene(p.getId()));
+		}
+		Precedente.setVisible(false);
+		MyModificaPlaylist= new ModificaPlaylist(p, Brani, this, MycEle, Precedente);
+		MyModificaPlaylist.setVisible(true);
+	}
+	
+	public void RimuoviElemento(JFrame Attuale, JFrame Precedente, Playlist p, Brano b) {
+		if(p instanceof PlaylistPubblica) {
+			MyPubblicaDao.RimuoviElemento(b.getIdBrano(), p.getId());
+		}
+		else if(p instanceof PlaylistCondivisa) {
+			MyCondivisaDao.RimuoviElemento(b.getIdBrano(), p.getId());
+		}
+		else {
+			MyPrivataDao.RimuoviElemento(b.getIdBrano(), p.getId());
+		}
+	b=null;
+	Attuale.dispose();
+	this.ModificaPlaylist(Precedente, p);
+	}
+	
+	public void SalvaModifiche(Playlist p, String Titolo, String Descrizione) {
+		if(!(p.getTitolo().equals(Titolo))) {
+			if(Titolo.trim().isEmpty()) {
+				 JOptionPane.showMessageDialog(null, "Il titolo non deve essere vuoto! Non è stato modificato.");
+			}
+			else {
+			p.setTitolo(Titolo);
+			if(p instanceof PlaylistPubblica) {
+				MyPubblicaDao.SetTitolo(Titolo, p.getId());
+			}
+			else if(p instanceof PlaylistCondivisa) {
+				MyCondivisaDao.SetTitolo(Titolo, p.getId());
+			}
+			else {
+				MyPrivataDao.SetTitolo(Titolo, p.getId());
+			}
+		}}
+		
+		if(!(p.getDescrizione().equals(Descrizione))) {
+			p.setTitolo(Titolo);
+			if(p instanceof PlaylistPubblica) {
+				MyPubblicaDao.SetDescrizione(Descrizione, p.getId());
+			}
+			else if(p instanceof PlaylistCondivisa) {
+				MyCondivisaDao.SetDescrizione(Descrizione, p.getId());
+			}
+			else {
+				MyPrivataDao.SetTitolo(Descrizione, p.getId());
+			}
+		}
+
+		
+		MyModificaPlaylist.dispose();
+		MyRaccolta.dispose();
+		this.HomeToRaccolta();
 	}
 }
 	

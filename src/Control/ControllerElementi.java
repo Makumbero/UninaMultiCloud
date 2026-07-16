@@ -100,7 +100,6 @@ public class ControllerElementi {
 				 JOptionPane.showMessageDialog(null, "Il titolo non deve essere vuoto! Non è stato modificato.");
 			}
 			else {
-			b.setTitolo(Titolo);
 			MyBranoDao.SetTitolo(Titolo, b.getIdBrano());
 		}}
 		
@@ -109,19 +108,16 @@ public class ControllerElementi {
 				 JOptionPane.showMessageDialog(null, "Il formato non deve essere vuoto! Non è stato modificato.");
 			}
 			else {
-			b.setFormato(Formato);
 			MyBranoDao.SetFormato(Formato, b.getIdBrano());
 		}}
 		
 		if ((b.getDescrizione() == null && !Descrizione.isEmpty()) || (b.getDescrizione() != null && !b.getDescrizione().equals(Descrizione))) {
-		    b.setDescrizione(Descrizione);
 			MyBranoDao.Setdescrizione(Descrizione, b.getIdBrano());
 		}
 		
 		try {
 		    int CatchDurata = Integer.parseInt(Durata);
 		    if(CatchDurata!=b.getDurata()) {
-				b.setDurata(CatchDurata);
 				MyBranoDao.SetDurata(CatchDurata, b.getIdBrano());
 			}
 		} catch (NumberFormatException e) {
@@ -131,7 +127,6 @@ public class ControllerElementi {
 		try {
 		    double CatchDimensione = Double.parseDouble(Durata);
 		    if(CatchDimensione!=b.getDimensione()) {
-				b.setDimensione(CatchDimensione);
 				MyBranoDao.SetDimensioni(CatchDimensione, b.getIdBrano());
 			}
 		} catch (NumberFormatException e) {
@@ -141,7 +136,6 @@ public class ControllerElementi {
 		try {
 		    int CatchCanali = Integer.parseInt(Canali);
 		    if(CatchCanali!=b.getCanali()) {
-				b.setCanali(CatchCanali);
 				MyBranoDao.SetCanali(CatchCanali, b.getIdBrano());
 			}
 		} catch (NumberFormatException e) {
@@ -151,24 +145,24 @@ public class ControllerElementi {
 		try {
 		    int CatchCampionamento = Integer.parseInt(Campionamento);
 		    if(CatchCampionamento!=b.getCampionamento()) {
-				b.setCampionamento(CatchCampionamento);
 				MyBranoDao.SetCampionamento(CatchCampionamento, b.getIdBrano());
 			}
 		} catch (NumberFormatException e) {
 		    JOptionPane.showMessageDialog(null, "Il campionamento deve essere un numero intero, non è stata modificato.");
 		}
-		
 		MyModificaElemento.dispose();
 		MyMieiElementi.dispose();
 		MyMieiElementi=new MieiElementi(this, MyHome);
 		MyMieiElementi.setVisible(true);
 		MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
 	}
+	
 	public void CreaElemento(JFrame Precedente) {
 		Precedente.setVisible(false);
 		MyCreaElemento=new CreaElemento(Precedente, this);
 		MyCreaElemento.setVisible(true);
 	}
+	
 	public void SalvaCreazione(String Titolo, String Formato, String Descrizione, String Durata, String Dimensione, String Canali, String Campionamento) {
 		boolean verifica=true;
 		if(Titolo.trim().isEmpty()) {
@@ -219,9 +213,9 @@ public class ControllerElementi {
 			MyMieiElementi.MostraElementi(MyBranoDao.CercaElementiPerEmail(MyUtente.getEmail()));
 		}
 	}
+	
 	public void EliminaElemento(Brano b, MieiElementi Attuale) {
 		MyBranoDao.EliminaBrano(b.getIdBrano());
-		b=null;
 		Attuale.dispose();
 		Attuale=new MieiElementi(this, MyHome);
 		Attuale.setVisible(true);
