@@ -107,6 +107,7 @@ public class ControllerPlaylist {
 		MyCreaPlaylist=new CreaPlaylist(this,MyRaccolta);
 		MyCreaPlaylist.setVisible(true);
 	}
+	
 	public void VisualizzaPlaylist(JFrame Precedente, Playlist p) {
 		List <Brano> Brani= new ArrayList<>();
 		if(p instanceof PlaylistPubblica) {
@@ -142,6 +143,9 @@ public class ControllerPlaylist {
 				MyCondivisaDao.AggiungiPlaylistCondivisa(TitoloIN, MyUtente, DescrizioneIN);
 				JOptionPane.showMessageDialog(null, "La Playlist è ora disponibile nella raccolta");
 			}
+			MyRaccolta.dispose();
+			MyCreaPlaylist.dispose();
+			this.HomeToRaccolta();
 		}
 	}
 	public void EliminaPlaylist(JFrame Attuale, Playlist p) {

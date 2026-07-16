@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerPlaylist;
+import javax.swing.JTextArea;
 
 public class CreaPlaylist extends JFrame {
 
@@ -46,31 +47,51 @@ public class CreaPlaylist extends JFrame {
 		
 		JLabel Descrizione = new JLabel("Descrizione:");
 		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Descrizione.setBounds(241, 254, 112, 25);
+		Descrizione.setBounds(186, 253, 167, 25);
 		contentPane.add(Descrizione);
 		
 		TitoloTF = new JTextField();
 		TitoloTF.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		TitoloTF.setBounds(363, 172, 276, 25);
+		TitoloTF.setBounds(365, 172, 276, 25);
 		contentPane.add(TitoloTF);
 		TitoloTF.setColumns(10);
 		
 		DescrizioneTF = new JTextField();
 		DescrizioneTF.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		DescrizioneTF.setBounds(363, 253, 276, 25);
+		DescrizioneTF.setBounds(365, 253, 276, 25);
 		contentPane.add(DescrizioneTF);
 		DescrizioneTF.setColumns(10);
+		
+		JTextArea DescrizioneTipo = new JTextArea();
+		DescrizioneTipo.setText("Una Playlist Pubblica è visibile da tutti gli utenti registrati.\nSoltanto il creatore della Playlist può modificarla o eliminarla.");
+		DescrizioneTipo.setBounds(365, 336, 276, 80);
+		DescrizioneTipo.setEditable(false);
+		DescrizioneTipo.setLineWrap(true);
+		DescrizioneTipo.setWrapStyleWord(true);
+		contentPane.add(DescrizioneTipo);
 		
 		JComboBox cmboxTipoPlaylist = new JComboBox();
 		cmboxTipoPlaylist.setModel(new DefaultComboBoxModel(new String[] {"Pubblica", "Privata", "Condivisa"}));
 		cmboxTipoPlaylist.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		cmboxTipoPlaylist.setBounds(394, 358, 117, 34);
+		cmboxTipoPlaylist.setBounds(186, 336, 150, 70);
 		cmboxTipoPlaylist.setToolTipText("");
 		contentPane.add(cmboxTipoPlaylist);
+	       cmboxTipoPlaylist.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int Tipo=cmboxTipoPlaylist.getSelectedIndex();
+					if(Tipo==0) {
+						DescrizioneTipo.setText("Una Playlist Pubblica è visibile da tutti gli utenti registrati.\nSoltanto il creatore della Playlist può modificarla o eliminarla.");
+					}else if(Tipo==1) {
+						DescrizioneTipo.setText("Una Playlist Privata è visibile soltanto dal creatore della Playlist.");
+					}else {
+						DescrizioneTipo.setText("Una Playlist Condivisa può essere vista o modificata dagli utenti scelti dal creatore della Playlist.\nSoltanto il creatore può eliminare la Playlist o modificare la lista di collaboratori.");
+					}
+				}
+				});
 		
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		Indietro.setBounds(143, 498, 190, 80);
+		Indietro.setBounds(143, 498, 190, 100);
 		contentPane.add(Indietro);
         Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,13 +103,12 @@ public class CreaPlaylist extends JFrame {
 		Crea.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		Crea.setBounds(574, 498, 190, 80);
 		contentPane.add(Crea);
+		
         Crea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				cPlay.CreaPlaylist(cmboxTipoPlaylist.getSelectedIndex(), TitoloTF.getText(), DescrizioneTF.getText());
 			}
 			});
 
 	}
-
 }
