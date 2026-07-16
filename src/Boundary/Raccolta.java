@@ -113,16 +113,14 @@ public class Raccolta extends JFrame {
 	        pulsanti.add(Modifica);
 	        Modifica.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Playlist modificata: "+playlist.getTitolo());
-					//MycPl.ModificaPlaylist(Raccolta.this, playlist);
+					MycPl.ModificaPlaylist(Raccolta.this, playlist);
 				}
 			});
 	        
 	        pulsanti.add(Elimina);
 	        Elimina.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Playlist eliminata: "+playlist.getTitolo());
-					//MycPl.EliminaPlaylist(Raccolta.this, playlist);
+					MycPl.EliminaPlaylist(Raccolta.this, playlist);
 				}
 			});
 	        

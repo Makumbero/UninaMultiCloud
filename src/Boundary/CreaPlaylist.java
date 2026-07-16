@@ -86,7 +86,6 @@ public class CreaPlaylist extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				cPlay.CreaPlaylist(cmboxTipoPlaylist.getSelectedIndex(), TitoloTF.getText(), DescrizioneTF.getText());
-				JOptionPane.showMessageDialog(null, "La Playlist è ora disponibile nella raccolta");
 			}
 			});
 
