@@ -58,7 +58,7 @@ public class CercaUtente extends JFrame {
         btnCerca.setBounds(579, 498, 190, 80);
 		btnCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cCerca.CondividiToRisultati(textRicerca.getText());
+				cCerca.CondividiToRisultati(textRicerca.getText(), CercaUtente.this);
 			}
 		});
 		contentPane.add(btnCerca);
