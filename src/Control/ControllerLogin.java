@@ -54,6 +54,7 @@ public class ControllerLogin {
             cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
 		    cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
 			cPl.setControllerElementi(cEle);
+			cPl.setControllerCerca(cCerca);
 			AccessoDao=cEle.getMyAccessoDao();
 			MyHome.setControllerElementi(cEle);
 			MyHome.setControllerPlaylist(cPl);
