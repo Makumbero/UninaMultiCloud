@@ -1,5 +1,6 @@
 package Boundary;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -90,9 +91,13 @@ public class Home extends JFrame {
 		LogOut.setBounds(87, 456, 190, 80);
 		contentPane.add(LogOut);
 
-		JLabel Nuvola = new JLabel("ciao");
-		Nuvola.setIcon(new ImageIcon("C:\\Users\\Lorenzo\\Downloads\\NUVOLOZZA-unsplash.png"));
-		Nuvola.setBounds(312, 118, 536, 374);
+
+
+		JLabel Nuvola = new JLabel("cia");
+		ImageIcon iconaOriginale = new ImageIcon(Home.class.getResource("/Images/NUVOLOZZA-unsplash.png"));
+		Image immagineScalata = iconaOriginale.getImage().getScaledInstance(559, 374, Image.SCALE_SMOOTH);
+		Nuvola.setIcon(new ImageIcon(immagineScalata));
+		Nuvola.setBounds(312, 118, 559, 374);
 		contentPane.add(Nuvola);
 
 	}

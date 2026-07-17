@@ -55,15 +55,15 @@ public class ControllerPlaylist {
 		MyPrivataDao= new JDBCPlaylistPrivataDao(conn, this);
 	}
 
-	
+
 	public Collaboratori getMyCollaboratori(){
 		return MyCollaboratori;
 	}
-	
+
 	public JDBCPlaylistCondivisaDao getMyCondivisaDao() {
 		return MyCondivisaDao;
 	}
-	
+
 	public Brano getElementoPerID(int IdElementoIN) {
 		Brano b=MycEle.getElementoPerID(IdElementoIN);
 		return b;
