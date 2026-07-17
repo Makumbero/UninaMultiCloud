@@ -157,9 +157,16 @@ public class ControllerPlaylist {
 	}
 
 	public void CreaPlaylist(int indiceTipoPlaylist,String TitoloIN, String DescrizioneIN) {
-		if(TitoloIN.trim().isEmpty()) {
-			 JOptionPane.showMessageDialog(null, "Il titolo non deve essere vuoto!");
-		}else {
+		boolean verifica=true;
+		if(TitoloIN.trim().isEmpty() || TitoloIN.length()>40) {
+			 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri.");
+			 verifica=false;
+		} 
+		if(DescrizioneIN.length()>100) {
+			JOptionPane.showMessageDialog(null, "La descrizione deve contenere al massimo 100 caratteri.");
+			verifica=false;
+		}
+		if (verifica==true) {
 			if(indiceTipoPlaylist==0) {
 				MyPubblicaDao.AggiungiPlaylistPubblica(TitoloIN, MyUtente, DescrizioneIN);
 				JOptionPane.showMessageDialog(null, "La Playlist è ora disponibile nella raccolta");
@@ -229,8 +236,8 @@ public class ControllerPlaylist {
 
 	public void SalvaModifiche(Playlist p, String Titolo, String Descrizione) {
 		if(!(p.getTitolo().equals(Titolo))) {
-			if(Titolo.trim().isEmpty()) {
-				 JOptionPane.showMessageDialog(null, "Il titolo non deve essere vuoto! Non è stato modificato.");
+			if(Titolo.trim().isEmpty() || Titolo.length()>40) {
+				 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri. Non è stato modificato.");
 			}
 			else {
 			p.setTitolo(Titolo);
@@ -246,7 +253,10 @@ public class ControllerPlaylist {
 		}}
 
 		if(!(p.getDescrizione().equals(Descrizione))) {
-			p.setTitolo(Titolo);
+			if(Descrizione.length()>100) {
+				JOptionPane.showMessageDialog(null, "La descrizione deve contenere al massimo 100 caratteri. Non è stata modificata.");
+			}
+			p.setDescrizione(Descrizione);
 			if(p instanceof PlaylistPubblica) {
 				MyPubblicaDao.SetDescrizione(Descrizione, p.getId());
 			}
@@ -257,7 +267,6 @@ public class ControllerPlaylist {
 				MyPrivataDao.SetDescrizione(Descrizione, p.getId());
 			}
 		}
-
 
 		MyModificaPlaylist.dispose();
 		MyRaccolta.dispose();
