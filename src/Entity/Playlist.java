@@ -28,6 +28,9 @@ public  abstract class  Playlist {
 	public int getVisualizzazioni() {
 		return 0;
 	}
+	public void setVisualizzazioni(int visualizzazioni) {
+		
+	}
 
 	public void setTitolo(String titolo) {
 		Titolo = titolo;
