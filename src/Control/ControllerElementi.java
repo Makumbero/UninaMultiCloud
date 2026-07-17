@@ -103,24 +103,28 @@ public class ControllerElementi {
 
 	public void SalvaModifiche(Brano b, String Titolo, String Formato, String Descrizione, String Durata, String Dimensione, String Canali, String Campionamento) {
 		if(!(b.getTitolo().equals(Titolo))) {
-			if(Titolo.trim().isEmpty()) {
-				 JOptionPane.showMessageDialog(null, "Il titolo non deve essere vuoto! Non è stato modificato.");
+			if(Titolo.trim().isEmpty() || Titolo.length()>40) {
+				 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri. Non è stato modificato.");
 			}
 			else {
 			MyBranoDao.SetTitolo(Titolo, b.getIdBrano());
 		}}
 
 		if(!(b.getFormato().equals(Formato))) {
-			if(Formato.trim().isEmpty()) {
-				 JOptionPane.showMessageDialog(null, "Il formato non deve essere vuoto! Non è stato modificato.");
+			if(Formato.trim().isEmpty() || Formato.length()>10) {
+				 JOptionPane.showMessageDialog(null, "Il formato non può essere vuoto e deve contenere al massimo 10 caratteri. Non è stato modificato.");
 			}
 			else {
 			MyBranoDao.SetFormato(Formato, b.getIdBrano());
 		}}
 
-		if ((b.getDescrizione() == null && !Descrizione.isEmpty()) || (b.getDescrizione() != null && !b.getDescrizione().equals(Descrizione))) {
+		if (!(b.getDescrizione().equals(Descrizione))) {
+			if(Descrizione.length()>100) {
+				JOptionPane.showMessageDialog(null,"La descrizione deve contenere al massimo 100 caratteri. Non è stata modificata.");
+			}
+			else {
 			MyBranoDao.Setdescrizione(Descrizione, b.getIdBrano());
-		}
+		}}
 
 		try {
 		    int CatchDurata = Integer.parseInt(Durata);
@@ -172,19 +176,23 @@ public class ControllerElementi {
 
 	public void SalvaCreazione(String Titolo, String Formato, String Descrizione, String Durata, String Dimensione, String Canali, String Campionamento) {
 		boolean verifica=true;
-		if(Titolo.trim().isEmpty()) {
-			 JOptionPane.showMessageDialog(null, "Il titolo non deve essere vuoto!");
+		if(Titolo.trim().isEmpty() || Titolo.length()>40) {
+			 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri.");
 			 verifica=false;
 		}
 
-		if(Formato.trim().isEmpty()) {
-			 JOptionPane.showMessageDialog(null, "Il formato non deve essere vuoto!");
+		if(Formato.trim().isEmpty() || Formato.length()>10) {
+			 JOptionPane.showMessageDialog(null, "Il formato non può essere vuoto e deve contenere al massimo 10 caratteri.");
 			 verifica=false;
+		}
+		
+		if(Descrizione.length()>100) {
+			JOptionPane.showMessageDialog(null,"La descrizione deve contenere al massimo 100 caratteri.");
+			verifica=false;
 		}
 
 		try {
 		    int CatchDurata = Integer.parseInt(Durata);
-
 		} catch (NumberFormatException e) {
 		    JOptionPane.showMessageDialog(null, "La durata deve essere un numero intero!");
 		    verifica=false;
