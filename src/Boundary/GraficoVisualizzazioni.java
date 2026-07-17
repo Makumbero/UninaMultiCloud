@@ -60,9 +60,9 @@ public class GraficoVisualizzazioni extends JFrame {
 
         comboBox.addActionListener(e -> {
             String selezione = (String) comboBox.getSelectedItem();
-            Date oggi = new Date(System.currentTimeMillis());
+            Date oggi = new Date(System.currentTimeMillis());//crea come oggetto la data di oggi
 
-            if (selezione.equals("Giorni")) {
+            if (selezione.equals("Giorni")) {//ogni scelta della combobox mostra versioni diverse del grafico
                 creaGrafico(cLog.GetAccessiPerMese(oggi), "Giorni");
             } else if (selezione.equals("Mesi")) {
                 creaGrafico(cLog.GetAccessiPerAnno(oggi), "Mesi");
@@ -73,7 +73,6 @@ public class GraficoVisualizzazioni extends JFrame {
 
         Indietro = new JButton("Indietro");
 		Indietro.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				cLog.ProfiloToHome();
 			}
