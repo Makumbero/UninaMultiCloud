@@ -10,7 +10,6 @@ import Dao.ConnessioneDB;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("HOME AGGIORNATA - VERSIONE NUOVA");
 		UIManager.put("Button.background", new Color(1,136,188));
 		UIManager.put("Button.foreground", Color.WHITE);
 		UIManager.put("Panel.background", new Color(254,119,67));
