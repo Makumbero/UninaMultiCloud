@@ -46,7 +46,6 @@ public class GraficoVisualizzazioni extends JFrame {
     public GraficoVisualizzazioni(ControllerLogin cLog, Utente utente) {
         this.cLog = cLog;
         this.utente = utente;
-        setTitle("Visualizzazioni Profilo");
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
 		setResizable(false);

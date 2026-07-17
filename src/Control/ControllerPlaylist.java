@@ -255,16 +255,17 @@ public class ControllerPlaylist {
 		if(!(p.getDescrizione().equals(Descrizione))) {
 			if(Descrizione.length()>100) {
 				JOptionPane.showMessageDialog(null, "La descrizione deve contenere al massimo 100 caratteri. Non è stata modificata.");
-			}
-			p.setDescrizione(Descrizione);
-			if(p instanceof PlaylistPubblica) {
-				MyPubblicaDao.SetDescrizione(Descrizione, p.getId());
-			}
-			else if(p instanceof PlaylistCondivisa) {
-				MyCondivisaDao.SetDescrizione(Descrizione, p.getId());
-			}
-			else {
-				MyPrivataDao.SetDescrizione(Descrizione, p.getId());
+			}else {
+				p.setDescrizione(Descrizione);
+				if(p instanceof PlaylistPubblica) {
+					MyPubblicaDao.SetDescrizione(Descrizione, p.getId());
+				}
+				else if(p instanceof PlaylistCondivisa) {
+					MyCondivisaDao.SetDescrizione(Descrizione, p.getId());
+				}
+				else {
+					MyPrivataDao.SetDescrizione(Descrizione, p.getId());
+				}
 			}
 		}
 
