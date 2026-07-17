@@ -124,7 +124,7 @@ public class VisualizzaElemento extends JFrame {
 		Titolo.setText(b.getTitolo());
 		Autore.setText(u.getUsername());
 		Formato.setText(Formato.getText() + b.getFormato());
-		Durata.setText(Durata.getText() + b.getDurata());
+		Durata.setText(Durata.getText() + MycEle.SecondiInStringa(b.getDurata()));
 		Descrizione.setText(Descrizione.getText() + b.getDescrizione());
 		DataCreazione.setText(DataCreazione.getText() + d.toString());
 		Dimensione.setText(Dimensione.getText() + b.getDimensione());

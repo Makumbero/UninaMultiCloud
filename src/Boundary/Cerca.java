@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerCerca;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class Cerca extends JFrame {
 
@@ -46,6 +49,11 @@ public class Cerca extends JFrame {
 			}
 		});
 		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Unina Multi Search");
+		lblNewLabel_1.setFont(new Font("Microsoft Uighur", Font.BOLD, 34));
+		lblNewLabel_1.setBounds(358, 148, 204, 35);
+		contentPane.add(lblNewLabel_1);
 		contentPane.add(btnIndietro);
 
 		textRicerca = new JTextField();
@@ -71,6 +79,14 @@ public class Cerca extends JFrame {
 			}
 		});
 		contentPane.add(btnCerca);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		ImageIcon iconaOriginale=new ImageIcon(Cerca.class.getResource("/Images/chuttersnap-vA2cHLhiQYg-unsplash.jpg"));
+		Image immagineScalata = iconaOriginale.getImage().getScaledInstance(562, 168, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(immagineScalata));
+		lblNewLabel.setBounds(177, 48, 562, 168);
+		contentPane.add(lblNewLabel);
+		
 
 	}
 }

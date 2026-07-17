@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Boundary.AggiungiCollaboratore;
+import Boundary.CreaBrano;
 import Boundary.Home;
 import Boundary.MieiElementi;
 import Boundary.ModificaElemento;
@@ -30,7 +30,7 @@ public class ControllerElementi {
 	JDBCAccedePubblicaDao MyAccedePubblicaDao;
 	VisualizzaElemento MyVisualizzaElemento;
 	ModificaElemento MyModificaElemento;
-	AggiungiCollaboratore MyCreaElemento;
+	CreaBrano MyCreaElemento;
 	ScegliPlaylist MyScegliPlaylist;
 	ControllerPlaylist MycPl;
 
@@ -170,12 +170,13 @@ public class ControllerElementi {
 
 	public void CreaElemento(JFrame Precedente) {
 		Precedente.setVisible(false);
-		MyCreaElemento=new AggiungiCollaboratore(Precedente, this);
+		MyCreaElemento=new CreaBrano(Precedente, this);
 		MyCreaElemento.setVisible(true);
 	}
 
 	public void SalvaCreazione(String Titolo, String Formato, String Descrizione, String Durata, String Dimensione, String Canali, String Campionamento) {
 		boolean verifica=true;
+		int durata = 0;
 		if(Titolo.trim().isEmpty() || Titolo.length()>40) {
 			 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri.");
 			 verifica=false;
@@ -192,8 +193,8 @@ public class ControllerElementi {
 		}
 
 		try {
-		    int CatchDurata = Integer.parseInt(Durata);
-		} catch (NumberFormatException e) {
+		     durata=this.StringaInSecondi(Durata);
+		} catch (Exception e) {
 		    JOptionPane.showMessageDialog(null, "La durata deve essere un numero intero!");
 		    verifica=false;
 		}
@@ -220,7 +221,7 @@ public class ControllerElementi {
 		}
 
 		if(verifica) {
-			MyBranoDao.AggiungiBrano(Titolo,Formato, Integer.parseInt(Durata), Descrizione, Integer.parseInt(Canali), Integer.parseInt(Campionamento), Double.parseDouble(Dimensione), "https", MyUtente.getEmail());
+			MyBranoDao.AggiungiBrano(Titolo,Formato, durata, Descrizione, Integer.parseInt(Canali), Integer.parseInt(Campionamento), Double.parseDouble(Dimensione), "https", MyUtente.getEmail());
 			MyCreaElemento.dispose();
 			MyMieiElementi.dispose();
 			MyMieiElementi=new MieiElementi(this, MyHome);
@@ -252,6 +253,16 @@ public class ControllerElementi {
 	public void ScegliPlaylist(JFrame Precedente,Brano b) {
 		MycPl.ScegliPlaylist(Precedente, b);
 	}
+	public  int StringaInSecondi(String orarioIN) {
+        String[] orario = orarioIN.trim().split(":");// separa la stringa in due con il carattere :
+        int minuti = Integer.parseInt(orario[0]);
+        int secondi = Integer.parseInt(orario[1]);
+        return minuti * 60 + secondi;
+    }
+
+    public String SecondiInStringa(int SecondiTotali) {
+        return String.format("%d:%02d", SecondiTotali / 60, SecondiTotali % 60); //formatta da int a stringa, divide per sessanta per ottenere i minuti, e il resto della divisione diventano i secondi
+    }
 
 }
 

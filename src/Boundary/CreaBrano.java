@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import Control.ControllerElementi;
 import Entity.Brano;
 
-public class AggiungiCollaboratore extends JFrame {
+public class CreaBrano extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -33,7 +33,7 @@ public class AggiungiCollaboratore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AggiungiCollaboratore(JFrame precedente, ControllerElementi c) {
+	public CreaBrano(JFrame precedente, ControllerElementi c) {
 		Precedente=precedente;
 		MycEle=c;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -132,7 +132,7 @@ public class AggiungiCollaboratore extends JFrame {
         Indietro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MycEle.ToPrecedente(AggiungiCollaboratore.this, Precedente);
+				MycEle.ToPrecedente(CreaBrano.this, Precedente);
 			}
 			});
 
