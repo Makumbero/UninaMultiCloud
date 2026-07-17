@@ -7,7 +7,7 @@ public class AccedeCondivisa {
 	PlaylistCondivisa MyPlaylist;
 	Date Data;
 	int IdAccessoCondivisa;
-	
+
 	public AccedeCondivisa(Utente MyUtente, PlaylistCondivisa MyPlaylist, Date Data, int IdAccessoCondivisa) {
 		this.MyUtente=MyUtente;
 		this.MyPlaylist=MyPlaylist;
@@ -46,6 +46,6 @@ public class AccedeCondivisa {
 	public void setIdAccessoCondivisa(int idAccessoCondivisa) {
 		IdAccessoCondivisa = idAccessoCondivisa;
 	}
-	
-	
+
+
 }

@@ -1,23 +1,19 @@
 package Boundary;
 
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.NumberFormatter;
-
-import Control.*;
-import Entity.*;
-
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
-import java.awt.Font;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+
+import Control.ControllerElementi;
+import Entity.Brano;
 
 public class ModificaElemento extends JFrame {
 
@@ -40,7 +36,7 @@ public class ModificaElemento extends JFrame {
 		Precedente=precedente;
 		MycEle=c;
 		MyBrano=b;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -48,58 +44,59 @@ public class ModificaElemento extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel Titolo = new JLabel("Titolo: ");
 		Titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Titolo.setBounds(158, 157, 175, 26);
 		contentPane.add(Titolo);
-		
+
 		JLabel Formato = new JLabel("Formato: ");
 		Formato.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Formato.setBounds(158, 195, 175, 26);
 		contentPane.add(Formato);
-		
+
 		JLabel Durata = new JLabel("Durata: ");
 		Durata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Durata.setBounds(158, 233, 175, 26);
 		contentPane.add(Durata);
-		
+
 		JLabel Descrizione = new JLabel("Descrizione: ");
 		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Descrizione.setBounds(158, 270, 175, 26);
 		contentPane.add(Descrizione);
-		
+
 		JLabel Dimensione = new JLabel("Dimensione (MB): ");
 		Dimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Dimensione.setBounds(158, 306, 175, 26);
 		contentPane.add(Dimensione);
-		
+
 		JLabel Canali = new JLabel("Canali: ");
 		Canali.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Canali.setBounds(158, 344, 175, 26);
 		contentPane.add(Canali);
-		
+
 		JLabel Campionamento = new JLabel("Campionamento: ");
 		Campionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Campionamento.setBounds(158, 380, 175, 26);
 		contentPane.add(Campionamento);
-		
+
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		Indietro.setBounds(143, 498, 190, 80);
 		contentPane.add(Indietro);
         Indietro.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				MycEle.ToPrecedente(ModificaElemento.this, Precedente);
 			}
 			});
-		
+
 		JButton SalvaModifiche = new JButton("Salva Modifiche");
 		SalvaModifiche.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		SalvaModifiche.setBounds(574, 498, 190, 80);
 		contentPane.add(SalvaModifiche);
-		
-		
+
+
 		FieldTitolo = new JTextField(MyBrano.getTitolo());
 		FieldTitolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldTitolo.setBounds(370, 157, 394, 26);
@@ -111,31 +108,31 @@ public class ModificaElemento extends JFrame {
 		FieldFormato.setBounds(370, 195, 394, 26);
 		contentPane.add(FieldFormato);
 		FieldFormato.setColumns(10);
-		
+
 		FieldDescrizione = new JTextField(MyBrano.getDescrizione());
 		FieldDescrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldDescrizione.setBounds(370, 269, 394, 26);
 		contentPane.add(FieldDescrizione);
 		FieldDescrizione.setColumns(10);
-		
+
 		FieldDurata = new JTextField(String.valueOf(MyBrano.getDurata()));
 		FieldDurata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldDurata.setBounds(370, 232, 394, 26);
 		contentPane.add(FieldDurata);
 		FieldDurata.setColumns(10);
-		
+
 		FieldDimensione = new JTextField(String.valueOf(MyBrano.getDimensione()));
 		FieldDimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldDimensione.setBounds(370, 305, 395, 26);
 		contentPane.add(FieldDimensione);
 		FieldDimensione.setColumns(10);
-		
+
 		FieldCanali = new JTextField(String.valueOf(MyBrano.getCanali()));
 		FieldCanali.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldCanali.setBounds(370, 343, 394, 26);
 		contentPane.add(FieldCanali);
 		FieldCanali.setColumns(10);
-		
+
 		FieldCampionamento = new JTextField(String.valueOf(MyBrano.getCampionamento()));
 		FieldCampionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldCampionamento.setBounds(370, 380, 394, 26);
@@ -143,6 +140,7 @@ public class ModificaElemento extends JFrame {
 		FieldCampionamento.setColumns(10);
 
         SalvaModifiche.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				MycEle.SalvaModifiche(b, FieldTitolo.getText(), FieldFormato.getText(), FieldDescrizione.getText(), FieldDurata.getText(), FieldDimensione.getText(), FieldCanali.getText(), FieldCampionamento.getText());
 			}

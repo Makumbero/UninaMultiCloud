@@ -6,7 +6,7 @@ public class Accesso {
 		int	IdAccesso;
 		Date Data;
 		Brano MyBrano;
-		
+
 
 		public Accesso(Utente myUtente, int idAccesso, Date data, Brano myBrano) {
 			MyUtente=myUtente;

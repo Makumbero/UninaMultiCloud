@@ -9,14 +9,12 @@ import java.util.List;
 
 import Entity.Utente;
 
-import Dao.UtenteDao;
-
 public class JDBCUtenteDao implements UtenteDao {
 	Connection conn;
 	public JDBCUtenteDao(Connection conn) {
 		this.conn=conn;
 	}
-	
+
 	@Override
 	public List<Utente> CercaAutorePerNome(String UsernameIN) {
 		List<Utente> listautenti=new ArrayList<>();
@@ -28,33 +26,33 @@ public class JDBCUtenteDao implements UtenteDao {
 	        try (ResultSet rs = pstmt.executeQuery()) {
 	            while(rs.next()) {
 	                listautenti.add(new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password")));
-	                
+
 	            }
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	    return listautenti;
-	 
+
 	}
-	
+
 	@Override
 	public Utente ricercaPerEmail(String Email) {
 		Utente u=null;
-		
-			try (Statement stmt = conn.createStatement()){ 
-				
+
+			try (Statement stmt = conn.createStatement()){
+
 				try(ResultSet rs = stmt.executeQuery("SELECT * FROM utente WHERE email = '" + Email + "'")){
 					if(rs.next()) {
 						Utente u1=new Utente(rs.getString("username"),Email,rs.getString("password"));
 						u1=u;
 					}
 				}
-				
-				
-				
 
-				
+
+
+
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -82,7 +80,7 @@ public class JDBCUtenteDao implements UtenteDao {
 	    return false;
 
 	}
-	
+
 	@Override
 	public Utente getAutorePerEmail(String EmailIN) {
 		Utente user;
@@ -101,13 +99,13 @@ public class JDBCUtenteDao implements UtenteDao {
 	        e.printStackTrace();
 	    }
 	    return null;
-	 
+
 	}
-	
-	
+
+
 	//setter e getter
-	
-	
-		
+
+
+
 }
 

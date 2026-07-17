@@ -9,9 +9,10 @@ public class PlaylistPrivata extends Playlist {
 		super(titolo,numeroElementi, dataCreazione, descrizione, creatore);
 		IdPrivata=idPrivata;
 	}
-	
+
+	@Override
 	public int getId() {
 		return IdPrivata;
 	}
-	
+
 }

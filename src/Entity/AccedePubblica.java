@@ -7,7 +7,7 @@ public class AccedePubblica {
 	PlaylistPubblica MyPlaylist;
 	Date Data;
 	int IdAccessoCondivisa;
-	
+
 	public AccedePubblica(Utente MyUtente, PlaylistPubblica MyPlaylist, Date Data, int IdAccessoCondivisa) {
 		this.MyUtente=MyUtente;
 		this.MyPlaylist=MyPlaylist;
@@ -46,6 +46,6 @@ public class AccedePubblica {
 	public void setIdAccessoCondivisa(int idAccessoCondivisa) {
 		IdAccessoCondivisa = idAccessoCondivisa;
 	}
-	
-	
+
+
 }

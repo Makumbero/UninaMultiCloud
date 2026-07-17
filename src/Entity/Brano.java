@@ -14,7 +14,7 @@ public class Brano {
 	private int Campionamento;
 	private int IdBrano;
 	private Utente Creatore;
-	
+
 
 	public Brano(String titolo, String formato, int durata,String descrizione, Date dataCreazione, Double dimensione,
 			String immagineCopertina, int visualizzazioni, int canali, int campionamento, int idBrano, Utente creatore) {
@@ -115,9 +115,9 @@ public class Brano {
 	public Utente getCreatore() {
 		return Creatore;
 	}
-	
-	
+
+
 }
 
-	
-	
+
+

@@ -16,7 +16,7 @@ public class Main {
 		new Color(68, 217, 176);
 		ConnessioneDB con= new ConnessioneDB();
 		con.connettiti();
-		
+
 		ControllerLogin cLog= new ControllerLogin(con.getConnection());
 	}
 }

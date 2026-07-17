@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import Boundary.Cerca;
 import Boundary.CercaUtente;
@@ -14,8 +13,6 @@ import Boundary.MieiElementi;
 import Boundary.RisultatiRicerca;
 import Entity.Brano;
 import Entity.Playlist;
-import Entity.PlaylistCondivisa;
-import Entity.PlaylistPubblica;
 import Entity.Utente;
 
 public class ControllerCerca {
@@ -30,14 +27,14 @@ public class ControllerCerca {
 	ControllerElementi cEle;
 	ControllerPlaylist cPlay;
 	ControllerLogin cLog;
-	
-	
-	
+
+
+
 	public ControllerCerca(Connection conn, Home MyHome,Utente MyUtente) {
 		this.conn = conn;
 		this.MyHome = MyHome;
 		this.MyUtente=MyUtente;
-		
+
 	}
 
 	public List<Utente> rimuoviUtentiIndesiderati(List<Utente> listaUtenti,Playlist playlist){
@@ -63,9 +60,9 @@ public class ControllerCerca {
 		MyCerca=new Cerca(this, MyHome);
 		MyCerca.setVisible(true);
 		Precedente=MyHome;
-		
+
 	}
-	
+
 	public void CercaToRisultatiRicerca(int indiceTipoRicerca, String Ricerca, JFrame Precedente) {
 		Precedente.setVisible(false);
 		Risricerca=new RisultatiRicerca(this,Precedente);
@@ -78,24 +75,24 @@ public class ControllerCerca {
 			List <Playlist> ListaPlaylist= new ArrayList<>();
 			ListaPlaylist.addAll(cPlay.CercaPlaylistPubblicaPerTitolo(Ricerca));
 			Risricerca.MostraPlaylist(ListaPlaylist, Ricerca);
-		};
+		}
 		Precedente=MyCerca;
-		
+
 	}
-	
+
 	public void CollaboratoriToCondividi(JFrame Precedente,Playlist playlist) {
 		Precedente.setVisible(false);
 		MyCercaUtente=new CercaUtente(this,Precedente, playlist);
 		MyCercaUtente.setVisible(true);
 	}
-	
+
 	public void CondividiToRisultati(String Ricerca, JFrame Precedente, Playlist playlist) {
 		Precedente.setVisible(false);
 		Risricerca=new RisultatiRicerca(this, Precedente);
 		Risricerca.setVisible(true);
 		Risricerca.MostraUser(cLog.CercaAutorePerNome(Ricerca), Ricerca,playlist);
 	}
-	
+
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
 		Attuale.dispose();
 		Precedente.setVisible(true);
@@ -162,16 +159,16 @@ public class ControllerCerca {
 
 	public void VisualizzaElemento(Brano brano) {
 		cEle.VisualizzaElemento(Risricerca, brano);
-		
+
 	}
 	public void VisualizzaPlaylist(JFrame Precedente, Playlist p) {
 		cPlay.VisualizzaPlaylist(Precedente,p);
 	}
-	
+
 	public  void AggiungiAccesso(Brano brano) {
 		cEle.AggiungiAccesso(brano);
 	}
-	
+
 	public  void AggiungiAccedePubblica(Playlist p) {
 		cEle.AggiungiAccedePubblica(p);
 	}

@@ -1,5 +1,20 @@
 package Boundary;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -19,16 +34,6 @@ import Control.ControllerLogin;
 import Entity.Accesso;
 import Entity.Utente;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 public class GraficoVisualizzazioni extends JFrame {
 
     private JPanel panelGrafico;
@@ -45,10 +50,10 @@ public class GraficoVisualizzazioni extends JFrame {
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
 		setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         panelControlli = new JPanel();
-        comboBox = new JComboBox<String>();
+        comboBox = new JComboBox<>();
         comboBox.addItem("Giorni");
         comboBox.addItem("Mesi");
         comboBox.addItem("Anni");
@@ -65,9 +70,10 @@ public class GraficoVisualizzazioni extends JFrame {
                 creaGrafico(cLog.GetAllAccessi(), "Anni");
             }
         });
-        
+
         Indietro = new JButton("Indietro");
 		Indietro.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				cLog.ProfiloToHome();
 			}
@@ -95,8 +101,8 @@ public class GraficoVisualizzazioni extends JFrame {
         // Due liste "parallele": per ogni periodo trovato, il suo conteggio di accessi.
         // Il tipo di periodo (giorno/mese/anno) cambia in base alla modalità scelta:
         // così con "Anni" i dati vengono raggruppati per anno e non per ogni singolo giorno.
-        List<RegularTimePeriod> periodi = new ArrayList<RegularTimePeriod>();
-        List<Integer> conteggi = new ArrayList<Integer>();
+        List<RegularTimePeriod> periodi = new ArrayList<>();
+        List<Integer> conteggi = new ArrayList<>();
 
         for (int i = 0; i < accessi.size(); i++) {
             Accesso accesso = accessi.get(i);
@@ -156,7 +162,7 @@ public class GraficoVisualizzazioni extends JFrame {
 
         ChartPanel chartPanel = new ChartPanel(chart);
 
-        // Rimuovo il grafico precedente 
+        // Rimuovo il grafico precedente
         panelGrafico.removeAll();
         panelGrafico.setLayout(new BorderLayout());
         panelGrafico.add(chartPanel, BorderLayout.CENTER);

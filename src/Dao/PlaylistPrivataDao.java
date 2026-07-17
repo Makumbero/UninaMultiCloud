@@ -8,19 +8,19 @@ import Entity.Utente;
 
 public interface PlaylistPrivataDao {
 	public List<PlaylistPrivata> CercaPlaylistPrivataPerEmail(String EmailIN);
-	
+
 	public void AggiungiPlaylistPrivata(String TitoloIN, Utente CreatoreIN, String DescrizioneIN);
-	
+
 	public void EliminaPlaylist(int IdPrivataIN);
-	
+
 	public List<Brano> GetContiene(int IdPrivataIN);
-	
+
 	public void AggiungiaPrivata(int IdPrivataIN, int IdElementoIN);
-	
+
 	public void RimuoviElemento( int IdElementoIN,int IdPrivataIN);
-	
+
 	public  void SetTitolo(String TitoloIN, int IdPrivataIN);
-	
+
 	public  void SetDescrizione(String DescrizioneIN, int IdPrivataIN);
 
 }

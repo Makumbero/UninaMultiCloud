@@ -2,7 +2,6 @@ package Boundary;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,11 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerCerca;
 import Control.ControllerPlaylist;
-import Entity.Brano;
 import Entity.Playlist;
 import Entity.Utente;
 
@@ -40,7 +39,7 @@ public class Collaboratori extends JFrame {
 		Precedente=precedente;
 		MycCerca=mycCerca;
 		MycPl=mycPl;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -48,36 +47,38 @@ public class Collaboratori extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton Indietro = new JButton("Indietro");
 		Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		Indietro.setBounds(143, 498, 190, 80);
 		contentPane.add(Indietro);
 		Indietro.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				MycCerca.ToPrecedente(Collaboratori.this, Precedente);
 			}
 		});
-		
+
 		JButton Condividi = new JButton("Condividi");
 		Condividi.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		Condividi.setBounds(574, 498, 190, 80);
 		contentPane.add(Condividi);
         Condividi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				MycCerca.CollaboratoriToCondividi(Collaboratori.this,playlist);
 			}
 		});
-		
+
 		JScrollPane Scorrimento = new JScrollPane();
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		Scorrimento.setBounds(143, 103, 624, 370);
 		contentPane.add(Scorrimento);
-		
+
         PannelloUtenti = new JPanel();
 		Scorrimento.setViewportView(PannelloUtenti);
 	}
-	
+
 	public void MostraCollaboratori(List <Utente> Utenti, Playlist playlist) {
 		 PannelloUtenti.removeAll();
 		 this.playlist=playlist;
@@ -93,18 +94,19 @@ public class Collaboratori extends JFrame {
 
 
 		        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		        
+
 		        JButton Rimuovi = new JButton("Rimuovi");
 		        Rimuovi.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
-		        
+
 		        pulsanti.add(Rimuovi);
 		        Rimuovi.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						MycPl.RimuoviCollaboratore(Collaboratori.this, Precedente, playlist, utente);
 					}
 				});
-		        
+
 		        riga.add(username, BorderLayout.CENTER);
 		        riga.add(pulsanti, BorderLayout.EAST);
 

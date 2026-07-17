@@ -13,8 +13,8 @@ public class JDBCAccedeCondivisaDao implements AccedeCondivisaDao{
 		this.conn = conn;
 		this.cPlaylist=cPlaylist;
 	}
-	
-	
+
+
 	@Override
 	public  void AggiungiAccedeCondivisa(int IdCondivisaIN, String EmailIN) {
 		String sql = "CALL AggiungiAccedeCondivisa(?,?)";
@@ -23,14 +23,14 @@ public class JDBCAccedeCondivisaDao implements AccedeCondivisaDao{
 	        pstmt.setInt(1, IdCondivisaIN);
 	        pstmt.setString(2, EmailIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
 }

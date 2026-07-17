@@ -1,7 +1,6 @@
 package Control;
 
 import java.sql.Connection;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +8,23 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Boundary.*;
-import Dao.*;
+import Boundary.Collaboratori;
+import Boundary.CreaPlaylist;
+import Boundary.Home;
+import Boundary.ModificaPlaylist;
+import Boundary.Raccolta;
+import Boundary.ScegliPlaylist;
+import Boundary.VisualizzaPlaylist;
+import Dao.JDBCPlaylistCondivisaDao;
+import Dao.JDBCPlaylistPrivataDao;
+import Dao.JDBCPlaylistPubblicaDao;
 import Dao.JDBCUtenteDao;
-import Entity.*;
+import Entity.Brano;
+import Entity.Playlist;
+import Entity.PlaylistCondivisa;
+import Entity.PlaylistPrivata;
+import Entity.PlaylistPubblica;
+import Entity.Utente;
 
 public class ControllerPlaylist {
 	JDBCUtenteDao MyUtenteDao;
@@ -31,7 +43,7 @@ public class ControllerPlaylist {
 	VisualizzaPlaylist MyVisualizzaPlaylist;
 	ModificaPlaylist MyModificaPlaylist;
 	Collaboratori MyCollaboratori;
-	
+
 	public ControllerPlaylist(Connection conn1, Utente u, Home h, ControllerLogin cLog) {
 		this.conn=conn1;
 		MyUtente=u;
@@ -42,34 +54,34 @@ public class ControllerPlaylist {
 		MyPubblicaDao= new JDBCPlaylistPubblicaDao(conn, this);
 		MyPrivataDao= new JDBCPlaylistPrivataDao(conn, this);
 	}
-	
+
 	public Brano getElementoPerID(int IdElementoIN) {
 		Brano b=MycEle.getElementoPerID(IdElementoIN);
 		return b;
-		
+
 	}
-	
+
 	public Utente getAutorePerEmail(String EmailIN) {
 		Utente u;
-		
+
 		u=MyUtenteDao.getAutorePerEmail(EmailIN);
 		return u;
-		
+
 	}
-	
+
 	public void setControllerElementi(ControllerElementi cEle) {
 		MycEle=cEle;
 	}
-	
+
 	public void setControllerCerca(ControllerCerca cCerca) {
 		MycCerca=cCerca;
 	}
-	
+
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
 		Attuale.dispose();
 		Precedente.setVisible(true);
 	}
-	
+
 	public void ScegliPlaylist(JFrame Precedente, Brano b) {
 		Precedente.setVisible(false);
 		MyScegliPlaylist=new ScegliPlaylist(this, Precedente, b);
@@ -113,7 +125,7 @@ public class ControllerPlaylist {
 		MyCreaPlaylist=new CreaPlaylist(this,MyRaccolta);
 		MyCreaPlaylist.setVisible(true);
 	}
-	
+
 	public void VisualizzaPlaylist(JFrame Precedente, Playlist p) {
 		List <Brano> Brani= new ArrayList<>();
 		if(p instanceof PlaylistPubblica) {
@@ -129,7 +141,7 @@ public class ControllerPlaylist {
 		Precedente.setVisible(false);
 		MyVisualizzaPlaylist= new VisualizzaPlaylist(p, Brani, this, MycEle, Precedente);
 		MyVisualizzaPlaylist.setVisible(true);
-		
+
 	}
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerTitolo(String TitoloIN){
 		return MyPubblicaDao.CercaPlaylistPubblicaPerTitolo(TitoloIN);
@@ -169,11 +181,11 @@ public class ControllerPlaylist {
 		else {
 			MyPrivataDao.EliminaPlaylist(p.getId());
 		}
-		
+
 		Attuale.dispose();
 		this.HomeToRaccolta();
 	}
-	
+
 	public void ModificaPlaylist(JFrame Precedente, Playlist p) {
 		Precedente.setVisible(false);
 		List <Brano> Brani= new ArrayList<>();
@@ -190,7 +202,7 @@ public class ControllerPlaylist {
 		MyModificaPlaylist= new ModificaPlaylist(p, Brani, this, MycEle, Precedente);
 		MyModificaPlaylist.setVisible(true);
 	}
-	
+
 	public void RimuoviElemento(JFrame Attuale, JFrame Precedente, Playlist p, Brano b) {
 		if(p instanceof PlaylistPubblica) {
 			MyPubblicaDao.RimuoviElemento(b.getIdBrano(), p.getId());
@@ -205,7 +217,7 @@ public class ControllerPlaylist {
 	Attuale.dispose();
 	this.ModificaPlaylist(Precedente, p);
 	}
-	
+
 	public void SalvaModifiche(Playlist p, String Titolo, String Descrizione) {
 		if(!(p.getTitolo().equals(Titolo))) {
 			if(Titolo.trim().isEmpty()) {
@@ -223,7 +235,7 @@ public class ControllerPlaylist {
 				MyPrivataDao.SetTitolo(Titolo, p.getId());
 			}
 		}}
-		
+
 		if(!(p.getDescrizione().equals(Descrizione))) {
 			p.setTitolo(Titolo);
 			if(p instanceof PlaylistPubblica) {
@@ -237,12 +249,12 @@ public class ControllerPlaylist {
 			}
 		}
 
-		
+
 		MyModificaPlaylist.dispose();
 		MyRaccolta.dispose();
 		this.HomeToRaccolta();
 	}
-	
+
 
 	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN){
 		return MyCondivisaDao.CercaUtentiCondivisi(IdCondivisaIN);
@@ -253,7 +265,7 @@ public class ControllerPlaylist {
 		MyCollaboratori.setVisible(true);
 		MyCollaboratori.MostraCollaboratori(MyCondivisaDao.CercaUtentiCondivisi(p.getId()),p);
 	}
-	
+
 	public void RimuoviCollaboratore(JFrame Attuale, JFrame Precedente, Playlist p, Utente u) {
 		MyCondivisaDao.RimuoviCondivisionePlaylist(p.getId(), u);
 		Attuale.dispose();
@@ -263,5 +275,5 @@ public class ControllerPlaylist {
 		MyCondivisaDao.CondividiPlaylist(IdPubblicaIN,u);
 	}
 }
-	
+
 

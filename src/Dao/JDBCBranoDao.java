@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import Control.ControllerLogin;
 import Entity.Brano;
-import Entity.Utente;
 
 public class JDBCBranoDao implements BranoDao{
 	Connection conn;
@@ -38,7 +36,7 @@ public class JDBCBranoDao implements BranoDao{
 		    }
 		return listaBrani;
 	}
-	
+
 	@Override
 	public List<Brano> CercaElementiPerTitolo(String TitoloIN) {
 		 List <Brano>listaBrani= new ArrayList<>();
@@ -77,7 +75,7 @@ public class JDBCBranoDao implements BranoDao{
 		    }
 		return listaBrani;
 	}
-	
+
 	@Override
 	public void AggiungiBrano(
 			String TitoloIN ,
@@ -102,13 +100,13 @@ public class JDBCBranoDao implements BranoDao{
 		        PstmtAggiungiAudio.setString(8, ImmagineCopertinaIN);
 		        PstmtAggiungiAudio.setString(9, EmailIN);
 		        PstmtAggiungiAudio.execute();
-		        
-		            
+
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public  void EliminaBrano(int IdElementoIN) {
 		String sql = "CALL EliminaElemento(?)";
@@ -116,19 +114,19 @@ public class JDBCBranoDao implements BranoDao{
 	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	        pstmt.setInt(1, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	//Getter e setter
-	
+
 	public Brano GetElementoPerId(int IdElementoIN) {
 		Brano b=null;
 		 String sql = "SELECT * FROM GetElementoPerId(?)";
@@ -155,17 +153,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setString(1, TitoloIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetFormato(String FormatoIN, int IdElementoIN) {
 		String sql = "CALL SetFormato(?,?)";
@@ -174,17 +172,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setString(1, FormatoIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetDurata(int DurataIN, int IdElementoIN) {
 		String sql = "CALL SetDurata(?,?)";
@@ -193,17 +191,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setInt(1, DurataIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void Setdescrizione(String DescrizioneIN, int IdElementoIN) {
 		String sql = "CALL SetDescrizione(?,?)";
@@ -212,17 +210,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setString(1, DescrizioneIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetCanali(int CanaliIN, int IdElementoIN) {
 		String sql = "CALL SetCanali(?,?)";
@@ -231,17 +229,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setInt(1, CanaliIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetCampionamento(int CampionamentoIN, int IdElementoIN) {
 		String sql = "CALL SetCampionamento(?,?)";
@@ -250,17 +248,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setInt(1, CampionamentoIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetDimensioni(double DimensioniIN, int IdElementoIN) {
 		String sql = "CALL SetDimensioni(?,?)";
@@ -269,17 +267,17 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setDouble(1, DimensioniIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetImmaginecopertina(String ImmaginecopertinaIN, int IdElementoIN) {
 		String sql = "CALL SetImmaginecopertina(?,?)";
@@ -288,14 +286,14 @@ public class JDBCBranoDao implements BranoDao{
 	        pstmt.setString(1, ImmaginecopertinaIN);
 	        pstmt.setInt(2, IdElementoIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
 }

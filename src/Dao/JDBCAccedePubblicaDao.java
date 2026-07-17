@@ -13,7 +13,7 @@ public class JDBCAccedePubblicaDao implements AccedePubblicaDao {
 		this.conn = conn;
 		this.cPlaylist=cPlaylist;
 	}
-	
+
 	@Override
 	public  void AggiungiAccedePubblica(int IdPubblicaIN, String EmailIN) {
 		String sql = "CALL AggiungiAccedePubblica(?,?)";
@@ -22,14 +22,14 @@ public class JDBCAccedePubblicaDao implements AccedePubblicaDao {
 	        pstmt.setInt(1, IdPubblicaIN);
 	        pstmt.setString(2, EmailIN);
 	        pstmt.execute();
-	  
-	             
-	            
-	        
+
+
+
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
 }

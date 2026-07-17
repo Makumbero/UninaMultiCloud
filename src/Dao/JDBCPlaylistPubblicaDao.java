@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import Control.ControllerPlaylist;
@@ -42,10 +41,10 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerAutore(String AutoreIN){
 		List <PlaylistPubblica>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM CercaPlaylistPubblicaPerAutore(?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, AutoreIN);
-	
+
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaPlaylist.add(new PlaylistPubblica(rs.getString("Titolo"), rs.getInt("NumeroElementi"), rs.getDate("DataCreazione"), rs.getString("Descrizione"), cPlaylist.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdPubblica"),rs.getInt("Visualizzazioni")));
@@ -60,10 +59,10 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	public List<PlaylistPubblica> CercaPlaylistPubblicaPerEmail(String EmailIN){
 		List <PlaylistPubblica>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM CercaPlaylistPubblicaPerEmail(?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, EmailIN);
-	
+
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaPlaylist.add(new PlaylistPubblica(rs.getString("Titolo"), rs.getInt("NumeroElementi"), rs.getDate("DataCreazione"), rs.getString("Descrizione"), cPlaylist.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdPubblica"),rs.getInt("Visualizzazioni")));
@@ -77,18 +76,18 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	@Override
 	public void AggiungiPlaylistPubblica(String TitoloIN, Utente CreatoreIN, String DescrizioneIN ){
 		 String sql = "CALL AggiungiPlaylistPubblica(?,?,?)";
-	
+
 		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
 		        pstm.setString(1, TitoloIN);
 		        pstm.setString(2, CreatoreIN.getEmail());
 		        pstm.setString(3, DescrizioneIN);
 		        pstm.execute();
-		        
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public void EliminaPlaylist(int IdPubblicaIN){
 		 String sql = "CALL EliminaPlaylistPubblica(?)";
@@ -99,15 +98,15 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public List<Brano> GetContiene(int IdPubblicaIN){
 		List <Brano>listaBrani= new ArrayList<>();
 		 String sql = "SELECT * FROM GetContienePerPlaylistPubblica(?)";
-	
+
 		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
 		        pstm.setInt(1, IdPubblicaIN);
-	
+
 		        try (ResultSet rs = pstm.executeQuery()) {
 		            while(rs.next()) {
 		            	listaBrani.add(cPlaylist.getElementoPerID(rs.getInt("IdElemento")));
@@ -118,25 +117,25 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		    }
 		return listaBrani;
 	 }
-	
+
 	@Override
 	public void AggiungiaPubblica(int IdPubblicaIN, int IdElementoIN){
 		 String sql = "CALL AggiungiaPubblica(?,?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setInt(1, IdPubblicaIN);
 		        PstmtCercaElementi.setInt(2, IdElementoIN);
 		        PstmtCercaElementi.execute();
-		        
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public void RimuoviElemento( int IdElementoIN,int IdPubblicaIN){
 		 String sql = "CALL RimuoviElementoPubblica(?,?)";
-	
+
 		    try (PreparedStatement pstmtRimuoviElemento = conn.prepareStatement(sql)) {
 		        pstmtRimuoviElemento.setInt(1, IdElementoIN);
 		        pstmtRimuoviElemento.setInt(2, IdPubblicaIN);
@@ -145,7 +144,7 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public  void SetTitolo(String TitoloIN, int IdPubblicaIN) {
 		String sql = "CALL SetTitoloPubblica(?,?)";
@@ -153,14 +152,14 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	        pstmt.setString(1, TitoloIN);
 	        pstmt.setInt(2, IdPubblicaIN);
-	        pstmt.execute();        
+	        pstmt.execute();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetDescrizione(String DescrizioneIN, int IdPubblicaIN) {
 		String sql = "CALL SetDescrizionePubblica(?,?)";
@@ -173,6 +172,6 @@ public class JDBCPlaylistPubblicaDao implements PlaylistPubblicaDao{
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
 }

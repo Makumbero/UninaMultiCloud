@@ -23,10 +23,10 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	public List<PlaylistCondivisa> CercaPlaylistCondivisaPerEmail(String EmailIN){
 		List <PlaylistCondivisa>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM CercaPlaylistCondivisaPerEmail(?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, EmailIN);
-	
+
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaPlaylist.add(new PlaylistCondivisa(rs.getString("Titolo"), rs.getInt("NumeroElementi"), rs.getDate("DataCreazione"), rs.getString("Descrizione"), cPlaylist.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdCondivisa")));
@@ -37,15 +37,15 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 		    }
 		return listaPlaylist;
 	}
-	
+
 	@Override
 	public List<PlaylistCondivisa>  CercaPlaylistCondiviseAte(String EmailIN){
 		List <PlaylistCondivisa>listaPlaylist= new ArrayList<>();
 		 String sql = "SELECT * FROM  CercaPlaylistCondiviseAte(?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setString(1, EmailIN);
-	
+
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaPlaylist.add(new PlaylistCondivisa(rs.getString("Titolo"), rs.getInt("NumeroElementi"), rs.getDate("DataCreazione"), rs.getString("Descrizione"), cPlaylist.getAutorePerEmail(rs.getString("Email")),rs.getInt("IdCondivisa")));
@@ -56,7 +56,7 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 		    }
 		return listaPlaylist;
 	}
-	
+
 	@Override
 	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN) {
 		List<Utente> listautenti=new ArrayList<>();
@@ -68,52 +68,52 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	        try (ResultSet rs = pstmt.executeQuery()) {
 	            while(rs.next()) {
 	                listautenti.add(new Utente(rs.getString("Username"),rs.getString("Email"),rs.getString("Password")));
-	                
+
 	            }
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	    return listautenti;
-	 
+
 	}
-	
+
 	@Override
 	public void  CondividiPlaylist(int IdCondivisaIN, Utente UtenteIN){
 		 String sql = "CALL  CondividiPlaylist(?,?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setInt(1, IdCondivisaIN);
 		        PstmtCercaElementi.setString(2, UtenteIN.getEmail());
 		        PstmtCercaElementi.execute();
-		        
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public void  RimuoviCondivisionePlaylist(int IdCondivisaIN, Utente UtenteIN){
 		 String sql = "CALL  RimuoviCondivisionePlaylist(?,?)";
-	
+
 		    try (PreparedStatement PstmtCercaElementi = conn.prepareStatement(sql)) {
 		        PstmtCercaElementi.setInt(1, IdCondivisaIN);
 		        PstmtCercaElementi.setString(2, UtenteIN.getEmail());
 		        PstmtCercaElementi.execute();
-		        
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public List<Brano> GetContiene(int IdCondivisaIN){
 		List <Brano>listaBrani= new ArrayList<>();
 		 String sql = "SELECT * FROM GetContienePerPlaylistCondivisa(?)";
-	
+
 		    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
 		        pstm.setInt(1, IdCondivisaIN);
-	
+
 		        try (ResultSet rs = pstm.executeQuery()) {
 		            while(rs.next()) {
 		            	listaBrani.add(cPlaylist.getElementoPerID(rs.getInt("IdElemento")));
@@ -124,22 +124,22 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 		    }
 		return listaBrani;
 	 }
-	
+
 	@Override
 	public void AggiungiPlaylistCondivisa(String TitoloIN, Utente CreatoreIN, String DescrizioneIN){
 		 String sql = "CALL AggiungiPlaylistCondivisa(?,?,?)";
-	
+
 		    try (PreparedStatement Pstmt = conn.prepareStatement(sql)) {
 		        Pstmt.setString(1, TitoloIN);
 		        Pstmt.setString(2, CreatoreIN.getEmail());
 		        Pstmt.setString(3, DescrizioneIN);
 		        Pstmt.execute();
-		        
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public void EliminaPlaylist(int IdcondivisaIN){
 		 String sql = "CALL EliminaPlaylistCondivisa(?)";
@@ -150,25 +150,25 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public void AggiungiaCondivisa(int IdCondivisaIN, int IdElementoIN){
 		 String sql = "CALL AggiungiaCondivisa(?,?)";
-	
+
 		    try (PreparedStatement PstmtAggiungiElementi = conn.prepareStatement(sql)) {
 		        PstmtAggiungiElementi.setInt(1, IdCondivisaIN);
 		        PstmtAggiungiElementi.setInt(2, IdElementoIN);
 		        PstmtAggiungiElementi.execute();
-		        
+
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public void RimuoviElemento( int IdElementoIN,int IdCondivisaIN){
 		 String sql = "CALL RimuoviElementocondivisa(?,?)";
-	
+
 		    try (PreparedStatement pstmtRimuoviElemento = conn.prepareStatement(sql)) {
 		        pstmtRimuoviElemento.setInt(1, IdElementoIN);
 		        pstmtRimuoviElemento.setInt(2, IdCondivisaIN);
@@ -177,7 +177,7 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 		        e.printStackTrace();
 		    }
 	}
-	
+
 	@Override
 	public  void SetTitolo(String TitoloIN, int IdCondivisaIN) {
 		String sql = "CALL SetTitoloCondivisa(?,?)";
@@ -185,14 +185,14 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	        pstmt.setString(1, TitoloIN);
 	        pstmt.setInt(2, IdCondivisaIN);
-	        pstmt.execute();        
+	        pstmt.execute();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
-	
+
 	@Override
 	public  void SetDescrizione(String DescrizioneIN, int IdCondivisaIN) {
 		String sql = "CALL SetDescrizioneCondivisa(?,?)";
@@ -205,7 +205,7 @@ public class JDBCPlaylistCondivisaDao implements PlaylistCondivisaDao{
 	        e.printStackTrace();
 	    }
 
-	 
+
 	}
 }
 
