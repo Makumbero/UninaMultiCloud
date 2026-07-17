@@ -23,6 +23,7 @@ import Control.ControllerPlaylist;
 import Entity.Brano;
 import Entity.Playlist;
 import Entity.PlaylistCondivisa;
+import javax.swing.JLabel;
 
 public class ModificaPlaylist extends JFrame {
 
@@ -52,13 +53,13 @@ public class ModificaPlaylist extends JFrame {
 
 		FieldTitolo = new JTextField(Playlist.getTitolo());
 		FieldTitolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		FieldTitolo.setBounds(143, 22, 394, 26);
+		FieldTitolo.setBounds(230, 24, 372, 26);
 		contentPane.add(FieldTitolo);
 		FieldTitolo.setColumns(10);
 
 		FieldDescrizione = new JTextField(Playlist.getDescrizione());
 		FieldDescrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		FieldDescrizione.setBounds(143, 60, 394, 26);
+		FieldDescrizione.setBounds(277, 60, 347, 26);
 		contentPane.add(FieldDescrizione);
 		FieldDescrizione.setColumns(10);
 
@@ -70,7 +71,7 @@ public class ModificaPlaylist extends JFrame {
 	    		MycPl.SalvaModifiche(Playlist, FieldTitolo.getText(), FieldDescrizione.getText());
 	    	}
 	    });
-	    Salva.setBounds(574, 11, 190, 80);
+	    Salva.setBounds(634, 11, 130, 80);
 	    contentPane.add(Salva);
 
         JButton Indietro = new JButton("Indietro");
@@ -119,6 +120,16 @@ public class ModificaPlaylist extends JFrame {
 		   PannelloBrani.removeAll();
 
 		    PannelloBrani.setLayout(new BoxLayout(PannelloBrani, BoxLayout.Y_AXIS));
+		    
+		    JLabel Titolo = new JLabel("Titolo:");
+		    Titolo.setFont(new Font("Dialog", Font.PLAIN, 25));
+		    Titolo.setBounds(143, 22, 77, 26);
+		    contentPane.add(Titolo);
+		    
+		    JLabel lblDescrizione = new JLabel("Descrizione:");
+		    lblDescrizione.setFont(new Font("Dialog", Font.PLAIN, 25));
+		    lblDescrizione.setBounds(143, 58, 164, 26);
+		    contentPane.add(lblDescrizione);
 
 
 
@@ -153,4 +164,5 @@ public class ModificaPlaylist extends JFrame {
 
 			        PannelloBrani.add(riga);
 	}
-	}}
+	}	
+}

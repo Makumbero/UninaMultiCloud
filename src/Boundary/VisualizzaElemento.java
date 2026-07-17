@@ -114,7 +114,7 @@ public class VisualizzaElemento extends JFrame {
 			}
 		});
 		AggiungiAPlaylist = new JButton("Aggiungi a Playlist");
-		AggiungiAPlaylist.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		AggiungiAPlaylist.setFont(new Font("Dialog", Font.PLAIN, 18));
 		AggiungiAPlaylist.setBounds(574, 498, 190, 80);
 		contentPane.add(AggiungiAPlaylist);
 		}

@@ -12,6 +12,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerLogin;
+import javax.swing.JPasswordField;
 
 
 public class Login extends JFrame {
@@ -19,7 +20,7 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField EmailTF;
-	private JTextField PasswordTF;
+	private JPasswordField PasswordTF;
 	ControllerLogin c;
 
 	/**
@@ -57,7 +58,7 @@ public class Login extends JFrame {
 		contentPane.add(EmailTF);
 		EmailTF.setColumns(10);
 
-		PasswordTF = new JTextField();
+		PasswordTF = new JPasswordField();
 		PasswordTF.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		PasswordTF.setBounds(365, 323, 276, 25);
 		contentPane.add(PasswordTF);

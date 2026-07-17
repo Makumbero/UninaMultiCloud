@@ -50,13 +50,13 @@ public class Cerca extends JFrame {
 
 		textRicerca = new JTextField();
 		textRicerca.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		textRicerca.setBounds(345, 253, 424, 35);
+		textRicerca.setBounds(315, 253, 424, 35);
 		contentPane.add(textRicerca);
 		textRicerca.setColumns(10);
 
 		JComboBox cmboxTipoRicerca = new JComboBox();
 		cmboxTipoRicerca.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		cmboxTipoRicerca.setBounds(216, 254, 117, 34);
+		cmboxTipoRicerca.setBounds(174, 253, 117, 34);
 		cmboxTipoRicerca.setModel(new DefaultComboBoxModel(new String[] {"Autore", "Brano", "Playlist"}));
 		cmboxTipoRicerca.setToolTipText("Autore\r\nTitolo\r\nPlaylist\r\n");
 		contentPane.add(cmboxTipoRicerca);

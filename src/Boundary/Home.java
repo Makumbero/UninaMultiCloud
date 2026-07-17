@@ -66,7 +66,7 @@ public class Home extends JFrame {
 				MycLog.HomeToProfilo();
 			}
 		});
-		Profilo.setBounds(87, 366, 190, 80);
+		Profilo.setBounds(87, 358, 190, 80);
 		contentPane.add(Profilo);
 
 		JButton Raccolta = new JButton("Raccolta");
@@ -88,7 +88,7 @@ public class Home extends JFrame {
 				MycLog.Logout();
 			}
 		});
-		LogOut.setBounds(87, 456, 190, 80);
+		LogOut.setBounds(87, 448, 190, 80);
 		contentPane.add(LogOut);
 
 
