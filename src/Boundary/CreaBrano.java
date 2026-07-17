@@ -55,7 +55,7 @@ public class CreaBrano extends JFrame {
 		Formato.setBounds(158, 195, 175, 26);
 		contentPane.add(Formato);
 
-		JLabel Durata = new JLabel("Durata: ");
+		JLabel Durata = new JLabel("Durata(mm:ss): ");
 		Durata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Durata.setBounds(158, 233, 175, 26);
 		contentPane.add(Durata);
@@ -65,7 +65,7 @@ public class CreaBrano extends JFrame {
 		Descrizione.setBounds(158, 270, 175, 26);
 		contentPane.add(Descrizione);
 
-		JLabel Dimensione = new JLabel("Dimensione (MB): ");
+		JLabel Dimensione = new JLabel("Dimensione(MB): ");
 		Dimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Dimensione.setBounds(158, 306, 175, 26);
 		contentPane.add(Dimensione);
@@ -75,9 +75,9 @@ public class CreaBrano extends JFrame {
 		Canali.setBounds(158, 344, 175, 26);
 		contentPane.add(Canali);
 
-		JLabel Campionamento = new JLabel("Campionamento: ");
+		JLabel Campionamento = new JLabel("Campionamento(hz): ");
 		Campionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Campionamento.setBounds(158, 380, 175, 26);
+		Campionamento.setBounds(158, 380, 202, 26);
 		contentPane.add(Campionamento);
 
 

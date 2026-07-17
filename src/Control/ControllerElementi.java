@@ -102,6 +102,7 @@ public class ControllerElementi {
 	}
 
 	public void SalvaModifiche(Brano b, String Titolo, String Formato, String Descrizione, String Durata, String Dimensione, String Canali, String Campionamento) {
+		int durata = 0;
 		if(!(b.getTitolo().equals(Titolo))) {
 			if(Titolo.trim().isEmpty() || Titolo.length()>40) {
 				 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri. Non è stato modificato.");
@@ -127,16 +128,16 @@ public class ControllerElementi {
 		}}
 
 		try {
-		    int CatchDurata = Integer.parseInt(Durata);
-		    if(CatchDurata!=b.getDurata()) {
-				MyBranoDao.SetDurata(CatchDurata, b.getIdBrano());
+			 durata=this.StringaInSecondi(Durata);
+		    if(durata!=b.getDurata()) {
+				MyBranoDao.SetDurata(durata, b.getIdBrano());
 			}
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 		    JOptionPane.showMessageDialog(null, "La durata deve essere un numero intero, non è stata modificata.");
 		}
 
 		try {
-		    double CatchDimensione = Double.parseDouble(Durata);
+		    double CatchDimensione = Double.parseDouble(Dimensione);
 		    if(CatchDimensione!=b.getDimensione()) {
 				MyBranoDao.SetDimensioni(CatchDimensione, b.getIdBrano());
 			}

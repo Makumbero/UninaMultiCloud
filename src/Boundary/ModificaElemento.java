@@ -55,7 +55,7 @@ public class ModificaElemento extends JFrame {
 		Formato.setBounds(158, 195, 175, 26);
 		contentPane.add(Formato);
 
-		JLabel Durata = new JLabel("Durata: ");
+		JLabel Durata = new JLabel("Durata(mm:ss): ");
 		Durata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Durata.setBounds(158, 233, 175, 26);
 		contentPane.add(Durata);
@@ -75,9 +75,9 @@ public class ModificaElemento extends JFrame {
 		Canali.setBounds(158, 344, 175, 26);
 		contentPane.add(Canali);
 
-		JLabel Campionamento = new JLabel("Campionamento: ");
+		JLabel Campionamento = new JLabel("Campionamento(hz): ");
 		Campionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Campionamento.setBounds(158, 380, 175, 26);
+		Campionamento.setBounds(158, 380, 194, 26);
 		contentPane.add(Campionamento);
 
 		JButton Indietro = new JButton("Indietro");
@@ -115,7 +115,7 @@ public class ModificaElemento extends JFrame {
 		contentPane.add(FieldDescrizione);
 		FieldDescrizione.setColumns(10);
 
-		FieldDurata = new JTextField(String.valueOf(MyBrano.getDurata()));
+		FieldDurata = new JTextField(MycEle.SecondiInStringa(MyBrano.getDurata()));
 		FieldDurata.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		FieldDurata.setBounds(370, 232, 394, 26);
 		contentPane.add(FieldDurata);

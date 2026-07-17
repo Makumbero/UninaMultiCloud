@@ -85,29 +85,20 @@ public class GraficoVisualizzazioni extends JFrame {
         panelGrafico = new JPanel();
         getContentPane().add(panelGrafico, BorderLayout.CENTER);
 
-        // Mostro inizialmente un grafico  di default "Giorni"
 
     }
 
-    /**
-     * Conta quanti accessi ci sono per ogni periodo e disegna il grafico.
-     * @param accessi   lista di accessi da conteggiare
-     * @param modalita  "Giorni", "Mesi" o "Anni": decide sia il raggruppamento
-     *                  dei dati sia l'unità mostrata sull'asse X
-     */
     public void creaGrafico(List<Accesso> accessi, String modalita) {
 
-        // Due liste "parallele": per ogni periodo trovato, il suo conteggio di accessi.
-        // Il tipo di periodo (giorno/mese/anno) cambia in base alla modalità scelta:
-        // così con "Anni" i dati vengono raggruppati per anno e non per ogni singolo giorno.
+        // Due liste parallele,  periodo e conteggi, il primo contiene le date da mostrare, il secondo quale valore mostrare sull'asse y.
         List<RegularTimePeriod> periodi = new ArrayList<>();
         List<Integer> conteggi = new ArrayList<>();
 
         for (int i = 0; i < accessi.size(); i++) {
             Accesso accesso = accessi.get(i);
-            RegularTimePeriod periodo;
+            RegularTimePeriod periodo;//classe di jfreechart, serve a descrivere un periodo di tempo, è astratta.
 
-            if (modalita.equals("Mesi")) {
+            if (modalita.equals("Mesi")) {//a seconda della modalità scelta del grafico, salveremo nella lista periodi, mesi anni o giorni
                 periodo = new Month(accesso.getData());
             } else if (modalita.equals("Anni")) {
                 periodo = new Year(accesso.getData());
@@ -115,29 +106,29 @@ public class GraficoVisualizzazioni extends JFrame {
                 periodo = new Day(accesso.getData());
             }
 
-            int posizione = periodi.indexOf(periodo);
+            int posizione = periodi.indexOf(periodo); //salva in posizione indice della lista in cui si trova periodo
 
-            if (posizione == -1) {
+            if (posizione == -1) {//se periodo non è presente, lo aggiunge
                 periodi.add(periodo);
                 conteggi.add(1);
-            } else {
+            } else {//se il periodo è presente aggiunge alla lista dei conteggi +1 nella stessa posizione in cui si trova il periodo
                 int valoreAttuale = conteggi.get(posizione);
                 conteggi.set(posizione, valoreAttuale + 1);
             }
         }
 
-        TimeSeries serie = new TimeSeries("Accessi");
+        TimeSeries serie = new TimeSeries("Accessi"); // classe di JFreeChart, riunisce i valori delle due liste parallele create in precedenza.
         for (int i = 0; i < periodi.size(); i++) {
             serie.add(periodi.get(i), conteggi.get(i));
         }
 
-        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        TimeSeriesCollection dataset = new TimeSeriesCollection();//classe di JFreeChart necessaria per essere presa in input dal ChartFactory
         dataset.addSeries(serie);
 
-        JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Accessi nel tempo",
+        JFreeChart chart = ChartFactory.createTimeSeriesChart(//classe di JFreeChart, crea effettivamente il grafico
+                "Visualizzazioni nel tempo",
                 "Data",
-                "Numero di accessi",
+                "Visualizzazioni",
                 dataset
         );
 
