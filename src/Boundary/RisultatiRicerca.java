@@ -19,6 +19,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Control.ControllerCerca;
+import Dao.JDBCPlaylistCondivisaDao;
 import Entity.Brano;
 import Entity.Playlist;
 import Entity.Utente;
@@ -29,6 +30,7 @@ public class RisultatiRicerca extends JFrame {
 	private JPanel contentPane;
 	private JPanel PannelloRisultati;
 	ControllerCerca cCerca;
+	JDBCPlaylistCondivisaDao MyCondivisaDao;
 	JFrame Precedente;
 	JLabel risultato;
 
@@ -170,8 +172,7 @@ public class RisultatiRicerca extends JFrame {
 			titolo.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					cCerca.getcPlay().AggiungiCollaboratore(playlist.getId(), u);
-					cCerca.ToPrecedente(RisultatiRicerca.this, Precedente);
+					cCerca.AggiungiCollaboratore(playlist, u, RisultatiRicerca.this, Precedente);
 				}
 			});
 
