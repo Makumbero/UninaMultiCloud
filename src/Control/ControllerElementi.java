@@ -240,11 +240,13 @@ public class ControllerElementi {
 	public  void AggiungiAccesso(Brano b) {
 		if(!(b.getCreatore().getEmail().equals(MyUtente.getEmail()))) {
 		MyAccessoDao.AggiungiAccesso(b.getIdBrano(),MyUtente.getEmail());
+		b.setVisualizzazioni(b.getVisualizzazioni()+1);
 		}
 	}
 	public  void AggiungiAccedePubblica(Playlist p) {
 		if(!(p.getCreatore().getEmail().equals(MyUtente.getEmail()))) {
 			MyAccedePubblicaDao.AggiungiAccedePubblica( p.getId(),MyUtente.getEmail());
+			p.setVisualizzazioni(p.getVisualizzazioni()+1);
 		}
 	}
 	public void ScegliPlaylist(JFrame Precedente,Brano b) {
