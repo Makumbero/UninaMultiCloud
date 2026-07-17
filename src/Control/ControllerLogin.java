@@ -47,7 +47,7 @@ public class ControllerLogin {
 	public void verificaCredenziali(String Email, String Password) {
 		UtenteDAO=new JDBCUtenteDao(conn);
 		if(UtenteDAO.VerificaUtente(Email,Password)){
-		    MyUtente=this.getAutorePerEmail(Email);
+		    MyUtente=this.getAutorePerEmail(Email.toLowerCase());
 			MyHome=new Home(this);
 			MyGrafico=new GraficoVisualizzazioni(this,MyUtente);
 			cCerca= new ControllerCerca(conn,MyHome,MyUtente);
