@@ -29,6 +29,7 @@ public class RisultatiRicerca extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel PannelloRisultati;
+	private JScrollPane Scorrimento;
 	ControllerCerca cCerca;
 	JDBCPlaylistCondivisaDao MyCondivisaDao;
 	JFrame Precedente;
@@ -46,7 +47,8 @@ public class RisultatiRicerca extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JScrollPane Scorrimento = new JScrollPane();
+		Scorrimento = new JScrollPane();
+		Scorrimento.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		Scorrimento.setBounds(143, 103, 624, 370);
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(Scorrimento);
@@ -83,7 +85,9 @@ public class RisultatiRicerca extends JFrame {
 	    for (Brano brano : Brani) {
 
 	        JPanel riga = new JPanel(new BorderLayout());
-	        riga.setMaximumSize(new Dimension(PannelloRisultati.getWidth(), 50));
+	        riga.setMinimumSize(new Dimension(Scorrimento.getWidth(), 50));
+	        riga.setPreferredSize(new Dimension(Scorrimento.getWidth(), 50));
+	        riga.setMaximumSize(new Dimension(Scorrimento.getWidth(), 50));
 
 	        JButton titolo = new JButton(brano.getTitolo());
 
@@ -95,7 +99,7 @@ public class RisultatiRicerca extends JFrame {
 				}
 			});
 
-	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	        autore.setPreferredSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
 	        autore.setMinimumSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
 	        autore.setMaximumSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
@@ -128,18 +132,22 @@ public class RisultatiRicerca extends JFrame {
 	    for (Playlist p : listaPlaylist) {
 
 	        JPanel riga = new JPanel(new BorderLayout());
-	        riga.setMaximumSize(new Dimension(PannelloRisultati.getWidth(), 50));
+	        riga.setMinimumSize(new Dimension(Scorrimento.getWidth(), 50));
+	        riga.setPreferredSize(new Dimension(Scorrimento.getWidth(), 50));
+	        riga.setMaximumSize(new Dimension(Scorrimento.getWidth(), 50));
 
 	        JButton titolo = new JButton(p.getTitolo());
 			titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 			titolo.addActionListener(new ActionListener() {
-				@Override
 				public void actionPerformed(ActionEvent e) {
 					cCerca.VisualizzaPlaylist(RisultatiRicerca.this, p);
 				}
 			});
 
-	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	        autore.setPreferredSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
+	        autore.setMinimumSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
+	        autore.setMaximumSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
 
 	        JLabel username = new JLabel(p.getCreatore().getUsername());
 			username.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -165,7 +173,9 @@ public class RisultatiRicerca extends JFrame {
 	    for (Utente u : listautente) {
 
 	        JPanel riga = new JPanel(new BorderLayout());
-	        riga.setMaximumSize(new Dimension(PannelloRisultati.getWidth(), 50));
+	        riga.setMinimumSize(new Dimension(Scorrimento.getWidth(), 50));
+	        riga.setPreferredSize(new Dimension(Scorrimento.getWidth(), 50));
+	        riga.setMaximumSize(new Dimension(Scorrimento.getWidth(), 50));
 
 	        JButton titolo = new JButton(u.getUsername());
 			titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -176,7 +186,10 @@ public class RisultatiRicerca extends JFrame {
 				}
 			});
 
-	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	        JPanel autore = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	        autore.setPreferredSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
+	        autore.setMinimumSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
+	        autore.setMaximumSize(new Dimension(PannelloRisultati.getWidth()/2, 50));
 
 	        JLabel username = new JLabel(u.getEmail());
 			username.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
