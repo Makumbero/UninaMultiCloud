@@ -1,6 +1,8 @@
 package Boundary;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -56,6 +58,7 @@ public class GraficoVisualizzazioni extends JFrame {
         comboBox.addItem("Giorni");
         comboBox.addItem("Mesi");
         comboBox.addItem("Anni");
+        comboBox.setPreferredSize(new Dimension(190, 40));
 
         comboBox.addActionListener(e -> {
             String selezione = (String) comboBox.getSelectedItem();
@@ -71,6 +74,8 @@ public class GraficoVisualizzazioni extends JFrame {
         });
 
         Indietro = new JButton("Indietro");
+        Indietro.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+        Indietro.setPreferredSize(new Dimension(190, 80));
 		Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cLog.ProfiloToHome();
@@ -152,7 +157,7 @@ public class GraficoVisualizzazioni extends JFrame {
         dataset.addSeries(serie);
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(//classe di JFreeChart, crea effettivamente il grafico
-                "Visualizzazioni nel tempo",
+                "Visualizzazioni di "+utente.getUsername(),
                 "Data",
                 "Visualizzazioni",
                 dataset
