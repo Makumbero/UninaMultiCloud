@@ -161,20 +161,19 @@ public class GraficoVisualizzazioni extends JFrame {
         XYPlot plot = chart.getXYPlot();
 
         DateAxis asseX = (DateAxis) plot.getDomainAxis();
-        if (modalita.equals("Mesi")) {
-            asseX.setTickUnit(new DateTickUnit(DateTickUnitType.MONTH, 1));
-            asseX.setDateFormatOverride(new SimpleDateFormat("MMM yyyy"));
+        if (modalita.equals("Mesi")) {// a seconda del tipo di grafico, impostiamo un diverso tipo di data mostrata sulle tacche del grafico
+            asseX.setTickUnit(new DateTickUnit(DateTickUnitType.MONTH, 1));//forziamo tutte le tacche ad avere un unità di distanza
+            asseX.setDateFormatOverride(new SimpleDateFormat("MMM yyyy")); //invece di mostrare la data per intero, mostriamo solo mese e anno
         } else if (modalita.equals("Anni")) {
-            asseX.setTickUnit(new DateTickUnit(DateTickUnitType.YEAR, 1));
-            asseX.setDateFormatOverride(new SimpleDateFormat("yyyy"));
+        	asseX.setTickUnit(new DateTickUnit(DateTickUnitType.YEAR, 1));
+            asseX.setDateFormatOverride(new SimpleDateFormat("yyyy"));//mostriamo solo anno
         } else {
             asseX.setTickUnit(new DateTickUnit(DateTickUnitType.DAY, 1));
-            asseX.setDateFormatOverride(new SimpleDateFormat("dd/MM"));
+            asseX.setDateFormatOverride(new SimpleDateFormat("dd/MM"));//mostriamo solo giorno e mese
         }
 
         NumberAxis asseY = (NumberAxis) plot.getRangeAxis();
-        asseY.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        asseY.setNumberFormatOverride(new DecimalFormat("0"));
+        asseY.setStandardTickUnits(NumberAxis.createIntegerTickUnits());// forza l'uso di numeri interi
 
         ChartPanel chartPanel = new ChartPanel(chart);
 
