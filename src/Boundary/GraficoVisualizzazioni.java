@@ -117,9 +117,36 @@ public class GraficoVisualizzazioni extends JFrame {
         }
 
         TimeSeries serie = new TimeSeries("Accessi"); // classe di JFreeChart, riunisce i valori delle due liste parallele create in precedenza.
-        for (int i = 0; i < periodi.size(); i++) {
-            serie.add(periodi.get(i), conteggi.get(i));
+        
+        if (!periodi.isEmpty()) {
+            RegularTimePeriod minPeriodo = periodi.get(0);// inizializiamo i due valori
+            RegularTimePeriod maxPeriodo = periodi.get(0);
+            for (RegularTimePeriod p : periodi) {//scorriamo tutti i periodi per trovate il minimo e il massimo
+                if (p.compareTo(minPeriodo) < 0) {//compare to è il metodo di JFreeChart per confrontare due reulartimeperiod, gli operatori unari non bastano
+                    minPeriodo = p;				  //se i periodi sono uguali restituisce zero, se p viene prima restituisce -1, se p viene dopo restituisce 1
+                }
+                if (p.compareTo(maxPeriodo) > 0) {
+                    maxPeriodo = p;
+                }
+            }
+ 
+           
+            RegularTimePeriod corrente = minPeriodo;
+            while (corrente.compareTo(maxPeriodo) <= 0) {
+                int posizione = periodi.indexOf(corrente);
+                int valore;
+                if (posizione == -1) {
+                    // corrente non è tra i periodi  
+                    valore = 0;
+                } else {
+                    // corrente è tra i periodi con accessi: prendo il conteggio già calcolato
+                    valore = conteggi.get(posizione);
+                }
+                serie.add(corrente, valore);
+                corrente = corrente.next();//passa al prossimo time period, anche se non era stato creato in passato
+            }
         }
+       
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();//classe di JFreeChart necessaria per essere presa in input dal ChartFactory
         dataset.addSeries(serie);
