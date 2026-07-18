@@ -75,7 +75,7 @@ public class VisualizzaPlaylist extends JFrame {
 		if(Playlist instanceof PlaylistPrivata) {
 			Tipo.setText("Playlist Privata");
 		}else if(Playlist instanceof PlaylistPubblica) {
-			Tipo.setText("Platlist Pubblica");
+			Tipo.setText("Playlist Pubblica");
 		}else {
 			Tipo.setText("Playlist Condivisa");
 		}
