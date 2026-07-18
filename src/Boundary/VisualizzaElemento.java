@@ -20,11 +20,6 @@ public class VisualizzaElemento extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-
-	/**
-	 * Create the frame.
-	 */
 	JLabel Titolo;
 	JLabel Autore;
 	JLabel Formato;

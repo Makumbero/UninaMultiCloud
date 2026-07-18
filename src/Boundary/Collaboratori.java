@@ -33,9 +33,7 @@ public class Collaboratori extends JFrame {
 	ControllerCerca MycCerca;
 	ControllerPlaylist MycPl;
 	Playlist playlist;
-	/**
-	 * Create the frame.
-	 */
+
 	public Collaboratori(JFrame precedente, ControllerCerca mycCerca, ControllerPlaylist mycPl) {
 		Precedente=precedente;
 		MycCerca=mycCerca;

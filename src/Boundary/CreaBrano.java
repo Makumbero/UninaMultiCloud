@@ -30,9 +30,7 @@ public class CreaBrano extends JFrame {
 	private JTextField FieldCanali;
 	private JTextField FieldCampionamento;
 
-	/**
-	 * Create the frame.
-	 */
+
 	public CreaBrano(JFrame precedente, ControllerElementi c) {
 		Precedente=precedente;
 		MycEle=c;

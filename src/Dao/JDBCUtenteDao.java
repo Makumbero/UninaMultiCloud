@@ -103,8 +103,6 @@ public class JDBCUtenteDao implements UtenteDao {
 	}
 
 
-	//setter e getter
-
 
 
 }

@@ -30,9 +30,7 @@ public class Raccolta extends JFrame {
 	private ControllerPlaylist MycPl;
 	private JFrame Precedente;
 
-	/**
-	 * Create the frame.
-	 */
+
 	public Raccolta(ControllerPlaylist mycPl, JFrame precedente) {
 		MycPl=mycPl;
 		Precedente=precedente;

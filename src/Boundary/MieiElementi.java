@@ -29,9 +29,7 @@ public class MieiElementi extends JFrame {
 	private JPanel PannelloBrani;
 	private ControllerElementi MycEle;
 	private JFrame Precedente;
-	/**
-	 * Create the frame.
-	 */
+
 	public MieiElementi(ControllerElementi mycEle, JFrame precedente) {
 		MycEle=mycEle;
 		Precedente=precedente;

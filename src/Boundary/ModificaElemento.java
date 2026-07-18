@@ -29,9 +29,7 @@ public class ModificaElemento extends JFrame {
 	private JTextField FieldDimensione;
 	private JTextField FieldCanali;
 	private JTextField FieldCampionamento;
-	/**
-	 * Create the frame.
-	 */
+
 	public ModificaElemento(JFrame precedente, ControllerElementi c, Brano b) {
 		Precedente=precedente;
 		MycEle=c;

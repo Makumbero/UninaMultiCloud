@@ -35,9 +35,7 @@ public class ModificaPlaylist extends JFrame {
 	private ControllerPlaylist MycPl;
 	private ControllerElementi MycEle;
 	private JFrame Precedente;
-	/**
-	 * Create the frame.
-	 */
+
 	public ModificaPlaylist(Playlist Playlist, List<Brano> Brani, ControllerPlaylist mycPl, ControllerElementi mycEle, JFrame precedente) {
 		MycPl=mycPl;
 		MycEle=mycEle;

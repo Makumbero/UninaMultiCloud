@@ -75,6 +75,8 @@ public class JDBCAccessoDao implements AccessoDAO{
 		    }
 		return listaAccessi;
 	}
+	
+	@Override
 	 public List<Accesso> GetAccessiPerMese(Date DataIN ){
 		 List <Accesso>listaAccessi= new ArrayList<>();
 		 String sql = "SELECT * FROM   GetAccessiPerMese(?,?)";
@@ -93,6 +95,8 @@ public class JDBCAccessoDao implements AccessoDAO{
 		    }
 		return listaAccessi;
 	 }
+	
+	@Override
 	 public List<Accesso> GetAccessiPerAnno(Date DataIN ){
 		 List <Accesso>listaAccessi= new ArrayList<>();
 		 String sql = "SELECT * FROM   GetAccessiPerAnno(?,?)";
@@ -111,6 +115,8 @@ public class JDBCAccessoDao implements AccessoDAO{
 		    }
 		return listaAccessi;
 	 }
+	
+	@Override
 	 public List<Accesso> GetAllAccessi(){
 		 List <Accesso>listaAccessi= new ArrayList<>();
 		 String sql = "SELECT * FROM   GetAllAccessi(?)";

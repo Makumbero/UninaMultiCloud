@@ -36,9 +36,6 @@ public class ScegliPlaylist extends JFrame {
 	private JButton Salva;
 
 
-	/**
-	 * Create the frame.
-	 */
 	public ScegliPlaylist(ControllerPlaylist mycPl, JFrame precedente, Brano b) {
 		MycPl=mycPl;
 		Precedente=precedente;

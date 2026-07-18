@@ -17,14 +17,7 @@ public class Profilo extends JFrame {
 	private JPanel contentPane;
 	ControllerLogin c;
 
-	/**
-	 * Launch the application.
-	 */
 
-
-	/**
-	 * Create the frame.
-	 */
 	public Profilo(ControllerLogin c) {
 		this.c=c;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

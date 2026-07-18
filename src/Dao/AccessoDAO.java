@@ -11,4 +11,10 @@ public interface AccessoDAO {
 	public List<Accesso> GetAccessiPerElemento(int IdElementoIN);
 
 	public List<Accesso> GetAccessiPerData(Date DataIN);
+
+	public List<Accesso> GetAccessiPerMese(Date DataIN);
+
+	public List<Accesso> GetAccessiPerAnno(Date DataIN);
+
+	public List<Accesso> GetAllAccessi();
 }

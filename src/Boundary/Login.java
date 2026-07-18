@@ -23,14 +23,7 @@ public class Login extends JFrame {
 	private JPasswordField PasswordTF;
 	ControllerLogin c;
 
-	/**
-	 * Launch the application.
-	 */
 
-
-	/**
-	 * Create the frame.
-	 */
 	public Login(ControllerLogin c) {
 		this.c=c;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

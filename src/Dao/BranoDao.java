@@ -39,5 +39,7 @@ public interface BranoDao {
 	public  void SetDimensioni(double DimensioniIN, int IdElementoIN);
 
 	public  void SetImmaginecopertina(String ImmaginecopertinaIN, int IdElementoIN);
+
+	public Brano GetElementoPerId(int IdElementoIN);
 }
 
