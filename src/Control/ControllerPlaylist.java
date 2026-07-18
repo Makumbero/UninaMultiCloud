@@ -274,7 +274,18 @@ public class ControllerPlaylist {
 		this.HomeToRaccolta();
 	}
 
-
+	public List<PlaylistPubblica>getPlaylistPubblicaByAutore(String EmailIN) {
+		return MyPubblicaDao.CercaPlaylistPubblicaPerEmail(EmailIN);
+	}
+	
+	public List<PlaylistCondivisa>getPlaylistCondivisaByAutore(String EmailIN) {
+		return MyCondivisaDao.CercaPlaylistCondivisaPerEmail(EmailIN);
+	}
+	
+	public List<PlaylistPrivata>getPlaylistPrivataByAutore(String EmailIN) {
+		return MyPrivataDao.CercaPlaylistPrivataPerEmail(EmailIN);
+	}
+	
 	public List<Utente> CercaUtentiCondivisi(int IdCondivisaIN){
 		return MyCondivisaDao.CercaUtentiCondivisi(IdCondivisaIN);
 }

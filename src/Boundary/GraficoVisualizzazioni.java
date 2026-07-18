@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -35,15 +36,21 @@ import org.jfree.data.time.Year;
 import Control.ControllerLogin;
 import Entity.Accesso;
 import Entity.Utente;
+import javax.swing.SwingConstants;
 
 public class GraficoVisualizzazioni extends JFrame {
 
     private JPanel panelGrafico;
     private JPanel panelControlli;
     private JComboBox<String> comboBox;
+    JLabel Titolo;
     ControllerLogin cLog;
     Utente utente;
     private JButton Indietro;
+    private JPanel panelInfo;
+    private JLabel NomeProfilo;
+    private JLabel NumeroBrani;
+    private JLabel NumeroPlaylist;
 
     public GraficoVisualizzazioni(ControllerLogin cLog, Utente utente) {
         this.cLog = cLog;
@@ -52,7 +59,8 @@ public class GraficoVisualizzazioni extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        
+  
         panelControlli = new JPanel();
         comboBox = new JComboBox<>();
         comboBox.addItem("Giorni");
@@ -88,6 +96,23 @@ public class GraficoVisualizzazioni extends JFrame {
 
         panelGrafico = new JPanel();
         getContentPane().add(panelGrafico, BorderLayout.CENTER);
+        
+        panelInfo = new JPanel();
+        getContentPane().add(panelInfo, BorderLayout.NORTH);
+        
+        NomeProfilo = new JLabel(utente.getUsername());
+        NomeProfilo.setFont(new Font("Tahoma", Font.BOLD, 25));
+        panelInfo.add(NomeProfilo);
+        
+        NumeroBrani = new JLabel("                    Brani Pubblicati: "+cLog.getNumeroElementiPerUtente(utente.getEmail()));
+        NumeroBrani.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        panelInfo.add(NumeroBrani);
+        
+        NumeroPlaylist = new JLabel("               Playlist Create: "+cLog.getNumeroPlaylistPerUtente(utente.getEmail()));
+        NumeroPlaylist.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        panelInfo.add(NumeroPlaylist);
+        
+
 
 
     }
@@ -157,7 +182,7 @@ public class GraficoVisualizzazioni extends JFrame {
         dataset.addSeries(serie);
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(//classe di JFreeChart, crea effettivamente il grafico
-                "Visualizzazioni di "+utente.getUsername(),
+                "Visualizzazioni nel tempo",
                 "Data",
                 "Visualizzazioni",
                 dataset

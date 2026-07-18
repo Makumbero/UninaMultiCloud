@@ -13,6 +13,7 @@ import Boundary.Login;
 import Dao.JDBCAccessoDao;
 import Dao.JDBCUtenteDao;
 import Entity.Accesso;
+import Entity.Brano;
 import Entity.Utente;
 
 public class ControllerLogin {
@@ -49,7 +50,6 @@ public class ControllerLogin {
 		if(UtenteDAO.VerificaUtente(Email,Password)){
 		    MyUtente=this.getAutorePerEmail(Email.toLowerCase());
 			MyHome=new Home(this);
-			MyGrafico=new GraficoVisualizzazioni(this,MyUtente);
 			cCerca= new ControllerCerca(conn,MyHome,MyUtente);
             cPl= new ControllerPlaylist(conn, MyUtente, MyHome, this);
 		    cEle= new ControllerElementi(conn, MyUtente, MyHome, this, cPl);
@@ -62,10 +62,23 @@ public class ControllerLogin {
 			cCerca.setcPlay(cPl);
 			cCerca.setcEle(cEle);
 			cCerca.setcLog(this);
+			MyGrafico=new GraficoVisualizzazioni(this,MyUtente);
 			LoginHome();
 		}else {
 			JOptionPane.showMessageDialog(null, "Si Prega di inserire le credenziali corrette");
 		}
+	}
+	public int getNumeroElementiPerUtente(String EmailIN) {
+		List<Brano> listaBrani=cEle.CercaElementiPerEmail(EmailIN);
+		return listaBrani.size();
+	}
+	
+	public int getNumeroPlaylistPerUtente(String EmailIN) {
+		int NPlaylistCondivise=cPl.getPlaylistCondivisaByAutore(EmailIN).size();
+		int NPlaylistPrivate=cPl.getPlaylistPrivataByAutore(EmailIN).size();
+		int NPlaylistPubbliche=cPl.getPlaylistPubblicaByAutore(EmailIN).size();
+		
+		return NPlaylistCondivise+NPlaylistPrivate+NPlaylistPubbliche;
 	}
 
 	public void Logout() {

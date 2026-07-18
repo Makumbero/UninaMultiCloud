@@ -53,6 +53,9 @@ public class ControllerElementi {
 	public List<Brano> CercaElementiPerAutore(String AutoreIN) {
 		return MyBranoDao.CercaElementiPerAutore(AutoreIN);
 	}
+	public List<Brano> CercaElementiPerEmail(String AutoreIN) {
+		return MyBranoDao.CercaElementiPerEmail(AutoreIN);
+	}
 	public void HomeToMieiElementi() {
 		MyHome.setVisible(false);
 		MyMieiElementi.setVisible(true);
