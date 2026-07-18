@@ -133,7 +133,7 @@ public class ControllerElementi {
 				MyBranoDao.SetDurata(durata, b.getIdBrano());
 			}
 		} catch (Exception e) {
-		    JOptionPane.showMessageDialog(null, "La durata deve essere un numero intero, non è stata modificata.");
+		    JOptionPane.showMessageDialog(null, "La durata deve essere inserita in formato (mm:ss) non è stata modificata.");
 		}
 
 		try {
@@ -196,7 +196,7 @@ public class ControllerElementi {
 		try {
 		     durata=this.StringaInSecondi(Durata);
 		} catch (Exception e) {
-		    JOptionPane.showMessageDialog(null, "La durata deve essere un numero intero!");
+		    JOptionPane.showMessageDialog(null, "La durata deve essere inserita in formato (mm:ss)");
 		    verifica=false;
 		}
 

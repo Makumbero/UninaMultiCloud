@@ -82,14 +82,14 @@ public class VisualizzaElemento extends JFrame {
 		DataCreazione.setBounds(191, 273, 684, 25);
 		contentPane.add(DataCreazione);
 
-		Dimensione = new JLabel("       Dimensione:  ");
+		Dimensione = new JLabel("       Dimensione(MB):  ");
 		Dimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Dimensione.setBounds(191, 310, 684, 25);
+		Dimensione.setBounds(149, 308, 684, 25);
 		contentPane.add(Dimensione);
 
 		Visualizzazioni = new JLabel("  Visualizzazioni:  ");
 		Visualizzazioni.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Visualizzazioni.setBounds(191, 347, 684, 25);
+		Visualizzazioni.setBounds(192, 343, 684, 25);
 		contentPane.add(Visualizzazioni);
 
 		Canali = new JLabel("                Canali:  ");
