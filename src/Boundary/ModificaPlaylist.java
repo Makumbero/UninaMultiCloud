@@ -59,7 +59,7 @@ public class ModificaPlaylist extends JFrame {
 
 		FieldDescrizione = new JTextField(Playlist.getDescrizione());
 		FieldDescrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		FieldDescrizione.setBounds(277, 60, 347, 26);
+		FieldDescrizione.setBounds(230, 62, 372, 26);
 		contentPane.add(FieldDescrizione);
 		FieldDescrizione.setColumns(10);
 
@@ -128,7 +128,7 @@ public class ModificaPlaylist extends JFrame {
 		    
 		    JLabel lblDescrizione = new JLabel("Descrizione:");
 		    lblDescrizione.setFont(new Font("Dialog", Font.PLAIN, 25));
-		    lblDescrizione.setBounds(143, 58, 164, 26);
+		    lblDescrizione.setBounds(70, 58, 150, 26);
 		    contentPane.add(lblDescrizione);
 
 

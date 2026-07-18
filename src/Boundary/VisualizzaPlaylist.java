@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -53,14 +54,14 @@ public class VisualizzaPlaylist extends JFrame {
 
 		JLabel Titolo = new JLabel(Playlist.getTitolo());
 		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		Titolo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titolo.setBounds(143, 6, 624, 25);
+		//Titolo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titolo.setBounds(143, 6, 297, 25);
 		contentPane.add(Titolo);
 
 		JLabel Creatore = new JLabel(Playlist.getCreatore().getUsername());
 		Creatore.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		Creatore.setHorizontalAlignment(SwingConstants.CENTER);
-		Creatore.setBounds(143, 43, 624, 20);
+		//Creatore.setHorizontalAlignment(SwingConstants.CENTER);
+		Creatore.setBounds(143, 43, 297, 20);
 		contentPane.add(Creatore);
 
 		JLabel Data = new JLabel("Data Creazione: "+Playlist.getDataCreazione().toString());
@@ -81,10 +82,20 @@ public class VisualizzaPlaylist extends JFrame {
 		Tipo.setBounds(643, 476, 124, 25);
 		contentPane.add(Tipo);
 
-		JLabel Descrizione = new JLabel("Descrizione: "+Playlist.getDescrizione());
+		/*JLabel Descrizione = new JLabel("Descrizione: "+Playlist.getDescrizione());
 		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		Descrizione.setBounds(143, 75, 624, 16);
+		contentPane.add(Descrizione);*/
+		
+		JTextArea Descrizione= new JTextArea();
+		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		Descrizione.setText(Playlist.getDescrizione());
+		Descrizione.setBounds(454, 6, 313, 85);
+		Descrizione.setEditable(false);
+		Descrizione.setLineWrap(true);
+		Descrizione.setWrapStyleWord(true);
 		contentPane.add(Descrizione);
+
 
 		JScrollPane Scorrimento = new JScrollPane();
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

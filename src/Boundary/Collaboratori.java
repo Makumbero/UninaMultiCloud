@@ -29,6 +29,7 @@ public class Collaboratori extends JFrame {
 	private JPanel contentPane;
 	private JFrame Precedente;
 	private JPanel PannelloUtenti;
+	private JLabel Titolo;
 	ControllerCerca MycCerca;
 	ControllerPlaylist MycPl;
 	Playlist playlist;
@@ -77,6 +78,11 @@ public class Collaboratori extends JFrame {
 
         PannelloUtenti = new JPanel();
 		Scorrimento.setViewportView(PannelloUtenti);
+		
+		Titolo = new JLabel("Collaboratori della Playlist \"");
+		Titolo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Titolo.setBounds(143, 66, 621, 25);
+		contentPane.add(Titolo);
 	}
 
 	public void MostraCollaboratori(List <Utente> Utenti, Playlist playlist) {
@@ -111,6 +117,8 @@ public class Collaboratori extends JFrame {
 		        riga.add(pulsanti, BorderLayout.EAST);
 
 		        PannelloUtenti.add(riga);
+		        
 	}
-
-}}
+	        Titolo.setText(Titolo.getText()+playlist.getTitolo()+"\": ");
+}	
+}
