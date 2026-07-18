@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -50,10 +51,11 @@ public class Cerca extends JFrame {
 		});
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Unina Multi Search");
-		lblNewLabel_1.setFont(new Font("Microsoft Uighur", Font.BOLD, 34));
-		lblNewLabel_1.setBounds(358, 148, 204, 35);
-		contentPane.add(lblNewLabel_1);
+		JLabel Titolo = new JLabel("Unina Multi Search");
+		Titolo.setFont(new Font("Microsoft Uighur", Font.BOLD, 34));
+		Titolo.setBounds(177, 148, 562, 35);
+		Titolo.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(Titolo);
 		contentPane.add(btnIndietro);
 
 		textRicerca = new JTextField();
