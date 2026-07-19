@@ -51,15 +51,15 @@ public class VisualizzaPlaylist extends JFrame {
 
 
 		JLabel Titolo = new JLabel(Playlist.getTitolo());
-		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		//Titolo.setHorizontalAlignment(SwingConstants.CENTER);
-		Titolo.setBounds(143, 6, 297, 25);
+		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+		Titolo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titolo.setBounds(6, 29, 488, 25);
 		contentPane.add(Titolo);
 
 		JLabel Creatore = new JLabel(Playlist.getCreatore().getUsername());
 		Creatore.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		//Creatore.setHorizontalAlignment(SwingConstants.CENTER);
-		Creatore.setBounds(143, 43, 297, 20);
+		Creatore.setHorizontalAlignment(SwingConstants.CENTER);
+		Creatore.setBounds(6, 66, 488, 20);
 		contentPane.add(Creatore);
 
 		JLabel Data = new JLabel("Data Creazione: "+Playlist.getDataCreazione().toString());
@@ -86,9 +86,9 @@ public class VisualizzaPlaylist extends JFrame {
 		contentPane.add(Descrizione);*/
 		
 		JTextArea Descrizione= new JTextArea();
-		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		Descrizione.setText(Playlist.getDescrizione());
-		Descrizione.setBounds(454, 6, 313, 85);
+		Descrizione.setBounds(506, 6, 261, 85);
 		Descrizione.setEditable(false);
 		Descrizione.setLineWrap(true);
 		Descrizione.setWrapStyleWord(true);

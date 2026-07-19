@@ -97,6 +97,7 @@ public class MieiElementi extends JFrame {
 					MycEle.VisualizzaElemento(MieiElementi.this, brano);
 				}
 			});
+			titolo.setPreferredSize(new Dimension(PannelloBrani.getWidth()/2, 50));
 
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
