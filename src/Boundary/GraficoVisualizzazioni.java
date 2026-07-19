@@ -46,15 +46,17 @@ public class GraficoVisualizzazioni extends JFrame {
     JLabel Titolo;
     ControllerLogin cLog;
     Utente utente;
+    JFrame Precedente;
     private JButton Indietro;
     private JPanel panelInfo;
     private JLabel NomeProfilo;
     private JLabel NumeroBrani;
     private JLabel NumeroPlaylist;
 
-    public GraficoVisualizzazioni(ControllerLogin cLog, Utente utente) {
+    public GraficoVisualizzazioni(ControllerLogin cLog, Utente utente,JFrame Precedente) {
         this.cLog = cLog;
         this.utente = utente;
+        this.Precedente=Precedente;
 		setBounds(100, 100, 900, 650);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -86,7 +88,7 @@ public class GraficoVisualizzazioni extends JFrame {
         Indietro.setPreferredSize(new Dimension(190, 80));
 		Indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cLog.ProfiloToHome();
+				cLog.ToPrecedente(GraficoVisualizzazioni.this, Precedente);
 			}
 		});
         panelControlli.add(Indietro);

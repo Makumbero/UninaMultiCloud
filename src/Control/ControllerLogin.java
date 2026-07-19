@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Boundary.ERROR;
 import Boundary.GraficoVisualizzazioni;
 import Boundary.Home;
 import Boundary.Login;
@@ -19,7 +18,6 @@ import Entity.Utente;
 public class ControllerLogin {
 	Home MyHome;
  	Login MyLogin;
- 	ERROR Errore;
  	Connection conn;
  	JFrame lastFrame;
  	GraficoVisualizzazioni MyGrafico;
@@ -33,7 +31,6 @@ public class ControllerLogin {
  	public ControllerLogin(Connection conn1) {
 		MyLogin=new Login(this);
 		MyLogin.setVisible(true);
-		Errore=new ERROR(this);
 		conn=conn1;
 		UtenteDAO=new JDBCUtenteDao(conn1);
 
@@ -41,7 +38,6 @@ public class ControllerLogin {
 
 	public void LoginHome() {
 		MyLogin.dispose();
-		Errore.dispose();
 		MyHome.setVisible(true);
 	}
 
@@ -62,7 +58,6 @@ public class ControllerLogin {
 			cCerca.setcPlay(cPl);
 			cCerca.setcEle(cEle);
 			cCerca.setcLog(this);
-			MyGrafico=new GraficoVisualizzazioni(this,MyUtente);
 			LoginHome();
 		}else {
 			JOptionPane.showMessageDialog(null, "Si Prega di inserire le credenziali corrette");
@@ -85,7 +80,6 @@ public class ControllerLogin {
 		MyHome.dispose();
 		MyLogin=new Login(this);
 		MyLogin.setVisible(true);
-		Errore=new ERROR(this);
 		MyGrafico.dispose();
 		MyUtente=null;
 		cPl=null;
@@ -95,16 +89,10 @@ public class ControllerLogin {
 
 	}
 
-	public void showError() {
-		Errore.setVisible(true);
-	}
-
-	public void dismissError() {
-		Errore.setVisible(false);
-	}
 
 	public void HomeToProfilo() {
 		MyHome.setVisible(false);
+		MyGrafico=new GraficoVisualizzazioni(this,MyUtente,MyHome);
         MyGrafico.creaGrafico(GetAccessiPerMese(new Date(System.currentTimeMillis())), "Giorni");
 		MyGrafico.setVisible(true);
 
@@ -116,11 +104,12 @@ public class ControllerLogin {
 		MyHome.setVisible(true);
 		lastFrame=MyHome;
 	}
-
-	public void ReturnHome() {
-		lastFrame.setVisible(false);
-		MyHome.setVisible(true);
+	
+	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
+		Attuale.dispose();
+		Precedente.setVisible(true);
 	}
+
 
 	public Utente getAutorePerEmail(String EmailIN) {
 		Utente u;
