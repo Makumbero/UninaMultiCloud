@@ -143,6 +143,7 @@ public class ModificaPlaylist extends JFrame {
 							MycEle.VisualizzaElemento(ModificaPlaylist.this, brano);
 						}
 					});
+					titolo.setPreferredSize(new Dimension(PannelloBrani.getWidth()/2, 50));
 
 			        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
