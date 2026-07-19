@@ -136,7 +136,7 @@ public class ControllerElementi {
 				MyBranoDao.SetDurata(durata, b.getIdBrano());
 			}
 		} catch (Exception e) {
-		    JOptionPane.showMessageDialog(null, "La durata deve essere inserita in formato (mm:ss) non è stata modificata.");
+		    JOptionPane.showMessageDialog(null, "La durata deve essere inserita in formato (mm:ss), non è stata modificata.");
 		}
 
 		try {
@@ -225,7 +225,7 @@ public class ControllerElementi {
 		}
 
 		if(verifica) {
-			MyBranoDao.AggiungiBrano(Titolo,Formato, durata, Descrizione, Integer.parseInt(Canali), Integer.parseInt(Campionamento), Double.parseDouble(Dimensione), "https", MyUtente.getEmail());
+			MyBranoDao.AggiungiBrano(Titolo,Formato, durata, Descrizione, Integer.parseInt(Canali), Integer.parseInt(Campionamento), Double.parseDouble(Dimensione),  MyUtente.getEmail());
 			MyCreaElemento.dispose();
 			MyMieiElementi.dispose();
 			MyMieiElementi=new MieiElementi(this, MyHome);

@@ -28,7 +28,7 @@ public class JDBCBranoDao implements BranoDao{
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
-			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(EmailIN)));
+			 rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(EmailIN)));
 		            }
 		        }
 		    } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class JDBCBranoDao implements BranoDao{
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"),rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
-			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email"))));
+		 rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email"))));
 		            }
 		        }
 		    } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class JDBCBranoDao implements BranoDao{
 		        try (ResultSet rs = PstmtCercaElementi.executeQuery()) {
 		            while(rs.next()) {
 		            	listaBrani.add(new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
-			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email"))));
+			 rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email"))));
 		            }
 		        }
 		    } catch (SQLException e) {
@@ -85,7 +85,6 @@ public class JDBCBranoDao implements BranoDao{
 			int CanaliIN,
 			int CampionamentoIN,
 			double DimensioniIN,
-			String ImmagineCopertinaIN,
 			String EmailIN ) {
 		 String sql = " CALL AggiungiAudio(?,?,?,?,?,?,?,?,?)";
 
@@ -97,7 +96,7 @@ public class JDBCBranoDao implements BranoDao{
 		        PstmtAggiungiAudio.setInt(5, CanaliIN);
 		        PstmtAggiungiAudio.setInt(6, CampionamentoIN);
 		        PstmtAggiungiAudio.setDouble(7, DimensioniIN);
-		        PstmtAggiungiAudio.setString(8, ImmagineCopertinaIN);
+		        PstmtAggiungiAudio.setString(8, " ");
 		        PstmtAggiungiAudio.setString(9, EmailIN);
 		        PstmtAggiungiAudio.execute();
 
@@ -137,7 +136,7 @@ public class JDBCBranoDao implements BranoDao{
 		        try (ResultSet rs = pstm.executeQuery()) {
 		            while(rs.next()) {
 		            	b=new Brano(rs.getString("Titolo"), rs.getString("Formato"), rs.getInt("Durata"), rs.getString("Descrizione"), rs.getDate("Datacreazione"), rs.getDouble("Dimensioni"),
-			rs.getString("ImmagineCopertina"), rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email")));
+			 rs.getInt("Visualizzazioni"), rs.getInt("Canali"), rs.getInt("Campionamento"), rs.getInt("IdElemento"), cLogin.getAutorePerEmail(rs.getString("Email")));
 		            }
 		        }
 		    } catch (SQLException e) {
@@ -278,22 +277,5 @@ public class JDBCBranoDao implements BranoDao{
 
 	}
 
-	@Override
-	public  void SetImmaginecopertina(String ImmaginecopertinaIN, int IdElementoIN) {
-		String sql = "CALL SetImmaginecopertina(?,?)";
 
-	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	        pstmt.setString(1, ImmaginecopertinaIN);
-	        pstmt.setInt(2, IdElementoIN);
-	        pstmt.execute();
-
-
-
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-
-	}
 }

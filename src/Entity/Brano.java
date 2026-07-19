@@ -8,7 +8,6 @@ public class Brano {
 	private String Descrizione;
 	private Date DataCreazione;
 	private Double Dimensione;
-	private String ImmagineCopertina;
 	private int Visualizzazioni;
 	private int Canali;
 	private int Campionamento;
@@ -17,14 +16,13 @@ public class Brano {
 
 
 	public Brano(String titolo, String formato, int durata,String descrizione, Date dataCreazione, Double dimensione,
-			String immagineCopertina, int visualizzazioni, int canali, int campionamento, int idBrano, Utente creatore) {
+			int visualizzazioni, int canali, int campionamento, int idBrano, Utente creatore) {
 		Titolo = titolo;
 		Formato = formato;
 		Durata = durata;
 		Descrizione=descrizione;
 		DataCreazione = dataCreazione;
 		Dimensione = dimensione;
-		ImmagineCopertina = immagineCopertina;
 		Visualizzazioni = visualizzazioni;
 		Canali = canali;
 		Campionamento = campionamento;
@@ -76,13 +74,6 @@ public class Brano {
 		Dimensione = dimensione;
 	}
 
-	public String getImmagineCopertina() {
-		return ImmagineCopertina;
-	}
-
-	public void setImmagineCopertina(String immagineCopertina) {
-		ImmagineCopertina = immagineCopertina;
-	}
 
 	public int getVisualizzazioni() {
 		return Visualizzazioni;

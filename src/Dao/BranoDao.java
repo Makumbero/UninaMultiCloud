@@ -19,7 +19,6 @@ public interface BranoDao {
 			int CanaliIN,
 			int CampionamentoIN,
 			double DimensioniIN,
-			String ImmagineCopertinaIN,
 			String EmailIN );
 
 	public  void EliminaBrano(int IdElementoIN);
@@ -38,7 +37,6 @@ public interface BranoDao {
 
 	public  void SetDimensioni(double DimensioniIN, int IdElementoIN);
 
-	public  void SetImmaginecopertina(String ImmaginecopertinaIN, int IdElementoIN);
 
 	public Brano GetElementoPerId(int IdElementoIN);
 }
