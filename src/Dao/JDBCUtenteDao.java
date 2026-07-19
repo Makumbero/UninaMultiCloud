@@ -36,30 +36,7 @@ public class JDBCUtenteDao implements UtenteDao {
 
 	}
 
-	@Override
-	public Utente ricercaPerEmail(String Email) {
-		Utente u=null;
-
-			try (Statement stmt = conn.createStatement()){
-
-				try(ResultSet rs = stmt.executeQuery("SELECT * FROM utente WHERE email = '" + Email + "'")){
-					if(rs.next()) {
-						Utente u1=new Utente(rs.getString("username"),Email,rs.getString("password"));
-						u1=u;
-					}
-				}
-
-
-
-
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		return u;
-	}
-
+	
 
 	@Override
 	public boolean VerificaUtente(String Email, String Password) {
