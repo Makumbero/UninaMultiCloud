@@ -261,7 +261,7 @@ public class ControllerElementi {
         String[] orario = orarioIN.trim().split(":");// separa la stringa in due con il carattere :
         int minuti = Integer.parseInt(orario[0]);
         int secondi = Integer.parseInt(orario[1]);
-        if(minuti>60||secondi>60) {
+        if(minuti>60||secondi>=60) {
           throw new IllegalArgumentException("Sono stati inseriti valori maggiori dei minuti o dei secondi");
         }
         return minuti * 60 + secondi;
