@@ -11,7 +11,6 @@ public  abstract class  Playlist {
 	private Date DataCreazione;
 	private String Descrizione;
 	private Utente Creatore;
-	private List<Brano> Brani = new ArrayList<>();
 
 	public Playlist(String titolo,int numeroElementi, Date dataCreazione, String descrizione, Utente creatore) {
 		Titolo=titolo;
@@ -59,15 +58,6 @@ public  abstract class  Playlist {
 	public Utente getCreatore() {
 		return Creatore;
 	}
-
-	public void aggiungiBrano(Brano b) {
-		Brani.add(b);
-	}
-
-	public void rimuoviBrano(Brano b) {
-		Brani.remove(b);
-	}
-
 
 	public int getId() {
 		return 0;
