@@ -137,7 +137,7 @@ public class GraficoVisualizzazioni extends JFrame {
                 periodo = new Day(accesso.getData());
             }
 
-            int posizione = periodi.indexOf(periodo); //salva in posizione indice della lista in cui si trova periodo
+            int posizione = periodi.indexOf(periodo); //salva in posizione l'indice della lista in cui si trova periodo
 
             if (posizione == -1) {//se periodo non è presente, lo aggiunge
                 periodi.add(periodo);
@@ -154,7 +154,7 @@ public class GraficoVisualizzazioni extends JFrame {
             RegularTimePeriod minPeriodo = periodi.get(0);// inizializiamo i due valori
             RegularTimePeriod maxPeriodo = periodi.get(0);
             for (RegularTimePeriod p : periodi) {//scorriamo tutti i periodi per trovate il minimo e il massimo
-                if (p.compareTo(minPeriodo) < 0) {//compare to è il metodo di JFreeChart per confrontare due reulartimeperiod, gli operatori unari non bastano
+                if (p.compareTo(minPeriodo) < 0) {//compare to è il metodo di JFreeChart per confrontare due regulartimeperiod, gli operatori unari non bastano
                     minPeriodo = p;				  //se i periodi sono uguali restituisce zero, se p viene prima restituisce -1, se p viene dopo restituisce 1
                 }
                 if (p.compareTo(maxPeriodo) > 0) {
