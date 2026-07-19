@@ -98,12 +98,6 @@ public class ControllerLogin {
 
 		lastFrame=MyGrafico;
 	}
-
-	public void ProfiloToHome() {
-		MyGrafico.dispose();
-		MyHome.setVisible(true);
-		lastFrame=MyHome;
-	}
 	
 	public void ToPrecedente(JFrame Attuale, JFrame Precedente) {
 		Attuale.dispose();
