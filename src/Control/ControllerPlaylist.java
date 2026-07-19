@@ -105,7 +105,6 @@ public class ControllerPlaylist {
 	public void SalvaScegliPlaylist(JFrame ScegliPlaylist, JFrame Precedente, List<Playlist> ListaPlaylist, List<JCheckBox> ListaCheckBox, Brano b) {
 		for(int i=0; i<ListaPlaylist.size(); i++) {
 			if(ListaCheckBox.get(i).isSelected()) {
-				ListaPlaylist.get(i).aggiungiBrano(b);
 				if (ListaPlaylist.get(i) instanceof PlaylistPrivata) {
 					MyPrivataDao.AggiungiaPrivata(ListaPlaylist.get(i).getId(), b.getIdBrano());
 				} else if (ListaPlaylist.get(i) instanceof PlaylistPubblica) {
