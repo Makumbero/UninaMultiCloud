@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
@@ -31,6 +32,7 @@ public class VisualizzaElemento extends JFrame {
 	JLabel Canali;
 	JLabel Campionamento;
 	JFrame Precedente;
+	JTextArea DescrizioneIN;
 	ControllerElementi MycEle;
 	JButton AggiungiAPlaylist;
 	public VisualizzaElemento(JFrame precedente, ControllerElementi mycEle) {
@@ -46,14 +48,14 @@ public class VisualizzaElemento extends JFrame {
 		contentPane.setLayout(null);
 
 		Titolo = new JLabel("Titolo");
-		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 35));
-		Titolo.setBounds(191, 56, 573, 36);
+		Titolo.setFont(new Font("Lucida Grande", Font.BOLD, 34));
+		Titolo.setBounds(6, 56, 888, 36);
 		Titolo.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Titolo);
 
 		Autore = new JLabel("Autore");
 		Autore.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Autore.setBounds(191, 104, 573, 25);
+		Autore.setBounds(6, 104, 888, 25);
 		Autore.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Autore);
 
@@ -69,32 +71,40 @@ public class VisualizzaElemento extends JFrame {
 
 		Descrizione = new JLabel("        Descrizione:  ");
 		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Descrizione.setBounds(191, 236, 684, 25);
+		Descrizione.setBounds(191, 421, 178, 25);
 		contentPane.add(Descrizione);
+		
+		DescrizioneIN= new JTextArea();
+		DescrizioneIN.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		DescrizioneIN.setBounds(368, 422, 396, 65);
+		DescrizioneIN.setEditable(false);
+		DescrizioneIN.setLineWrap(true);
+		DescrizioneIN.setWrapStyleWord(true);
+		contentPane.add(DescrizioneIN);
 
 		DataCreazione = new JLabel("  Data Creazione:  ");
 		DataCreazione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		DataCreazione.setBounds(191, 273, 684, 25);
+		DataCreazione.setBounds(191, 236, 684, 25);
 		contentPane.add(DataCreazione);
 
-		Dimensione = new JLabel("       Dimensione(MB):  ");
+		Dimensione = new JLabel("Dimensione(MB):  ");
 		Dimensione.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Dimensione.setBounds(149, 308, 684, 25);
+		Dimensione.setBounds(191, 273, 684, 25);
 		contentPane.add(Dimensione);
 
 		Visualizzazioni = new JLabel("  Visualizzazioni:  ");
 		Visualizzazioni.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Visualizzazioni.setBounds(192, 343, 684, 25);
+		Visualizzazioni.setBounds(191, 310, 684, 25);
 		contentPane.add(Visualizzazioni);
 
 		Canali = new JLabel("                Canali:  ");
 		Canali.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Canali.setBounds(191, 384, 684, 25);
+		Canali.setBounds(191, 347, 684, 25);
 		contentPane.add(Canali);
 
 		Campionamento = new JLabel("Campionamento:  ");
 		Campionamento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		Campionamento.setBounds(191, 421, 684, 25);
+		Campionamento.setBounds(191, 384, 684, 25);
 		contentPane.add(Campionamento);
 
 
@@ -120,7 +130,7 @@ public class VisualizzaElemento extends JFrame {
 		Autore.setText(u.getUsername());
 		Formato.setText(Formato.getText() + b.getFormato());
 		Durata.setText(Durata.getText() + MycEle.SecondiInStringa(b.getDurata()));
-		Descrizione.setText(Descrizione.getText() + b.getDescrizione());
+		DescrizioneIN.setText(b.getDescrizione());
 		DataCreazione.setText(DataCreazione.getText() + d.toString());
 		Dimensione.setText(Dimensione.getText() + b.getDimensione());
 		Visualizzazioni.setText(Visualizzazioni.getText() + b.getVisualizzazioni());

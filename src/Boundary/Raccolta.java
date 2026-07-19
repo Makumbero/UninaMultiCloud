@@ -51,6 +51,7 @@ public class Raccolta extends JFrame {
 		contentPane.add(Titolo);
 
 		JScrollPane Scorrimento = new JScrollPane();
+		Scorrimento.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		Scorrimento.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		Scorrimento.setBounds(143, 103, 624, 370);
 		contentPane.add(Scorrimento);
@@ -99,6 +100,7 @@ public class Raccolta extends JFrame {
 				MycPl.VisualizzaPlaylist(Raccolta.this,playlist);
 				}
 			});
+			titolo.setPreferredSize(new Dimension(PannelloPlaylist.getWidth()/2, 50));
 
 	        JPanel pulsanti = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
