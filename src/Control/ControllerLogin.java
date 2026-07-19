@@ -80,7 +80,6 @@ public class ControllerLogin {
 		MyHome.dispose();
 		MyLogin=new Login(this);
 		MyLogin.setVisible(true);
-		MyGrafico.dispose();
 		MyUtente=null;
 		cPl=null;
 		cCerca=null;
