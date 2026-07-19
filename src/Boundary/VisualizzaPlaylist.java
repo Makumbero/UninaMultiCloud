@@ -79,11 +79,6 @@ public class VisualizzaPlaylist extends JFrame {
 		}
 		Tipo.setBounds(643, 476, 124, 25);
 		contentPane.add(Tipo);
-
-		/*JLabel Descrizione = new JLabel("Descrizione: "+Playlist.getDescrizione());
-		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		Descrizione.setBounds(143, 75, 624, 16);
-		contentPane.add(Descrizione);*/
 		
 		JTextArea Descrizione= new JTextArea();
 		Descrizione.setFont(new Font("Lucida Grande", Font.PLAIN, 16));

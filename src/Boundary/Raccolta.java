@@ -83,7 +83,7 @@ public class Raccolta extends JFrame {
 
 	}
 	public void MostraPlaylist(List <Playlist> ListaPlaylist) {
-	    PannelloPlaylist.removeAll();
+	    PannelloPlaylist.removeAll(); //removeAll rimuove tutti gli elementi di pannelloPlaylist mostrati in precedenza
 
 	    PannelloPlaylist.setLayout(new BoxLayout(PannelloPlaylist, BoxLayout.Y_AXIS));
 

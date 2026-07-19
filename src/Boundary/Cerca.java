@@ -84,7 +84,7 @@ public class Cerca extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		ImageIcon iconaOriginale=new ImageIcon(Cerca.class.getResource("/Images/chuttersnap-vA2cHLhiQYg-unsplash.jpg"));
-		Image immagineScalata = iconaOriginale.getImage().getScaledInstance(562, 168, Image.SCALE_SMOOTH);
+		Image immagineScalata = iconaOriginale.getImage().getScaledInstance(562, 168, Image.SCALE_SMOOTH);//scala l'immagine alla grandezza inserita, usando un algoritmo consigliato ovvero scale_smoot, che predilige la qualità
 		lblNewLabel.setIcon(new ImageIcon(immagineScalata));
 		lblNewLabel.setBounds(177, 48, 562, 168);
 		contentPane.add(lblNewLabel);
