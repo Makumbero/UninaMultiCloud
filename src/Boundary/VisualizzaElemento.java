@@ -80,6 +80,7 @@ public class VisualizzaElemento extends JFrame {
 		DescrizioneIN.setEditable(false);
 		DescrizioneIN.setLineWrap(true);
 		DescrizioneIN.setWrapStyleWord(true);
+		DescrizioneIN.setFocusable(false);
 		contentPane.add(DescrizioneIN);
 
 		DataCreazione = new JLabel("  Data Creazione:  ");

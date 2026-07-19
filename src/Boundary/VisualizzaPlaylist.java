@@ -87,6 +87,7 @@ public class VisualizzaPlaylist extends JFrame {
 		Descrizione.setEditable(false);
 		Descrizione.setLineWrap(true);
 		Descrizione.setWrapStyleWord(true);
+		Descrizione.setFocusable(false);
 		contentPane.add(Descrizione);
 
 
