@@ -105,7 +105,6 @@ public class ControllerElementi {
 	}
 
 	public void SalvaModifiche(Brano b, String Titolo, String Formato, String Descrizione, String Durata, String Dimensione, String Canali, String Campionamento) {
-		int durata = 0;
 		if(!(b.getTitolo().equals(Titolo))) {
 			if(Titolo.trim().isEmpty() || Titolo.length()>40) {
 				 JOptionPane.showMessageDialog(null, "Il titolo non può essere vuoto e deve contenere al massimo 40 caratteri. Non è stato modificato.");
@@ -129,7 +128,8 @@ public class ControllerElementi {
 			else {
 			MyBranoDao.Setdescrizione(Descrizione, b.getIdBrano());
 		}}
-
+		
+		int durata = 0;
 		try {
 			 durata=this.StringaInSecondi(Durata);
 		    if(durata!=b.getDurata()) {
@@ -262,14 +262,14 @@ public class ControllerElementi {
         int minuti = Integer.parseInt(orario[0]);
         int secondi = Integer.parseInt(orario[1]);
         if(minuti>60||secondi>60) {
-          throw new IllegalArgumentException("sono stati inseriti valori maggiori dei minuti o dei secondi");
+          throw new IllegalArgumentException("Sono stati inseriti valori maggiori dei minuti o dei secondi");
         }
         return minuti * 60 + secondi;
     }
 
     public String SecondiInStringa(int SecondiTotali) {
         return String.format("%d:%02d", SecondiTotali / 60, SecondiTotali % 60); //formatta da int a stringa, divide per sessanta per ottenere i minuti, e il resto della divisione diventano i secondi
-    }
+    }//%02d è un placeholder che aggiunge uno 0 nel caso il carattere inserito sia singolo.
 
 }
 
